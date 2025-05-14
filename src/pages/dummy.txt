@@ -1,0 +1,385 @@
+import React, { useState, useEffect } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import { User, ArrowUp, Users, Network, Award, TrendingUp, Check, Globe, ChevronRight, ShoppingBag, Heart, Gift, Baby, Activity, Scale, Shield, Droplet, Flower, Home, Zap, HeartPulse, Play } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import AboutSection from './AboutSection';
+import ProductsSection from './Products';
+import BusinessOpportunityPage from './BusinessOpportunityPage';
+
+const Homes = () => {
+    const [isScrolled, setIsScrolled] = useState(false);
+    const { scrollYProgress } = useScroll();
+    const opacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
+    const scale = useTransform(scrollYProgress, [0, 0.2], [1, 0.95]);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            setIsScrolled(window.scrollY > 50);
+        };
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
+
+    // Framer Motion variants
+
+    
+
+    const fadeIn = {
+        hidden: { opacity: 0, y: 20 },
+        visible: {
+            opacity: 1,
+            y: 0,
+            transition: { duration: 0.6, ease: 'easeOut' },
+        },
+    };
+
+    const staggerChildren = {
+        hidden: { opacity: 0 },
+        visible: {
+            opacity: 1,
+            transition: {
+                staggerChildren: 0.2,
+            },
+        },
+    };
+
+    const itemVariants = {
+        hidden: { opacity: 0, y: 20 },
+        visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } },
+    };
+
+    const hoverScale = {
+        hover: { scale: 1.05, transition: { duration: 0.3 } },
+        tap: { scale: 0.95 },
+    };
+
+    
+
+    return (
+        <div >
+            {/* Sticky Navigation Bar */}
+            {/* <motion.nav
+                className={`fixed top-0 w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-white shadow-md py-6' : 'bg-transparent py-4'}`}
+                initial={{ y: -100 }}
+                animate={{ y: 0 }}
+                transition={{ duration: 0.5 }}
+            >
+                <div className="container   flex items-center justify-between px-5 ">
+                    <img src="./logo.png" alt="logo" className='h-10 w-auto' />
+                    <div className="hidden md:flex space-x-6 font-semibold">
+                        <a href="#about" className="text-gray-700 hover:text-orange-500 transition">About</a>
+                        <a href="#products" className="text-gray-700 hover:text-orange-500 transition">Products</a>
+                        <a href="#opportunity" className="text-gray-700 hover:text-orange-500 transition">Opportunity</a>
+                        <a href="#join" className="text-gray-700 hover:text-orange-500 transition">Join Us</a>
+                    </div>
+                    <motion.div whileHover="hover" whileTap="tap" variants={hoverScale}>
+                        <Button className="bg-orange-500 font-semibold hover:bg-orange-600 text-white  rounded-full px-6 py-2 shadow-md">
+                            LOGIN
+                        </Button>
+                    </motion.div>
+                </div>
+            </motion.nav> */}
+
+            {/* Hero Section */}
+            <section className="min-h-screen flex flex-col items-center justify-center text-center bg-gradient-to-br from-orange-50 via-white to-orange-50 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+                {/* Background Elements */}
+                <motion.div
+                    className="absolute top-40 left-10 bg-orange-200 rounded-full opacity-20 w-64 h-64 blur-3xl"
+                    animate={{
+                        x: [0, 20, 0],
+                        y: [0, -20, 0],
+                        scale: [1, 1.1, 1]
+                    }}
+                    transition={{
+                        duration: 15,
+                        repeat: Infinity,
+                        repeatType: "reverse"
+                    }}
+                />
+                <motion.div
+                    className="absolute bottom-40 right-10 bg-orange-300 rounded-full opacity-20 w-80 h-80 blur-3xl"
+                    animate={{
+                        x: [0, -30, 0],
+                        y: [0, 20, 0],
+                        scale: [1, 1.2, 1]
+                    }}
+                    transition={{
+                        duration: 18,
+                        repeat: Infinity,
+                        repeatType: "reverse",
+                        delay: 1.5
+                    }}
+                />
+
+                <motion.div
+                    className="absolute inset-0"
+                    style={{
+                        backgroundImage: "url('/api/placeholder/1600/900')",
+                        backgroundSize: "cover",
+                        backgroundPosition: "center",
+                        opacity: 0.05
+                    }}
+                />
+
+                <motion.div
+                    className="relative z-10 max-w-4xl mx-auto"
+                    variants={staggerChildren}
+                    initial="hidden"
+                    animate="visible"
+                    style={{ opacity, scale }}
+                >
+
+                    {/* Main Heading */}
+                    <motion.h1
+                        className="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight"
+                        variants={itemVariants}
+                    >
+                        Start Your Own Business <br />
+                        <span>with NHT Global</span>
+                    </motion.h1>
+
+                    {/* Subheading */}
+                    <motion.p
+                        className="text-lg sm:text-xl text-gray-600 mb-8 max-w-2xl mx-auto font-medium"
+                        variants={itemVariants}
+                    >
+                        An evergreen network marketing company – with a proven track record since 2001.
+                    </motion.p>
+
+                    {/* Call to Action Buttons */}
+                    <motion.div
+                        className="flex flex-col sm:flex-row gap-4 justify-center "
+                        variants={itemVariants}
+                    >
+                        <motion.div whileHover="hover" whileTap="tap" variants={hoverScale}>
+                            <Button
+                                className="bg-orange-500 text-white font-semibold py-6 px-12 rounded-full hover:bg-orange-600 shadow-lg flex items-center"
+                            >
+                                BECOME A DISTRIBUTOR
+                                <ChevronRight className="ml-2 h-5 w-5" />
+                            </Button>
+                        </motion.div>
+                        <motion.div whileHover="hover" whileTap="tap" variants={hoverScale}>
+                            <Button
+                                className="bg-white text-orange-500 border border-orange-500 font-semibold py-6 px-12 rounded-full hover:bg-orange-50 shadow-lg"
+                            >
+                                LEARN MORE
+                            </Button>
+                        </motion.div>
+                    </motion.div>
+                </motion.div>
+
+                {/* Scroll Indicator */}
+                <motion.div
+                    className="absolute bottom-10 left-1/2 transform -translate-x-1/2"
+                    animate={{ y: [0, 10, 0] }}
+                    transition={{ duration: 2, repeat: Infinity }}
+                >
+                    <div className="w-6 h-10 border-2 border-gray-400 rounded-full relative flex justify-center items-center">
+                        <div className="w-1.5 h-1.5 bg-gray-400 rounded-full absolute top-2 animate-bounce" />
+                    </div>
+                    <p className="text-xs text-gray-400 mt-2">SCROLL DOWN</p>
+                </motion.div>
+            </section>
+
+            {/* About Section */}
+            <AboutSection />
+
+            
+          
+            {/* Opportunity Section */}
+            <section id="opportunity" className="py-20 px-4 bg-gray-50 relative">
+                <div className="absolute top-0 left-0 w-full h-32 bg-white transform -skew-y-2"></div>
+                <div className="container mx-auto max-w-6xl relative z-10">
+                    <motion.div
+                        variants={fadeIn}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true, margin: "-100px" }}
+                        className="text-center mb-16"
+                    >
+                        <motion.div className="inline-block rounded-full bg-orange-100 p-2 mb-4">
+                            <TrendingUp className="h-6 w-6 text-orange-500" />
+                        </motion.div>
+                        <h2 className="text-3xl font-bold text-gray-900 mb-4">Business Opportunity</h2>
+                        <div className="h-1 w-20 bg-orange-500 mx-auto mb-6"></div>
+                        <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+                            Discover how you can build a rewarding business with NHT Global's proven compensation plan and support system.
+                        </p>
+                    </motion.div>
+
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                        <motion.div
+                            variants={fadeIn}
+                            initial="hidden"
+                            whileInView="visible"
+                            viewport={{ once: true, margin: "-100px" }}
+                            className="text-left"
+                        >
+                            <h3 className="text-2xl font-bold text-gray-900 mb-6">Why Choose NHT Global?</h3>
+                            <ul className="space-y-4">
+                                {[
+                                    "Generous compensation plan with multiple income streams",
+                                    "Proven business model with over 20 years of success",
+                                    "Comprehensive training and support system",
+                                    "Global marketplace with operations in multiple countries",
+                                    "Premium, high-demand products with scientific backing"
+                                ].map((item, index) => (
+                                    <motion.li
+                                        key={index}
+                                        className="flex items-start"
+                                        initial={{ opacity: 0, x: -20 }}
+                                        whileInView={{ opacity: 1, x: 0 }}
+                                        transition={{ delay: index * 0.1 }}
+                                        viewport={{ once: true }}
+                                    >
+                                        <div className="bg-orange-100 rounded-full p-1 mr-3 mt-1">
+                                            <Check className="h-4 w-4 text-orange-500" />
+                                        </div>
+                                        <span className="text-gray-700">{item}</span>
+                                    </motion.li>
+                                ))}
+                            </ul>
+                            <motion.div
+                                className="mt-8"
+                                whileHover="hover"
+                                whileTap="tap"
+                                variants={hoverScale}
+                            >
+                                <Button
+                                    className="bg-orange-500 text-white font-semibold py-3 px-6 rounded-full hover:bg-orange-600 shadow-lg"
+                                >
+                                    VIEW COMPENSATION PLAN
+                                </Button>
+                            </motion.div>
+                        </motion.div>
+
+                        <motion.div
+                            className="relative h-80 md:h-96 overflow-hidden rounded-2xl shadow-xl"
+                            variants={fadeIn}
+                            initial="hidden"
+                            whileInView="visible"
+                            viewport={{ once: true, margin: "-100px" }}
+                        >
+                            <div
+                                className="absolute inset-0 bg-center bg-cover"
+                                style={{ backgroundImage: "url('/api/placeholder/800/600')" }}
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-8">
+                                <div className="text-white text-left">
+                                    <p className="text-xl font-bold mb-2">Join Our Global Community</p>
+                                    <p className="text-sm opacity-80">Connect with like-minded entrepreneurs and build your business worldwide</p>
+                                </div>
+                            </div>
+                        </motion.div>
+                    </div>
+                </div>
+            </section>
+
+            {/* Join Section */}
+            <section id="join" className="py-20 px-4 bg-gradient-to-br from-orange-500 to-amber-600 text-white relative">
+                <div className="absolute top-0 left-0 w-full h-32 bg-gray-50 transform -skew-y-2"></div>
+
+                {/* Background Elements */}
+                <motion.div
+                    className="absolute top-40 left-10 bg-white rounded-full opacity-10 w-64 h-64 blur-3xl"
+                    animate={{
+                        x: [0, 20, 0],
+                        y: [0, -20, 0],
+                        scale: [1, 1.1, 1]
+                    }}
+                    transition={{
+                        duration: 15,
+                        repeat: Infinity,
+                        repeatType: "reverse"
+                    }}
+                />
+                <motion.div
+                    className="absolute bottom-40 right-10 bg-white rounded-full opacity-10 w-80 h-80 blur-3xl"
+                    animate={{
+                        x: [0, -30, 0],
+                        y: [0, 20, 0],
+                        scale: [1, 1.2, 1]
+                    }}
+                    transition={{
+                        duration: 18,
+                        repeat: Infinity,
+                        repeatType: "reverse",
+                        delay: 1.5
+                    }}
+                />
+
+                <div className="container mx-auto max-w-6xl relative z-10">
+                    <motion.div
+                        variants={fadeIn}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true, margin: "-100px" }}
+                        className="text-center mb-16"
+                    >
+                        <motion.div className="inline-block rounded-full bg-white/20 p-2 mb-4">
+                            <Users className="h-6 w-6 text-white" />
+                        </motion.div>
+                        <h2 className="text-3xl font-bold mb-4">Join Our Team Today</h2>
+                        <div className="h-1 w-20 bg-white mx-auto mb-6"></div>
+                        <p className="text-lg opacity-90 max-w-3xl mx-auto">
+                            Sign up as a distributor today and receive a personalized website, management tools, and support to help build your business.
+                        </p>
+                    </motion.div>
+
+                    <motion.div
+                        className="max-w-2xl mx-auto bg-white/10 backdrop-blur-md p-8 rounded-2xl shadow-xl"
+                        variants={fadeIn}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true, margin: "-100px" }}
+                    >
+                        <h3 className="text-2xl font-bold mb-8 text-center">Get This Platform for $99/Year</h3>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                            {[
+                                "Professional website with your own domain",
+                                "Complete back-office management system",
+                                "Real-time tracking and reporting",
+                                "Training materials and resources",
+                                "Marketing tools and templates",
+                                "Personalized support from our team",
+                                "Mobile app for on-the-go business",
+                                "Global customer base access"
+                            ].map((item, index) => (
+                                <motion.div
+                                    key={index}
+                                    className="flex items-center"
+                                    initial={{ opacity: 0, y: 10 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    transition={{ delay: index * 0.1 }}
+                                    viewport={{ once: true }}
+                                >
+                                    <div className="bg-white/20 rounded-full p-1 mr-3">
+                                        <Check className="h-4 w-4 text-white" />
+                                    </div>
+                                    <span className="text-white/90">{item}</span>
+                                </motion.div>
+                            ))}
+                        </div>
+                        <motion.div
+                            className="text-center"
+                            whileHover="hover"
+                            whileTap="tap"
+                            variants={hoverScale}
+                        >
+                            <Button
+                                className="bg-white text-orange-500 font-semibold py-4 px-8 rounded-full hover:bg-orange-50 shadow-lg"
+                            >
+                                BECOME A DISTRIBUTOR NOW
+                            </Button>
+                        </motion.div>
+                    </motion.div>
+                </div>
+            </section>
+
+
+        </div>
+    );
+};
+
+export default Homes;
