@@ -45,9 +45,7 @@ const Header = () => {
               {item.title}
             </Link>
           ))}
-          <Button className="ml-4 bg-blue-600 hover:bg-blue-700 text-white rounded-md">
-            Get Started
-          </Button>
+         
         </nav>
 
         {/* Mobile Menu Trigger */}
@@ -87,11 +85,7 @@ const Header = () => {
                     </Link>
                   ))}
                 </nav>
-                <div className="p-4 border-t">
-                  <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3">
-                    Get Started
-                  </Button>
-                </div>
+                
               </div>
             </SheetContent>
           </Sheet>

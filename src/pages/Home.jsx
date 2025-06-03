@@ -1,538 +1,596 @@
+import React, { useState, useEffect, useCallback } from "react";
+import { Helmet } from "react-helmet";
+import { motion, useScroll } from "framer-motion";
+import { Button } from "@/components/ui/button";
+import {
+  CheckCircle,
+  Globe,
+  ArrowRight,
+  Users,
+  Award,
+  TrendingUp,
+  ShoppingBag,
+  Star,
+  ChevronRight,
+  Play,
+  ExternalLink,
+  Shield,
+} from "lucide-react";
+import Particles from "react-particles";
+import { loadFull } from "tsparticles";
+import Section from "./Section";
 
-import React, { useState, useEffect } from 'react';
-import { Helmet } from 'react-helmet';
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { CheckCircle, Globe, ArrowRight, Users, Award, TrendingUp, ShoppingBag } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import Section from './Section';
+// Animation variants for Section
+const staggerChildren = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+};
+
+const hoverScale = {
+  hover: { scale: 1.05 },
+  tap: { scale: 0.95 },
+};
+
+
 
 const Homes = () => {
-    const [isScrolled, setIsScrolled] = useState(false);
-    const { scrollYProgress } = useScroll();
-    const opacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
-    const scale = useTransform(scrollYProgress, [0, 0.2], [1, 0.95]);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const { scrollYProgress } = useScroll();
 
-    useEffect(() => {
-        const handleScroll = () => {
-            setIsScrolled(window.scrollY > 50);
-        };
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
-
-    const staggerChildren = {
-        hidden: { opacity: 0 },
-        visible: {
-            opacity: 1,
-            transition: {
-                staggerChildren: 0.2,
-            },
-        },
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
     };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
-    const itemVariants = {
-        hidden: { opacity: 0, y: 20 },
-        visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } },
-    };
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100">
+      {/* SEO Meta Tags */}
+      <Helmet>
+        <title>Get Dream Life with NHT Global - Start Your Business Today</title>
+        <meta
+          name="description"
+          content="Join Get Dream Life (GDL) and NHT Global to start your own business, achieve financial freedom, and live your dream life with our proven network marketing opportunity."
+        />
+        <meta
+          name="keywords"
+          content="network marketing, NHT Global, Get Dream Life, business opportunity, financial freedom, entrepreneurship"
+        />
+        <meta name="robots" content="index, follow" />
+        <meta
+          property="og:title"
+          content="Get Dream Life with NHT Global - Start Your Business Today"
+        />
+        <meta
+          property="og:description"
+          content="Join Get Dream Life (GDL) and NHT Global to start your own business and achieve financial freedom."
+        />
+        <meta
+          property="og:image"
+          content="https://plus.unsplash.com/premium_photo-1685284067427-b9019667a008?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8Z2xvYmFsJTIwbmV0d29ya3xlbnwwfHwwfHx8MA%3D%3D"
+        />
+        <meta property="og:url" content="https://www.getdreamlife.com" />
+        <meta property="og:type" content="website" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta
+          name="twitter:title"
+          content="Get Dream Life with NHT Global - Start Your Business Today"
+        />
+        <meta
+          name="twitter:description"
+          content="Join Get Dream Life (GDL) and NHT Global to start your own business and achieve financial freedom."
+        />
+        <meta
+          name="twitter:image"
+          content="https://plus.unsplash.com/premium_photo-1685284067427-b9019667a008?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8Z2xvYmFsJTIwbmV0d29ya3xlbnwwfHwwfHx8MA%3D%3D"
+        />
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            name: "Get Dream Life",
+            url: "https://www.getdreamlife.com",
+            description:
+              "Get Dream Life partners with NHT Global to offer a network marketing opportunity that empowers individuals to achieve financial freedom and a balanced lifestyle.",
+            logo: "/logo.png",
+            sameAs: [
+              "https://www.facebook.com/getdreamlife",
+              "https://www.twitter.com/getdreamlife",
+              "https://www.linkedin.com/company/getdreamlife",
+            ],
+          })}
+        </script>
+      </Helmet>
 
-    const hoverScale = {
-        hover: { scale: 1.05, transition: { duration: 0.3 } },
-        tap: { scale: 0.95 },
-    };
+      {/* Hero Section */}
+     <Section/>
 
-    return (
-        <div className="min-h-screen bg-gray-50">
-            {/* SEO Meta Tags */}
-            <Helmet>
-                <title>Get Dream Life with NHT Global - Start Your Business Today</title>
-                <meta
-                    name="description"
-                    content="Join Get Dream Life (GDL) and NHT Global to start your own business, achieve financial freedom, and live your dream life with our proven network marketing opportunity."
-                />
-                <meta
-                    name="keywords"
-                    content="network marketing, NHT Global, Get Dream Life, business opportunity, financial freedom, entrepreneurship"
-                />
-                <meta name="robots" content="index, follow" />
-                <meta property="og:title" content="Get Dream Life with NHT Global - Start Your Business Today" />
-                <meta
-                    property="og:description"
-                    content="Join Get Dream Life (GDL) and NHT Global to start your own business and achieve financial freedom."
-                />
-                <meta
-                    property="og:image"
-                    content="https://plus.unsplash.com/premium_photo-1685284067427-b9019667a008?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8Z2xvYmFsJTIwbmV0d29ya3xlbnwwfHwwfHx8MA%3D%3D"
-                />
-                <meta property="og:url" content="https://www.getdreamlife.com" />
-                <meta property="og:type" content="website" />
-                <meta name="twitter:card" content="summary_large_image" />
-                <meta name="twitter:title" content="Get Dream Life with NHT Global - Start Your Business Today" />
-                <meta
-                    name="twitter:description"
-                    content="Join Get Dream Life (GDL) and NHT Global to start your own business and achieve financial freedom."
-                />
-                <meta
-                    name="twitter:image"
-                    content="https://plus.unsplash.com/premium_photo-1685284067427-b9019667a008?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8Z2xvYmFsJTIwbmV0d29ya3xlbnwwfHwwfHx8MA%3D%3D"
-                />
-                <script type="application/ld+json">
-                    {JSON.stringify({
-                        '@context': 'https://schema.org',
-                        '@type': 'Organization',
-                        name: 'Get Dream Life',
-                        url: 'https://www.getdreamlife.com',
-                        description:
-                            'Get Dream Life partners with NHT Global to offer a network marketing opportunity that empowers individuals to achieve financial freedom and a balanced lifestyle.',
-                        logo: '/logo.png',
-                        sameAs: [
-                            'https://www.facebook.com/getdreamlife',
-                            'https://www.twitter.com/getdreamlife',
-                            'https://www.linkedin.com/company/getdreamlife',
-                        ],
-                    })}
-                </script>
-            </Helmet>
-
-            {/* Hero Section */}
-            <Section />
-            <motion.section
-                className="bg-cover bg-center text-white px-4 py-20 sm:py-24 md:py-32 relative"
-                style={{
-                    backgroundImage: `url('https://images.unsplash.com/photo-1476304884326-cd2c88572c5f?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fGdsb2JhbCUyMG5ldHdvcmt8ZW58MHx8MHx8fDA%3D')`,
-                }}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
+      {/* Main Content */}
+      <main className="pt-6 sm:pt-8">
+        {/* Section 1: Welcome to Get Dream Life */}
+        <motion.section
+          className="py-20 px-6"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8 }}
+        >
+          <div className="max-w-7xl mx-auto">
+            <div className="text-center mb-16">
+              <motion.div
+                className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-500/10 to-purple-500/10 border border-blue-200 px-4 py-2 rounded-full mb-6"
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+              >
+                <Shield className="h-4 w-4 text-blue-500" />
+                <span className="text-blue-600 font-medium text-sm">
+                  Start Your Journey Today
+                </span>
+              </motion.div>
+              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4 bg-gradient-to-r from-gray-900 via-blue-900 to-purple-900 bg-clip-text text-transparent">
+                Welcome to Get Dream Life
+              </h2>
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                Discover a world of opportunities with NHT Global and the Get Dream Life team.
+              </p>
+            </div>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+              <motion.div
+                className="space-y-6"
+                initial={{ opacity: 0, x: -30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
                 transition={{ duration: 0.8 }}
-                role="banner"
-            >
-                <div className="absolute inset-0 bg-gray-900 bg-opacity-70 z-0"></div>
-                <motion.div
-                    className="relative z-10 max-w-7xl mx-auto text-center"
-                    initial={{ opacity: 0, y: -20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.3, duration: 0.8 }}
-                >
-                    <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6 tracking-tight">
-                        Do You Know What It Means to Have a Dream Life?
-                    </h1>
-                    <p className="text-lg sm:text-xl md:text-2xl mb-8 font-light max-w-3xl mx-auto">
-                        Join Get Dream Life (GDL) and NHT Global to start your own business, achieve financial freedom, and live your dream life.
-                    </p>
-                    <motion.button
-                        className="bg-orange-400 text-gray-900 hover:bg-orange-500 font-semibold py-3 px-6 sm:py-4 sm:px-8 rounded-full shadow-lg transition-all duration-300 text-base sm:text-lg"
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                        aria-label="Join Get Dream Life Community"
+              >
+                <ul className="space-y-4">
+                  {[
+                    "Excellent Health",
+                    "Better Financial Potential",
+                    "Enriching Personal Relationships",
+                    "Freedom to spend your time enjoying what makes you happy",
+                    "Start your own business and be your own boss",
+                  ].map((item, index) => (
+                    <motion.li
+                      key={index}
+                      className="flex items-start gap-3"
+                      initial={{ opacity: 0 }}
+                      whileInView={{ opacity: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: index * 0.1, duration: 0.5 }}
                     >
-                        Join Our Community
-                    </motion.button>
+                      <div className="w-10 h-10 rounded-full bg-gradient-to-r from-orange-500 to-orange-600 flex items-center justify-center flex-shrink-0">
+                        <CheckCircle className="h-5 w-5 text-white" />
+                      </div>
+                      <p className="text-lg text-gray-700 font-medium leading-relaxed">
+                        {item}
+                      </p>
+                    </motion.li>
+                  ))}
+                </ul>
+                <motion.div
+                  className="bg-orange-50 border border-orange-200 rounded-xl p-6"
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.2, duration: 0.5 }}
+                >
+                  <h3 className="text-2xl font-bold text-gray-900 mb-2">
+                    Your Dream Life Awaits
+                  </h3>
+                  <p className="text-lg text-gray-600">
+                    Partner with NHT Global for infinite potential
+                  </p>
                 </motion.div>
-            </motion.section>
-
-            {/* Main Content */}
-            <main className='pt-12'>
-                {/* Section 1: Welcome to Get Dream Life */}
-                <motion.section
-                    className="mb-16 px-4 sm:px-6 "
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
+              </motion.div>
+              <motion.div
+                className="relative"
+                whileHover={{ scale: 1.02 }}
+                transition={{ duration: 0.3 }}
+              >
+                <div className="relative overflow-hidden rounded-3xl shadow-2xl group-hover:shadow-3xl transition-shadow duration-500">
+                  <motion.div
+                    className="absolute inset-0 bg-gradient-to-r from-orange-500 to-orange-600 opacity-20 z-10"
+                    initial={{ opacity: 0 }}
+                    whileHover={{ opacity: 0.3 }}
+                    transition={{ duration: 0.3 }}
+                  />
+                  <picture>
+                    <source
+                      srcSet="https://plus.unsplash.com/premium_photo-1661767467261-4a4bed92a507?q=80&w=600&auto=format&fit=crop"
+                      media="(max-width: 640px)"
+                    />
+                    <source
+                      srcSet="https://plus.unsplash.com/premium_photo-1661767467261-4a4bed92a507?q=80&w=1200&auto=format&fit=crop"
+                      media="(max-width: 1024px)"
+                    />
+                    <img
+                      src="https://plus.unsplash.com/premium_photo-1661767467261-4a4bed92a507?q=80&w=2070&auto=format&fit=crop"
+                      alt="Get Dream Life success team"
+                      className="w-full h-80 lg:h-96 object-cover transform group-hover:scale-105 transition-transform duration-700"
+                      loading="lazy"
+                    />
+                  </picture>
+                  <motion.div
+                    className="absolute top-6 left-6 z-20"
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.6 }}
-                >
-                    <div className="text-center mb-10">
-                        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                            Welcome to Get Dream Life
-                        </h2>
-                        <div className="w-20 h-1 bg-orange-400 mx-auto rounded-full"></div>
+                    transition={{ delay: 0.3, duration: 0.5 }}
+                  >
+                    <div className="w-12 h-12 rounded-full bg-gradient-to-r from-orange-500 to-orange-600 flex items-center justify-center shadow-lg backdrop-blur-sm">
+                      <Star className="h-6 w-6 text-white" />
                     </div>
-                    <div className="flex flex-col lg:flex-row items-center gap-8 max-w-7xl mx-auto">
-                        <motion.div
-                            className="flex-1"
-                            initial={{ opacity: 0, x: -30 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.8 }}
-                        >
-                            <ul className="space-y-4">
-                                {[
-                                    'Excellent Health',
-                                    'Better Financial Potential',
-                                    'Enriching Personal Relationships',
-                                    'Freedom to spend your time enjoying what makes you happy',
-                                    'Start your own business and be your own boss',
-                                ].map((item, index) => (
-                                    <motion.li
-                                        key={index}
-                                        className="flex items-start gap-3"
-                                        initial={{ opacity: 0 }}
-                                        whileInView={{ opacity: 1 }}
-                                        viewport={{ once: true }}
-                                        transition={{ delay: index * 0.1, duration: 0.5 }}
-                                    >
-                                        <div className="h-5 w-5 rounded-full bg-orange-400 flex items-center justify-center flex-shrink-0 mt-1">
-                                            <CheckCircle className="h-3 w-3 text-white" />
-                                        </div>
-                                        <p className="text-base sm:text-lg text-gray-700 font-medium">{item}</p>
-                                    </motion.li>
-                                ))}
-                            </ul>
-                            <motion.div
-                                className="mt-8 bg-orange-50 p-6 rounded-lg border border-orange-100"
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: 0.5, duration: 0.5 }}
-                            >
-                                <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-2">
-                                    Your Dream Life Awaits
-                                </h3>
-                                <p className="text-base sm:text-lg text-gray-600">
-                                    Partner with NHT Global for infinite potential
-                                </p>
-                            </motion.div>
-                        </motion.div>
-                        <motion.div
-                            className="flex-1 flex justify-center"
-                            initial={{ opacity: 0, x: 30 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.8 }}
-                        >
-                            <div className="relative w-full max-w-md">
-                                <motion.div
-                                    className="absolute -inset-3 bg-orange-200/50 rounded-full blur-xl"
-                                    animate={{ scale: [1, 1.05, 1] }}
-                                    transition={{ duration: 4, repeat: Infinity, repeatType: 'reverse' }}
-                                />
-                                <img
-                                    src="https://plus.unsplash.com/premium_photo-1661767467261-4a4bed92a507?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                                    alt="Get Dream Life success team"
-                                    className="rounded-xl shadow-xl relative z-10 w-full h-auto object-cover"
-                                    loading="lazy"
-                                />
-                                <motion.div
-                                    className="absolute -bottom-4 -right-4 bg-orange-400 text-white p-4 rounded-lg shadow-lg z-20"
-                                    initial={{ opacity: 0, scale: 0.8 }}
-                                    whileInView={{ opacity: 1, scale: 1 }}
-                                    viewport={{ once: true }}
-                                    transition={{ delay: 0.8, duration: 0.5 }}
-                                >
-                                    <p className="font-bold text-sm sm:text-base">Join the Movement</p>
-                                    <p className="text-xs sm:text-sm">Transform your life today</p>
-                                </motion.div>
-                            </div>
-                        </motion.div>
-                    </div>
-                </motion.section>
+                  </motion.div>
+                </div>
+              </motion.div>
+            </div>
+          </div>
+        </motion.section>
 
-                {/* Section 2: About NHT Global (Dark) */}
-                <motion.section
-                    className="mb-16 bg-gray-900 text-white px-4 py-10 sm:px-6 sm:py-12"
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6 }}
+        {/* Section 2: About NHT Global */}
+        <motion.section
+          className="py-20 bg-gradient-to-r from-gray-900 via-blue-900 to-gray-900 text-white"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8 }}
+        >
+          <div className="max-w-6xl mx-auto px-6">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+                About NHT Global
+              </h2>
+              <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+                A global leader in network marketing with a proven track record.
+              </p>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {[
+                "Proven company with a record-breaking 15+ years history",
+                "Revolutionary e-commerce business model",
+                "Operating in more than 38 countries",
+                "High impacting products for a healthy lifestyle",
+                "Balanced lifestyle through improved physical, emotional, and financial health",
+                "Training system to ensure your success",
+                "Committed to global wellness",
+              ].map((text, index) => (
+                <motion.div
+                  key={index}
+                  className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-6 hover:bg-white/20 transition-all duration-300"
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1, duration: 0.6 }}
+                  whileHover={{ scale: 1.05, y: -5 }}
                 >
-                    <div className="text-center mb-10">
-                        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">About NHT Global</h2>
-                        <div className="w-20 h-1 bg-orange-400 mx-auto rounded-full"></div>
+                  <div className="flex items-start gap-4">
+                    <div className="w-10 h-10 rounded-full bg-gradient-to-r from-orange-500 to-orange-600 flex items-center justify-center flex-shrink-0">
+                      <CheckCircle className="h-5 w-5 text-white" />
                     </div>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
-                        {[
-                            'Proven company with a record-breaking 15+ years history',
-                            'Revolutionary e-commerce business model',
-                            'Operating in more than 38 countries',
-                            'High impacting products for a healthy lifestyle',
-                            'Balanced lifestyle through improved physical, emotional, and financial health',
-                            'Training system to ensure your success',
-                            'Committed to global wellness',
-                        ].map((text, index) => (
-                            <motion.div
-                                key={index}
-                                className="flex items-start space-x-3"
-                                initial={{ opacity: 0 }}
-                                whileInView={{ opacity: 1 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: index * 0.05, duration: 0.4 }}
-                            >
-                                <CheckCircle className="h-5 w-5 text-orange-400 flex-shrink-0 mt-0.5" />
-                                <p className="text-base sm:text-lg text-gray-100">{text}</p>
-                            </motion.div>
-                        ))}
-                    </div>
-                </motion.section>
-
-                {/* Section 3: History of NHT Global */}
-                <motion.section
-                    className="mb-16 bg-gray-50 px-4 py-10 sm:px-6 sm:py-12"
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6 }}
-                >
-                    <div className="text-center mb-10">
-                        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                            History of NHT Global
-                        </h2>
-                        <p className="text-base sm:text-lg md:text-xl text-gray-600 mb-4">
-                            A global leader in network marketing
-                        </p>
-                        <div className="w-20 h-1 bg-orange-400 mx-auto rounded-full"></div>
-                    </div>
-                    <div className="flex flex-col lg:flex-row items-center gap-8 max-w-7xl mx-auto">
-                        <motion.div
-                            className="flex-1"
-                            initial={{ opacity: 0, x: -30 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.8 }}
-                        >
-                            <div className="relative w-full max-w-md">
-                                <motion.div
-                                    className="absolute -inset-4 rounded-xl bg-orange-200/30 blur-xl"
-                                    animate={{ scale: [1, 1.05, 1] }}
-                                    transition={{ duration: 3, repeat: Infinity, repeatType: 'reverse' }}
-                                />
-                                <img
-                                    src="https://images.unsplash.com/photo-1588458977838-bdf7b9d8700e?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjR8fGdsb2JhbCUyMG5ldHdvcmt8ZW58MHx8MHx8fDA%3D"
-                                    alt="NHT Global's worldwide network"
-                                    className="rounded-xl shadow-xl relative z-10 w-full h-auto object-cover"
-                                    loading="lazy"
-                                />
-                                <motion.div
-                                    className="absolute -left-3 -bottom-3 bg-orange-400 p-2 sm:p-3 rounded-lg shadow-lg z-30"
-                                    initial={{ opacity: 0, y: 20 }}
-                                    whileInView={{ opacity: 1, y: 0 }}
-                                    viewport={{ once: true }}
-                                    transition={{ delay: 0.6, duration: 0.5 }}
-                                    whileHover={{ scale: 1.05 }}
-                                >
-                                    <div className="flex items-center gap-2">
-                                        <Globe className="h-4 w-4 sm:h-5 sm:w-5 text-white" />
-                                        <p className="text-white font-semibold text-xs sm:text-sm">
-                                            Global Presence
-                                        </p>
-                                    </div>
-                                </motion.div>
-                            </div>
-                        </motion.div>
-                        <motion.div
-                            className="flex-1"
-                            initial={{ opacity: 0, x: 30 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.8 }}
-                        >
-                            <div className="bg-white p-6 sm:p-8 rounded-xl shadow-lg border-l-4 border-orange-400 hover:shadow-xl transition-shadow duration-300">
-                                <motion.h3
-                                    className="text-xl sm:text-2xl font-bold text-orange-400 mb-6"
-                                    initial={{ opacity: 0 }}
-                                    whileInView={{ opacity: 1 }}
-                                    viewport={{ once: true }}
-                                    transition={{ duration: 0.6 }}
-                                >
-                                    A Legacy of Success
-                                </motion.h3>
-                                <div className="space-y-4">
-                                    {[
-                                        'Started in 2001, headquartered in Los Angeles, California',
-                                        'Global sales growing at a record pace',
-                                        'Financially stable with a 15+ year legacy',
-                                        'Contain Nobel Prize-winning research',
-                                        'Proprietary formulas for high-impact products',
-                                        'Seamless global compensation plan',
-                                    ].map((item, index) => (
-                                        <motion.div
-                                            key={index}
-                                            className="flex items-start gap-3"
-                                            initial={{ opacity: 0, x: 20 }}
-                                            whileInView={{ opacity: 1, x: 0 }}
-                                            viewport={{ once: true }}
-                                            transition={{ delay: index * 0.1, duration: 0.5 }}
-                                        >
-                                            <div className="h-5 w-5 rounded-full bg-orange-400 flex items-center justify-center flex-shrink-0 mt-1">
-                                                <CheckCircle className="h-3 w-3 text-white" />
-                                            </div>
-                                            <p className="text-gray-700 text-sm sm:text-base leading-relaxed">
-                                                {item}
-                                            </p>
-                                        </motion.div>
-                                    ))}
-                                </div>
-                                <motion.button
-                                    className="mt-6 bg-orange-400 text-white py-2 px-4 sm:py-3 sm:px-6 rounded-full shadow-md hover:bg-orange-500 font-semibold text-sm sm:text-base transition-all duration-300"
-                                    whileHover={{ scale: 1.05 }}
-                                    whileTap={{ scale: 0.95 }}
-                                    initial={{ opacity: 0, y: 10 }}
-                                    whileInView={{ opacity: 1, y: 0 }}
-                                    viewport={{ once: true }}
-                                    transition={{ delay: 0.7, duration: 0.5 }}
-                                    aria-label="Learn About NHT Global"
-                                >
-                                    Learn About NHT Global
-                                </motion.button>
-                            </div>
-                        </motion.div>
-                    </div>
-                </motion.section>
-
-                {/* Section 4: How Get Dream Life Can Help (Dark) */}
-                <motion.section
-                    className="mb-16 bg-gray-800 text-white px-4 py-10 sm:px-6 sm:py-12"
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6 }}
-                >
-                    <div className="text-center mb-10">
-                        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">
-                            How Get Dream Life Can Help
-                        </h2>
-                        <p className="text-base sm:text-lg md:text-xl mb-4">Support for your success</p>
-                        <div className="w-20 h-1 bg-orange-400 mx-auto rounded-full"></div>
-                    </div>
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
-                        {[
-                            {
-                                title: 'Comprehensive Training',
-                                description:
-                                    'Training to understand the business in detail, ensuring you have the knowledge to succeed.',
-                            },
-                            {
-                                title: 'Marketing Tools',
-                                description: 'Access to a marketing platform and tools to accelerate your success.',
-                            },
-                            {
-                                title: 'Direct Support',
-                                description:
-                                    'Direct contact with founding members and top leaders committed to your success.',
-                            },
-                            {
-                                title: 'Global Opportunities',
-                                description:
-                                    'Support to open new markets or countries where you can become a pioneer.',
-                            },
-                        ].map((item, index) => (
-                            <motion.div
-                                key={index}
-                                className="bg-gray-700/60 backdrop-blur-lg border border-orange-500/20 rounded-xl p-6 flex flex-col h-full transition-shadow hover:shadow-lg hover:border-orange-500"
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: index * 0.1, duration: 0.6 }}
-                            >
-                                <h3 className="text-lg sm:text-xl font-bold text-orange-400 mb-4 flex items-center">
-                                    <ArrowRight className="h-4 w-4 sm:h-5 sm:w-5 mr-2 text-orange-400" />
-                                    {item.title}
-                                </h3>
-                                <p className="text-gray-100 leading-relaxed text-sm sm:text-base flex-grow">
-                                    {item.description}
-                                </p>
-                            </motion.div>
-                        ))}
-                    </div>
-                </motion.section>
-
-                {/* Section 5: NHT Global Core Strengths */}
-                <motion.section
-                    className="mb-16 px-4 py-10 sm:px-6 sm:py-12"
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6 }}
-                >
-                    <div className="text-center mb-10">
-                        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                            NHT Global Core Strengths
-                        </h2>
-                        <p className="text-base sm:text-lg md:text-xl text-gray-600 mb-4">
-                            Pillars of success
-                        </p>
-                        <div className="w-20 h-1 bg-orange-400 mx-auto rounded-full"></div>
-                    </div>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
-                        {[
-                            {
-                                title: 'Product',
-                                description: 'World-class unique, scientific, and patented product line.',
-                                icon: <ShoppingBag className="h-6 w-6 sm:h-8 sm:w-8 text-white" />,
-                            },
-                            {
-                                title: 'Opportunity',
-                                description: 'Amazing opportunity to create wealth for you and your generations.',
-                                icon: <TrendingUp className="h-6 w-6 sm:h-8 sm:w-8 text-white" />,
-                            },
-                            {
-                                title: 'Leaders',
-                                description: 'Industry top leaders available to help you at every step.',
-                                icon: <Users className="h-6 w-6 sm:h-8 sm:w-8 text-white" />,
-                            },
-                        ].map((item, index) => (
-                            <motion.div
-                                key={index}
-                                className="rounded-xl shadow-xl overflow-hidden bg-white flex flex-col h-full"
-                                initial={{ opacity: 0, y: 30 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: index * 0.1, duration: 0.5 }}
-                                whileHover={{
-                                    y: -8,
-                                    boxShadow: '0 10px 20px rgba(0, 0, 0, 0.15)',
-                                    transition: { duration: 0.2 },
-                                }}
-                            >
-                                <div className="bg-gradient-to-br from-orange-300 to-orange-400 px-6 pt-8 pb-6 text-white text-center">
-                                    <div className="bg-white/20 rounded-full p-3 w-14 h-14 sm:w-16 sm:h-16 flex items-center justify-center mx-auto mb-4">
-                                        {item.icon}
-                                    </div>
-                                    <h3 className="text-lg sm:text-xl font-bold">{item.title}</h3>
-                                </div>
-                                <div className="p-6 flex flex-col flex-grow">
-                                    <p className="text-gray-600 text-sm sm:text-base flex-grow">
-                                        {item.description}
-                                    </p>
-                                </div>
-                            </motion.div>
-                        ))}
-                    </div>
-                </motion.section>
-
-                {/* Section 6: Join Our Team */}
-                <motion.section
-                    className="text-center bg-gradient-to-r from-gray-800 to-gray-900 px-4 py-10 sm:px-6 sm:py-12"
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6 }}
-                >
-                    <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4">
-                        Join Our Team Today
-                    </h2>
-                    <p className="text-gray-200 text-base sm:text-lg mb-8 max-w-3xl mx-auto">
-                        Sign up as a distributor today and receive a personalized website, management tools, and support to help build your business.
+                    <p className="text-gray-100 font-medium leading-relaxed">
+                      {text}
                     </p>
-                    <div className="flex flex-col sm:flex-row justify-center gap-4">
-                        <motion.button
-                            className="bg-orange-300 text-gray-900 hover:bg-orange-400 font-semibold py-3 px-6 sm:py-3 sm:px-8 rounded-full shadow-lg transition-all duration-300 text-sm sm:text-base"
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }}
-                            aria-label="Become a Distributor Now"
-                        >
-                            Become a Distributor
-                        </motion.button>
-                        <motion.button
-                            className="bg-transparent text-white border-2 border-orange-300 hover:bg-orange-300/10 font-semibold py-3 px-6 sm:py-3 sm:px-8 rounded-full transition-all duration-300 text-sm sm:text-base"
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }}
-                            aria-label="Learn More About Get Dream Life"
-                        >
-                            Learn More
-                        </motion.button>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </motion.section>
+
+        {/* Section 3: History of NHT Global */}
+        <motion.section
+          className="py-20 px-6"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8 }}
+        >
+          <div className="max-w-7xl mx-auto">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4 bg-gradient-to-r from-gray-900 via-blue-900 to-purple-900 bg-clip-text text-transparent">
+                History of NHT Global
+              </h2>
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                A global leader in network marketing
+              </p>
+            </div>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+              <motion.div
+                className="relative"
+                whileHover={{ scale: 1.02 }}
+                transition={{ duration: 0.3 }}
+              >
+                <div className="relative overflow-hidden rounded-3xl shadow-2xl group-hover:shadow-3xl transition-shadow duration-500">
+                  <motion.div
+                    className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-600 opacity-20 z-10"
+                    initial={{ opacity: 0 }}
+                    whileHover={{ opacity: 0.3 }}
+                    transition={{ duration: 0.3 }}
+                  />
+                  <picture>
+                    <source
+                      srcSet="https://images.unsplash.com/photo-1588458977838-bdf7b9d8700e?w=600&auto=format&fit=crop"
+                      media="(max-width: 640px)"
+                    />
+                    <source
+                      srcSet="https://images.unsplash.com/photo-1588458977838-bdf7b9d8700e?w=1200&auto=format&fit=crop"
+                      media="(max-width: 1024px)"
+                    />
+                    <img
+                      src="https://images.unsplash.com/photo-1588458977838-bdf7b9d8700e?w=2070&auto=format&fit=crop"
+                      alt="NHT Global's worldwide network"
+                      className="w-full h-80 lg:h-96 object-cover transform group-hover:scale-105 transition-transform duration-700"
+                      loading="lazy"
+                    />
+                  </picture>
+                  <motion.div
+                    className="absolute top-6 left-6 z-20"
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.3, duration: 0.5 }}
+                  >
+                    <div className="w-12 h-12 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 flex items-center justify-center shadow-lg backdrop-blur-sm">
+                      <Globe className="h-6 w-6 text-white" />
                     </div>
-                </motion.section>
-            </main>
-        </div>
-    );
+                  </motion.div>
+                </div>
+              </motion.div>
+              <motion.div
+                className="space-y-6"
+                initial={{ opacity: 0, x: 30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8 }}
+              >
+                <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">
+                  A Legacy of Success
+                </h3>
+                <div className="w-20 h-1 bg-gradient-to-r from-orange-400 to-orange-500 rounded-full"></div>
+                <div className="space-y-4">
+                  {[
+                    "Started in 2001, headquartered in Los Angeles, California",
+                    "Global sales growing at a record pace",
+                    "Financially stable with a 15+ year legacy",
+                    "Contain Nobel Prize-winning research",
+                    "Proprietary formulas for high-impact products",
+                    "Seamless global compensation plan",
+                  ].map((item, index) => (
+                    <motion.div
+                      key={index}
+                      className="flex items-start gap-3"
+                      initial={{ opacity: 0, x: 20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: index * 0.1, duration: 0.5 }}
+                    >
+                      <div className="w-10 h-10 rounded-full bg-gradient-to-r from-orange-500 to-orange-600 flex items-center justify-center flex-shrink-0">
+                        <CheckCircle className="h-5 w-5 text-white" />
+                      </div>
+                      <p className="text-lg text-gray-700 leading-relaxed">
+                        {item}
+                      </p>
+                    </motion.div>
+                  ))}
+                </div>
+                <motion.button
+                  className="group bg-gradient-to-r from-orange-500 to-orange-600 text-white px-6 py-3 rounded-xl font-semibold shadow-lg hover:shadow-orange-500/25 transition-all duration-300 flex items-center gap-3"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  <ExternalLink className="h-4 w-4" />
+                  Learn About NHT Global
+                  <ChevronRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                </motion.button>
+              </motion.div>
+            </div>
+          </div>
+        </motion.section>
+
+        {/* Section 4: How Get Dream Life Can Help */}
+        <motion.section
+          className="py-20 bg-gradient-to-r from-gray-900 via-blue-900 to-gray-900 text-white"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8 }}
+        >
+          <div className="max-w-6xl mx-auto px-6">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+                How Get Dream Life Can Help
+              </h2>
+              <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+                Support for your success
+              </p>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {[
+                {
+                  title: "Comprehensive Training",
+                  description:
+                    "Training to understand the business in detail, ensuring you have the knowledge to succeed.",
+                },
+                {
+                  title: "Marketing Tools",
+                  description:
+                    "Access to a marketing platform and tools to accelerate your success.",
+                },
+                {
+                  title: "Direct Support",
+                  description:
+                    "Direct contact with founding members and top leaders committed to your success.",
+                },
+                {
+                  title: "Global Opportunities",
+                  description:
+                    "Support to open new markets or countries where you can become a pioneer.",
+                },
+              ].map((item, index) => (
+                <motion.div
+                  key={index}
+                  className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-6 hover:bg-white/20 transition-all duration-300"
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1, duration: 0.6 }}
+                  whileHover={{ scale: 1.05, y: -5 }}
+                >
+                  <div className="flex items-start gap-4">
+                    <div className="w-10 h-10 rounded-full bg-gradient-to-r from-orange-500 to-orange-600 flex items-center justify-center flex-shrink-0">
+                      <ArrowRight className="h-5 w-5 text-white" />
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-bold text-orange-400 mb-2">
+                        {item.title}
+                      </h3>
+                      <p className="text-gray-100 font-medium leading-relaxed">
+                        {item.description}
+                      </p>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </motion.section>
+
+        {/* Section 5: NHT Global Core Strengths */}
+        <motion.section
+          className="py-20 px-6"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8 }}
+        >
+          <div className="max-w-7xl mx-auto">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4 bg-gradient-to-r from-gray-900 via-blue-900 to-purple-900 bg-clip-text text-transparent">
+                NHT Global Core Strengths
+              </h2>
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                Pillars of success
+              </p>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {[
+                {
+                  title: "Product",
+                  description:
+                    "World-class unique, scientific, and patented product line.",
+                  icon: <ShoppingBag className="h-8 w-8 text-white" />,
+                },
+                {
+                  title: "Opportunity",
+                  description:
+                    "Amazing opportunity to create wealth for you and your generations.",
+                  icon: <TrendingUp className="h-8 w-8 text-white" />,
+                },
+                {
+                  title: "Leaders",
+                  description:
+                    "Industry top leaders available to help you at every step.",
+                  icon: <Users className="h-8 w-8 text-white" />,
+                },
+              ].map((item, index) => (
+                <motion.div
+                  key={index}
+                  className="rounded-3xl shadow-2xl overflow-hidden bg-white flex flex-col h-full"
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1, duration: 0.5 }}
+                  whileHover={{
+                    y: -8,
+                    boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
+                    transition: { duration: 0.2 },
+                  }}
+                >
+                  <div className="bg-gradient-to-r from-orange-500 to-orange-600 px-6 pt-8 pb-6 text-white text-center">
+                    <div className="w-16 h-16 rounded-full bg-white/20 flex items-center justify-center mx-auto mb-4">
+                      {item.icon}
+                    </div>
+                    <h3 className="text-xl font-bold">{item.title}</h3>
+                  </div>
+                  <div className="p-6 flex flex-col flex-grow">
+                    <p className="text-gray-600 text-base leading-relaxed flex-grow">
+                      {item.description}
+                    </p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </motion.section>
+
+        {/* Section 6: Join Our Team */}
+        <motion.section
+          className="py-20 bg-gradient-to-r from-gray-900 via-blue-900 to-purple-900 text-white relative overflow-hidden"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8 }}
+        >
+          <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1200&auto=format&fit=crop&q=60')] bg-cover bg-center opacity-10"></div>
+          <div className="relative z-10 max-w-4xl mx-auto text-center px-6">
+            <motion.div
+              className="mb-8"
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              <div className="w-24 h-24 mx-auto mb-6 bg-gradient-to-r from-orange-500 to-red-500 rounded-full flex items-center justify-center">
+                <Users className="h-12 w-12 text-white" />
+              </div>
+            </motion.div>
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+              Join Our Team Today
+            </h2>
+            <p className="text-xl text-gray-300 mb-8 max-w-3xl mx-auto leading-relaxed">
+              Sign up as a distributor today and receive a personalized website, management tools, and support to help build your business.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+              <motion.button
+                className="group bg-gradient-to-r from-orange-500 to-orange-600 text-white px-8 py-4 rounded-2xl font-bold text-lg shadow-2xl hover:shadow-orange-600/25 transition-all duration-300 flex items-center gap-3"
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.98 }}
+                aria-label="Become a Distributor Now"
+              >
+                <Play className="h-5 w-5" />
+                Become a Distributor
+                <ChevronRight className="h-5 w-5 group-hover:translate-x-1 transition-transform "/>
+              </motion.button>
+              <motion.button
+                className="group bg-white/10 backdrop-blur-sm border border-white/20 text-white px-8 py-4 rounded-2xl font-semibold text-lg hover:bg-white/20 transition-all duration-300 flex items-center gap-3"
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.98 }}
+                aria-label="Learn More About Get Dream Life"
+              >
+                <ExternalLink className="h-5 w-5" />
+                Learn More
+                <ChevronRight className="h-4 w-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform "/>
+              </motion.button>
+            </div>
+          </div>
+        </motion.section>
+      </main>
+    </div>
+  );
 };
 
 export default Homes;

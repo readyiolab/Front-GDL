@@ -1,0 +1,1177 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "productName": "MetaBoost",
+      "yourPrice": 37.5,
+      "basePrice": 50,
+      "preferredCustomerPrice": 37.5,
+      "country": "USA",
+      "category": "Weight & Metabolism",
+      "capsulesPerBottle": 60,
+      "description": "MetaBoost is a unique vegan supplement designed with a focus on supporting healthy blood sugar levels already within a normal range.",
+      "fullDescription": "You’ve probably heard that managing our blood sugar, or blood glucose, is important for your health. Blood sugar spikes and crashes can take a major toll on our energy, cognition, heart, and overall well-being. NHT Global has developed a powerful tool to help you maintain more stable blood sugar in the body. Using an effective and science-backed silver fir extract from Slovenia, MetaBoost is a unique vegan supplement designed with a focus on supporting healthy blood sugar levels already within a normal range. By helping you get off the blood sugar rollercoaster, MetaBoost restores your body’s natural balance while optimizing your metabolism, cardiovascular health, and brain function. In other words…MetaBoost is just the boost you need to stay healthy and vibrant!",
+      "keyIngredients": [
+        "Belinal® Silver Fir Branch Extract",
+        "Rose Hips Extract",
+        "Cinnamon Extract",
+        "Sweet Basil Extract",
+        "Q10Vital® Coenzyme Q10",
+        "Blueberry Extract",
+        "Black Pepper Extract"
+      ],
+      "keyBenefits": [
+        "Maintains healthy blood sugar levels, already within a normal range",
+        "Supports the metabolism",
+        "Promotes cardiovascular health",
+        "Provides brain and cognitive support",
+        "Vegan formula designed for daily use"
+      ],
+      "cautions": "Consult your healthcare professional before use if you are under medical supervision or allergic to any ingredients. Keep out of reach of children. Avoid storage in direct sunlight, high temperature or extreme humidity.",
+      "fdaDisclaimer": "These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure, or prevent any disease.",
+      "productImage": "https://example.com/images/metaboostwellness-main.jpg",
+      "productBanners": [
+        "https://example.com/images/metaboostwellness-banner1.jpg",
+        "https://example.com/images/metaboostwellness-banner2.jpg",
+        "https://example.com/images/metaboostwellness-banner3.jpg"
+      ]
+    },
+    {
+      "id": 2,
+      "productName": "Collagen Supreme",
+      "yourPrice": 58.93,
+      "basePrice": 78.57,
+      "preferredCustomerPrice": 58.93,
+      "country": "Austria",
+      "category": "Skin & Beauty",
+      "capsulesPerBottle": 30,
+      "description": "Premium collagen drink with marine peptides, hyaluronic acid, and vitamins to support glowing skin and healthy joints.",
+      "fullDescription": "Wrinkles are little reminders of our aging. It’s OUR turn to remind the wrinkles that you can’t be labeled by age. Now enhanced with a delicious raspberry lemonade flavor, this premium collagen drink supplement packs a tasty punch of beauty-supporting nutrients to promote a more youthful you from the inside out. It’s made with incredibly powerful marine collagen peptides that are clinically proven to improve the appearance of skin’s hydration and elasticity while replenishing collagen levels. The formula also provides hyaluronic acid for increased moisture retention, Vitamin C to support collagen production, and MSM and chondroitin sulfate for joint and connective tissue support. The result? Glowing skin that you’ll love and healthier joints to support your active lifestyle. By boosting your health and appearance from within, our Collagen Supreme will help you look and feel younger from head to toe.",
+      "keyIngredients": [
+        "Hydrolyzed Marine Collagen Peptides",
+        "MSM",
+        "Chondroitin Sulfate",
+        "Hyaluronic Acid",
+        "Vitamin C",
+        "Aloe Vera Gel",
+        "Zinc",
+        "Copper",
+        "Biotin"
+      ],
+      "keyBenefits": [
+        "Supports collagen and elastin production",
+        "Improves the appearance of skin elasticity and hydration",
+        "Diminishes the appearance of fine lines and wrinkles",
+        "Supports strong nails and hair",
+        "Promotes healthy joints",
+        "Free of gluten, dairy, soy, artificial flavors, and artificial sweeteners"
+      ],
+      "cautions": "Not suitable for children, pregnant or nursing women. Consult your healthcare professional before use if you are under medical treatment or allergic to certain ingredients. Once opened, consume immediately. Keep out of reach of children. Store in a cool, dry place away from light and humidity.",
+      "fdaDisclaimer": "These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure, or prevent any disease.",
+      "productImage": "https://example.com/images/collagensupreme-main.jpg",
+      "productBanners": [
+        "https://example.com/images/collagensupreme-banner1.jpg",
+        "https://example.com/images/collagensupreme-banner2.jpg",
+        "https://example.com/images/collagensupreme-banner3.jpg"
+      ]
+    },
+    {
+      "id": 3,
+      "productName": "Enhanced Essential Probiotics ",
+      "yourPrice": 42.86,
+      "basePrice": 57.14,
+      "preferredCustomerPrice": 42.86,
+      "country": "Austria",
+      "category": "Child Care",
+      "capsulesPerBottle": 30,
+      "description": "Enhanced probiotic supplement with patented delivery system to support digestive and immune health.",
+      "fullDescription": "“Bad bacteria” has finally met its match. NHT Global’s Enhanced Essential Probiotics helps support the health of our digestive system, protecting our immune system and safeguarding our intestinal tract from “bad bacteria.” Using a patented quadruple coating technology, Enhanced Essential Probiotics helps maintain the ecological balance of our intestinal system. It uses “good bacteria” to improve intestinal defense, relieve gastrointestinal discomforts, promote nutrient absorption and give overall peace of mind that our body is working hard for a healthy life.",
+      "keyIngredients": [
+        "Lactobacillus acidophilus",
+        "Lactobacillus plantarum",
+        "Lactobacillus casei",
+        "Bifidobacterium breve",
+        "Bifidobacterium animalis ssp. Lactis",
+        "Lactococcus lactis",
+        "Lactobacillus rhamnosus",
+        "Bifidobacterium bifidum",
+        "Chicory Root Extract",
+        "Maltodextrin",
+        "Fructo–Oligosaccharide",
+        "Galacto–Oligosaccharide"
+      ],
+      "keyBenefits": [
+        "Promotes ultimate intestinal health",
+        "Relieves common gastrointestinal discomforts",
+        "Helps facilitate the absorption of nutrients",
+        "Maintains optimal function of digestive system",
+        "Supports the body’s immune system"
+      ],
+      "cautions": "Consult your healthcare professional prior to use if taking medication or if under medical care. Keep out of reach of children. Keep product out of direct sunlight, high temperature or extreme humidity.",
+      "fdaDisclaimer": "These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure, or prevent any disease.",
+      "patentsAndCertifications": [
+        "Patented ingredient: Lactobacillus Rhamnosus (KR10-0646938 and KR10-007429)",
+        "Patented quadruple coating technology (KR10-1280232)",
+        "Certified by the Korean Ministry of Food and Drug Safety (MFDS)"
+      ],
+      "directionsForUse": "Consume contents of one stick pack per day after a meal. Children and elderly can consume with water.",
+      "productImage": "https://example.com/images/enhancedprobiotics-main.jpg",
+      "productBanners": [
+        "https://example.com/images/enhancedprobiotics-banner1.jpg",
+        "https://example.com/images/enhancedprobiotics-banner2.jpg",
+        "https://example.com/images/enhancedprobiotics-banner3.jpg"
+      ]
+    },
+    {
+      "id": 4,
+      "productName": "OcuFocus",
+      "yourPrice": 50.35,
+      "basePrice": 67.14,
+      "preferredCustomerPrice": 50.35,
+      "country": "Austria",
+      "category": "Elderly Wellness",
+      "capsulesPerBottle": null,
+      "description": "Powerful eye support supplement with Lutemax®2020 and carotenoids to promote vision health and protect against blue light.",
+      "fullDescription": "Very few of us are fortunate enough to have perfect 20/20 vision. And in an increasingly digital world, our eyes are now more challenged than ever before. To help protect one of our body’s most important assets, NHT Global has combined the world’s most eye-friendly nutrients in a single formula. Award-winning ingredient Lutemax®2020 and other beneficial carotenoids promote a healthy macula, assist visual performance and acuity, and help protect your eyes against harmful visible light and high-energy blue light. OcuFocus is the missing edge you need to maintain optimal long-term vision health!",
+      "keyIngredients": [
+        "Lutemax®2020 (Lutein and Zeaxanthin Isomers)",
+        "Astaxanthin",
+        "Lycopene",
+        "Bilberry",
+        "Lycium Berry",
+        "Beta Carotene",
+        "Vitamin A",
+        "Vitamin C",
+        "Vitamin E"
+      ],
+      "keyBenefits": [
+        "Supports eye health and vision function",
+        "Keeps eyes healthy as you age",
+        "Nourishes with carotenoids, antioxidants, and vitamins",
+        "Helps protect eyes against harmful visible and blue light",
+        "Promotes a healthy macula",
+        "Assists visual performance and acuity"
+      ],
+      "patentsAndCertifications": [
+        "Lutemax®2020 patented in Europe (EP2473065B1), China (CN102481011), Australia (AU2010290970B2), Canada (CA2771967C), Japan (JP5778676B2), Korea (KR101479821B1)",
+        "Clinically proven to increase MPOD in as little as 8 weeks",
+        "Halal Certified"
+      ],
+      "directionsForUse": "Take one capsule up to two times daily.",
+      "cautions": "If you are pregnant, lactating, or currently under medical supervision, please consult physician before using.",
+      "fdaDisclaimer": "These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure, or prevent any disease.",
+      "productImage": "https://example.com/images/ocufocuswellness-main.jpg",
+      "productBanners": [
+        "https://example.com/images/ocufocuswellness-banner1.jpg",
+        "https://example.com/images/ocufocuswellness-banner2.jpg",
+        "https://example.com/images/ocufocuswellness-banner3.jpg"
+      ]
+    },
+    {
+      "id": 5,
+      "productName": "StemRenu®",
+      "yourPrice": 64.28,
+      "basePrice": 85.71,
+      "preferredCustomerPrice": 64.28,
+      "country": "Austria",
+      "category": "Energy & Vitality",
+      "capsulesPerBottle": null,
+      "description": "Cellular-level support supplement with bioactive ingredients like Avian Egg Extract and Organic Maca to rejuvenate and renew the body.",
+      "fullDescription": "To help our bodies rejuvenate and renew, we need powerful nutrient support starting at the cellular level. NHT Global’s StemRenu® was created to deliver just that. It’s packed with specialized bioactive ingredients from around the world such as Avian Egg Extract and Organic Peruvian Maca that are designed to nourish and help restore the body to a more youthful and balanced state. From promoting faster recovery to countering the effects of stress, this supercharged formula arms the body with the tools it needs to achieve peak wellness and renewal.",
+      "keyIngredients": [
+        "Avian Egg Extract",
+        "Organic Marine Algae (AlgaeCal™)",
+        "Organic Aloe Vera",
+        "Green Tea Extract",
+        "Organic Maca",
+        "Red Grapes",
+        "Black Pepper Extract (Bioperine®)",
+        "Organic Fucoidan Algae"
+      ],
+      "keyBenefits": [
+        "Improves occasional sleeplessness and promotes deeper, more restful sleep",
+        "Counters the effects of stress",
+        "Promotes renewal and faster recovery",
+        "Supports healthy aging",
+        "Increases energy and endurance",
+        "Provides nutrient support for healthy cell signaling and overall cellular health",
+        "Supports bone, heart, and immune health"
+      ],
+      "patentsAndCertifications": [
+        "Bioperine® is patented for improvement of gastrointestinal absorption and systemic utilization (US Patents: US5536506, US6054585, US5744161, US5972382; European Patent: EP0810868; Canada Patent: CA2247467; Japan Patent: JP3953513)",
+        "Certified Organic Ingredients: AlgaeCal™, Aloe Vera, Maca, and Fucoidan Algae",
+        "Independently inspected for 500+ potential contaminants"
+      ],
+      "directionsForUse": "Take 1 – 2 capsule(s) daily based upon need or as directed by your healthcare professional. Consume with water or favorite beverage.",
+      "cautions": "Keep out of reach from children. If you are pregnant, lactating, or under medical supervision, consult your physician before using. Do not consume if allergic to eggs or any component of this product.",
+      "fdaDisclaimer": "These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure, or prevent any disease.",
+      "productImage": "https://example.com/images/stemrenu-main.jpg",
+      "productBanners": [
+        "https://example.com/images/stemrenu-banner1.jpg",
+        "https://example.com/images/stemrenu-banner2.jpg",
+        "https://example.com/images/stemrenu-banner3.jpg"
+      ]
+    },
+    {
+      "id": 6,
+      "productName": "Glucosamine ",
+      "yourPrice": 32.15,
+      "basePrice": 42.86,
+      "preferredCustomerPrice": 32.15,
+      "country": "Austria",
+      "category": "Elderly Wellness",
+      "description": "Unique dietary supplement that promotes joint health and cartilage production.",
+      "fullDescription": "Joint discomfort and stiffness can really alter the quality of life for many people. For some, the lack of Glucosamine the body produces is major contributor. Glucosamine 2200, NHT Global’s unique dietary supplement, creates building blocks to promote joint health and cartilage production. Our verified formula is made up of glucosamine for the friction between bones, shark cartilage for relief in the knee and back, green lipped mussel for cartilage repair, and turmeric for joint comfort. Our Glucosamine 2200 will help make for a healthier you!",
+      "keyIngredients": [
+        "Glucosamine HCL",
+        "Shark Cartilage",
+        "Green Lipped Mussel Powder",
+        "Turmeric Extract"
+      ],
+      "keyBenefits": [
+        "Directly supplies the body with glucosamine to help rebuild the body’s glucosamine and stimulate cartilage production",
+        "Promotes joint health, joint mobility and joint comfort",
+        "Contains turmeric extract, an antioxidant rich ingredient that studies have shown may promote joint comfort",
+        "Contains green lipped mussel, which supplements the body with omega 3 fatty acids, amino acids, and minerals"
+      ],
+      "patentsAndCertifications": ["Halal Certified"],
+      "directionsForUse": "Adults take 1 capsule three times daily.",
+      "cautions": "Keep out of reach from children. If you are pregnant, lactating, or currently under medical supervision, please consult physician before using.",
+      "fdaDisclaimer": "These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure, or prevent any disease.",
+      "allergyInfo": "Contains shellfish (mussel, crab, shrimp) and fish (shark).",
+      "productImage": "https://example.com/images/glucosamine-main.jpg",
+      "productBanners": [
+        "https://example.com/images/glucosamine-banner1.jpg",
+        "https://example.com/images/glucosamine-banner2.jpg",
+        "https://example.com/images/glucosamine-banner3.jpg"
+      ]
+    },
+    {
+      "id": 7,
+      "productName": "Omega 3 Essential Fatty Acids",
+      "yourPrice": 35.36,
+      "basePrice": 47.14,
+      "preferredCustomerPrice": 35.36,
+      "country": "Austria",
+      "category": "Men's Health",
+      "description": "Ultra-pure fish oil packed with essential EPA and DHA to support multiple bodily functions.",
+      "fullDescription": "NHT Global’s Omega-3 Essential Fatty Acids is an ultra-pure fish oil packed with good-for-you fats your body craves. Every serving provides an impressive 1,000mg of EPA and DHA, which are essential to the function of bodily systems such as the brain, heart, eyes, and joints. By taking Omega-3 Essential Fatty Acids every day, these delicious citrus flavored soft gels safeguard your health and keep your body working optimally from head to toe.",
+      "keyIngredients": [
+        "Highly Refined and Concentrated Omega-3 Fish Oil",
+        "Natural Citrus Flavors",
+        "Proprietary Antioxidant Blend"
+      ],
+      "keyBenefits": [
+        "Supports cardiovascular function",
+        "Supportive but not conclusive research shows that consumption of EPA and DHA omega-3 fatty acids may reduce the risk of coronary heart disease",
+        "Supports brain health",
+        "Promotes joint health",
+        "Supports a healthy weight and skin",
+        "Supports vision health"
+      ],
+      "patentsAndCertifications": [
+        "Independently lab tested for 500+ potential contaminants",
+        "Certified by Friends of the Sea (FOS) for sustainability",
+        "Awarded the Symbol of National Quality (SNQ) in Taiwan",
+        "Halal Certified"
+      ],
+      "directionsForUse": "Adults: Take 2 soft gels daily, preferably 10 minutes before a meal. Do not exceed 8 soft gels daily unless under supervision. Children 4+: One soft gel daily.",
+      "cautions": "Consult your healthcare professional before use if pregnant, lactating, suspect medical conditions, or taking prescription drugs. Do not consume if allergic to fish. Keep refrigerated.",
+      "fdaDisclaimer": "These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure, or prevent any disease.",
+      "allergyInfo": "Contains fish (anchovies, sardines, and mackerel).",
+      "productImage": "https://example.com/images/omega3-main.jpg",
+      "productBanners": [
+        "https://example.com/images/omega3-banner1.jpg",
+        "https://example.com/images/omega3-banner2.jpg",
+        "https://example.com/images/omega3-banner3.jpg"
+      ]
+    },
+    {
+      "id": 8,
+      "productName": "Premium Noni Juice",
+      "yourPrice": 37.5,
+      "basePrice": 50,
+      "preferredCustomerPrice": 37.5,
+      "country": "Austria",
+      "category": "Child Care",
+      "description": "Pure, USDA certified organic Noni Juice that supports immune function and promotes energy.",
+      "fullDescription": "Time tested, nature approved. For thousands of years, Pacific Islanders have enjoyed the health benefits of the noni fruit. The noni fruit naturally provides vitamins, minerals, enzymes, antioxidants, phytonutrients, and bioflavonoids, and works at a cellular level in the body to support the natural function of the immune system. Our formula is USDA certified organic to assure utmost organic quality and integrity. Harvested in the clean air and rich soil of the famed Tahitian Ring of the South Pacific, NHT Global’s Premium Noni Juice is pure, delicious and great for you.",
+      "keyIngredients": [
+        "Organic Noni Juice",
+        "Reconstituted Noni Fruit Juice from Organic Puree",
+        "Reconstituted Organic White Grape Juice",
+        "Reconstituted Organic Concord Grape Juice",
+        "Organic Noni Powder",
+        "Reconstituted Organic Pineapple Juice"
+      ],
+      "keyBenefits": [
+        "Supports immune function",
+        "Promotes increased energy levels",
+        "Supplies antioxidants known to help rid the body of harmful free radicals"
+      ],
+      "patentsAndCertifications": [
+        "USDA certified organic by QAI International",
+        "Manufacturer of the Year Award (2015) for innovation and quality in manufacturing",
+        "Export of the Year Award (2010) for excellence in exporting and contributions to the growth of the Samoan economy",
+        "Quality Crown Award (2004) for quality",
+        "Awarded the Symbol of National Quality (SNQ) in Taiwan",
+        "Halal Certified"
+      ],
+      "directionsForUse": "Shake well before using. Drink one ounce (30 ml) twice daily. Refrigerate after opening.",
+      "cautions": "Consult your health care professional prior to use if you have or suspect a medical condition, are taking prescription drugs, or are pregnant or lactating. No product testing is performed on animals.",
+      "fdaDisclaimer": "These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure, or prevent any disease.",
+      "productImage": "https://example.com/images/premium-noni-juice-main.jpg",
+      "productBanners": [
+        "https://example.com/images/premium-noni-juice-banner1.jpg",
+        "https://example.com/images/premium-noni-juice-banner2.jpg"
+      ]
+    },
+    {
+      "id": 9,
+      "productName": "Triotein",
+      "yourPrice": 70.72,
+      "basePrice": 94.29,
+      "preferredCustomerPrice": 70.72,
+      "country": "Austria",
+      "category": "Men's Health",
+      "description": "High-quality, 99% lactose-free whey protein powder supporting immune function and antioxidant protection.",
+      "fullDescription": "The body is made up of billions of cells…cells that have the ability to heal themselves when in the optimum health environment. NHT Global’s Triotein is a high-quality, 99% lactose-free whey protein powder that provides amino acid substrates needed to stimulate the body’s production of intracellular glutathione peroxidase (GSH). GSH is a crucial, naturally-occurring antioxidant in the body that helps defend against toxins.",
+      "keyIngredients": [
+        "Instantized Whey Protein Isolate",
+        "L-Glutamine (USP)",
+        "L-Glycine (USP)",
+        "L-Cystine (USP)",
+        "Vitamin D3"
+      ],
+      "contains": "milk",
+      "keyBenefits": [
+        "Supports immune function and provides antioxidant support",
+        "Improves intracellular protection",
+        "Delivers 9g of non-GMO protein and 50% of your Daily Recommended Value of Vitamin D",
+        "Soy-free, hormone-free, and antibiotic-free"
+      ],
+      "patentsAndCertifications": [
+        "Independently tested for 500+ environmental toxins",
+        "Halal Certified"
+      ],
+      "directionsForUse": "Mix one rounded scoop of Triotein with 8 oz. (250 ml) of water, juice or milk, preferably in the morning. Take up to three times a day or as recommended by your health practitioner. Preferable to not heat or cook product.",
+      "cautions": "Pregnant or lactating women and persons with known medical conditions or allergies should consult a physician before taking this product. Keep out of reach of children.",
+      "fdaDisclaimer": "These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure, or prevent any disease.",
+      "productImage": "https://example.com/images/triotein-main.jpg",
+      "productBanners": [
+        "https://example.com/images/triotein-banner1.jpg",
+        "https://example.com/images/triotein-banner2.jpg"
+      ]
+    },
+    {
+      "id": 10,
+      "productName": "ReStor Silver ",
+      "yourPrice": 34.28,
+      "basePrice": 45.71,
+      "preferredCustomerPrice": 34.28,
+      "country": "Austria",
+      "category": "Immunity & Cardiac",
+      "description": "Nutritional supplement targeting Calcium ATPase to support restful sleep, bladder function, muscle endurance, and joint comfort.",
+      "fullDescription": "As we age, our levels of the essential enzyme Calcium ATPase decline, affecting bodily functions such as sleep, muscle fatigue, bladder activity, and joint comfort. ReStor Silver is formulated with dietary supplement grade ingredients to support the body's natural responses to stress and activity, promoting balance and health.",
+      "keyIngredients": ["Jasmine Extract", "L-Arginine", "Taurine"],
+      "keyBenefits": [
+        "Improves occasional sleeplessness and promotes deeper, more restful sleep",
+        "Supports bladder function",
+        "Improves muscle endurance, strength, and recovery",
+        "Promotes comfort and mobility in joints and muscles"
+      ],
+      "patentsAndCertifications": [
+        "Patented for the use of jasmones and jasmonates to improve bladder function (US Patent Nos. US9492403 & US8865660 and Chinese Patent Nos. CN103140223A & CN103429234A)",
+        "Halal Certified"
+      ],
+      "directionsForUse": "Adults take 1ml to 2ml daily, mixed in 4-6 oz of water or other liquid. Shake well before use.",
+      "cautions": "If you are pregnant or lactating, or currently under medical supervision, consult a healthcare professional before using. Keep out of reach of children.",
+      "fdaDisclaimer": "These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure, or prevent any disease.",
+      "productImage": "https://example.com/images/restor-silver-main.jpg",
+      "productBanners": [
+        "https://example.com/images/restor-silver-banner1.jpg",
+        "https://example.com/images/restor-silver-banner2.jpg",
+        "https://example.com/images/restor-silver-banner3.jpg"
+      ]
+    },
+    {
+      "id": 11,
+      "productName": "Skindulgence 30 Minute Firming System",
+      "yourPrice": 10,
+      "basePrice": 10,
+      "preferredCustomerPrice": 10,
+      "country": "Austria",
+      "category": "Skin & Beauty",
+      "description": "A 3-step skin care regimen to cleanse, firm, and moisturize, delivering visible anti-aging results in just 30 minutes.",
+      "fullDescription": "Look and feel years younger with the Skindulgence 30 Minute Firming System. This exquisite 3-step regimen visibly lifts and tones to help you achieve maximum age-defying results. Improve skin tone, firmness, and facial muscle lift in the time it takes to get ready for bed.",
+      "keyIngredients": [
+        "Aloe Barbadensis Leaf",
+        "Jojoba",
+        "Silk Amino Acids",
+        "Sodium Hyaluronate",
+        "Soluble Collagen",
+        "Chondrus Crispus (Carrageenan)",
+        "Acacia Senegal Gum Extract"
+      ],
+      "freeOf": "Parabens",
+      "keyBenefits": [
+        "Gently cleanses, firms, and moisturizes skin",
+        "Improves appearance of fine lines and wrinkles",
+        "Enhances skin firmness and tone"
+      ],
+      "directionsForUse": [
+        "Step 1 (Cleanser): Cleanse face with Cleanser. Rinse well.",
+        "Step 2 (Firming Masque): Apply Masque in upward and outward motions, let dry 20-25 minutes, then rinse.",
+        "Step 3 (Moisturizer): Apply Moisturizer in upward and outward direction."
+      ],
+      "cautions": [
+        "For external use only.",
+        "Discontinue use if irritation or rash occurs.",
+        "Avoid contact with eyes."
+      ],
+      "productImage": "https://example.com/images/skindulgence-main.jpg",
+      "productBanners": [
+        "https://example.com/images/skindulgence-banner1.jpg",
+        "https://example.com/images/skindulgence-banner2.jpg"
+      ],
+      "fdaDisclaimer": "These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure, or prevent any disease."
+    },
+    {
+      "id": 12,
+      "productName": "Root Revive Hair Serum",
+      "yourPrice": 47.14,
+      "basePrice": 62.86,
+      "preferredCustomerPrice": 47.14,
+      "country": "Austria",
+      "category": "Skin & Beauty",
+      "description": "A breakthrough serum to revive and strengthen hair from root to tip with a blend of 11 powerful nutrients.",
+      "fullDescription": "This ultra-concentrated botanical blend nourishes weak, thinning hair for real and science-backed results. Featuring patented Redensyl™ Complex, caffeine, hyaluronic acid, and vitamin B5, it revitalizes hair follicles, improves hair density, and restores scalp moisture and balance.",
+      "keyIngredients": [
+        "Redensyl™ Complex",
+        "Caffeine",
+        "Panthenol",
+        "Hyaluronic Acid",
+        "Limonene",
+        "Quillaja Saponaria Bark Extract",
+        "Aloe Vera",
+        "Saw Palmetto",
+        "Menthol",
+        "Chamomile",
+        "Biotin"
+      ],
+      "freeOf": "Parabens, phthalates, silicones, and fragrances",
+      "keyBenefits": [
+        "Supports hair strength and hydration",
+        "Reduces the look of shedding",
+        "Nourishes and balances the scalp",
+        "Improves appearance of hair density",
+        "Suitable for all hair types"
+      ],
+      "patentsAwardsCertifications": [
+        "Patented, clinically proven ingredient: Redensyl™ shown to reactivate hair follicles and improve hair density after 90 days of regular use"
+      ],
+      "directionsForUse": [
+        "Apply one dropper daily to wet or dry hair, morning or night.",
+        "Massage into the scalp.",
+        "Do not rinse.",
+        "Helpful Tips: Apply serum to problem areas first, then to the rest of the scalp.",
+        "Massage scalp for 2 minutes daily for best results."
+      ],
+      "cautions": [
+        "Avoid contact with eyes. Rinse thoroughly with water if contact occurs.",
+        "For external use only.",
+        "Redensyl™ is a trademark of Givaudan."
+      ],
+      "productImage": "https://example.com/images/rootrevive-main.jpg",
+      "productBanners": [
+        "https://example.com/images/rootrevive-banner1.jpg",
+        "https://example.com/images/rootrevive-banner2.jpg"
+      ],
+      "fdaDisclaimer": "These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure, or prevent any disease."
+    },
+    {
+      "id": 13,
+      "productName": "Botanical Hand Protector",
+      "yourPrice": 17.14,
+      "basePrice": 22.86,
+      "preferredCustomerPrice": 17.14,
+      "country": "Austria",
+      "category": "Skin & Beauty",
+      "description": "An ultra-buttery hand cream that nourishes and hydrates to keep hands silky soft all day.",
+      "fullDescription": "This luxurious formula is packed with exotic oils and natural botanicals including avocado oil, shea butter, and aloe vera to bring you luminous skin while shielding against environmental toxins. Infused with the comforting scent of vanilla.",
+      "keyIngredients": [
+        "Argan Oil",
+        "Shea Butter",
+        "Jojoba Oil",
+        "Aloe Vera",
+        "Avocado Oil",
+        "Tea Tree Oil",
+        "Bergamot Oil",
+        "Green Tea Extract",
+        "Vitamin E"
+      ],
+      "freeOf": "Parabens, phthalates, MEA, TEA, glycols, sulfates, and dyes",
+      "keyBenefits": [
+        "Intensely hydrates and moisturizes",
+        "Nourishes to keep hands silky soft and smooth all day",
+        "Promotes vibrant, healthy looking hands",
+        "Packed with antioxidants to protect against harmful environmental pollutants"
+      ],
+      "directionsForUse": [
+        "Apply cream to hands and gently massage into skin until fully absorbed.",
+        "Use throughout the day as needed."
+      ],
+      "cautions": ["For external use only.", "Keep out of reach of children."],
+      "productImage": "https://example.com/images/botanicalhandprotector-main.jpg",
+      "productBanners": [
+        "https://example.com/images/botanicalhandprotector-banner1.jpg",
+        "https://example.com/images/botanicalhandprotector-banner2.jpg"
+      ],
+      "fdaDisclaimer": "These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure, or prevent any disease."
+    },
+    {
+      "id": 14,
+      "productName": "Alura Lux",
+      "yourPrice": 37.5,
+      "basePrice": 50,
+      "preferredCustomerPrice": 37.5,
+      "country": "Austria",
+      "category": "Women's Health",
+      "description": "A revolutionary cosmetic gel designed to refresh and moisturize skin with a cooling sensation.",
+      "fullDescription": "Alura Lux features a patented combination of menthol and L-arginine based on the Nobel Prize-winning discovery of nitric oxide as a signaling molecule. This paraben-free gel provides an exhilarating 'cool tingling' sensation and is sold exclusively by NHT Global.",
+      "keyIngredients": ["L-arginine USP", "Menthol USP"],
+      "freeOf": "Parabens",
+      "keyBenefits": [
+        "Instantly refreshes and moisturizes skin",
+        "Benefits multiple areas of the body depending on where it’s applied",
+        "Sold exclusively by NHT Global"
+      ],
+      "patentsAwardsCertifications": [
+        "Patented for the topical application of menthol and L-arginine (US Patent No. US6322493 and US6702733 and all foreign counterparts, International Patent Application No. PCT/US00/33987, European Patent No. EP1242009, Hong Kong Patent No.HK1051480, Chinese Patent No. CN1326503, and Brazil Patent No. BRPI0016619)",
+        "Halal Certified"
+      ],
+      "directionsForUse": [
+        "Apply gel to fingertip and massage thoroughly into the desired area."
+      ],
+      "cautions": [
+        "Products are intended for external use only.",
+        "If irritation or rash occurs, discontinue use immediately.",
+        "Avoid contact with eyes."
+      ],
+      "productImage": "https://example.com/images/aluralux-main.jpg",
+      "productBanners": [
+        "https://example.com/images/aluralux-banner1.jpg",
+        "https://example.com/images/aluralux-banner2.jpg"
+      ],
+      "fdaDisclaimer": "These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure, or prevent any disease."
+    },
+    {
+        "id": 15,
+        "productName": "MetaBoost",
+        "yourPrice": 3375,
+        "basePrice": 4500,
+        "preferredCustomerPrice":3375,
+        "country": "Belgium",
+        "category": "Weight & Metabolism",
+        "capsulesPerBottle": 60,
+        "description": "MetaBoost is a unique vegan supplement designed with a focus on supporting healthy blood sugar levels already within a normal range.",
+        "fullDescription": "You’ve probably heard that managing our blood sugar, or blood glucose, is important for your health. Blood sugar spikes and crashes can take a major toll on our energy, cognition, heart, and overall well-being. NHT Global has developed a powerful tool to help you maintain more stable blood sugar in the body. Using an effective and science-backed silver fir extract from Slovenia, MetaBoost is a unique vegan supplement designed with a focus on supporting healthy blood sugar levels already within a normal range. By helping you get off the blood sugar rollercoaster, MetaBoost restores your body’s natural balance while optimizing your metabolism, cardiovascular health, and brain function. In other words…MetaBoost is just the boost you need to stay healthy and vibrant!",
+        "keyIngredients": [
+          "Belinal® Silver Fir Branch Extract",
+          "Rose Hips Extract",
+          "Cinnamon Extract",
+          "Sweet Basil Extract",
+          "Q10Vital® Coenzyme Q10",
+          "Blueberry Extract",
+          "Black Pepper Extract"
+        ],
+        "keyBenefits": [
+          "Maintains healthy blood sugar levels, already within a normal range",
+          "Supports the metabolism",
+          "Promotes cardiovascular health",
+          "Provides brain and cognitive support",
+          "Vegan formula designed for daily use"
+        ],
+        "cautions": "Consult your healthcare professional before use if you are under medical supervision or allergic to any ingredients. Keep out of reach of children. Avoid storage in direct sunlight, high temperature or extreme humidity.",
+        "fdaDisclaimer": "These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure, or prevent any disease.",
+        "productImage": "https://example.com/images/metaboostwellness-main.jpg",
+        "productBanners": [
+          "https://example.com/images/metaboostwellness-banner1.jpg",
+          "https://example.com/images/metaboostwellness-banner2.jpg",
+          "https://example.com/images/metaboostwellness-banner3.jpg"
+        ]
+      },
+      {
+        "id": 16,
+        "productName": "Collagen Supreme",
+        "yourPrice": 5303.7,
+        "basePrice": 7071.3,
+        "preferredCustomerPrice": 5303.7,
+        "country": "Belgium",
+        "category": "Skin & Beauty",
+        "capsulesPerBottle": 30,
+        "description": "Premium collagen drink with marine peptides, hyaluronic acid, and vitamins to support glowing skin and healthy joints.",
+        "fullDescription": "Wrinkles are little reminders of our aging. It’s OUR turn to remind the wrinkles that you can’t be labeled by age. Now enhanced with a delicious raspberry lemonade flavor, this premium collagen drink supplement packs a tasty punch of beauty-supporting nutrients to promote a more youthful you from the inside out. It’s made with incredibly powerful marine collagen peptides that are clinically proven to improve the appearance of skin’s hydration and elasticity while replenishing collagen levels. The formula also provides hyaluronic acid for increased moisture retention, Vitamin C to support collagen production, and MSM and chondroitin sulfate for joint and connective tissue support. The result? Glowing skin that you’ll love and healthier joints to support your active lifestyle. By boosting your health and appearance from within, our Collagen Supreme will help you look and feel younger from head to toe.",
+        "keyIngredients": [
+          "Hydrolyzed Marine Collagen Peptides",
+          "MSM",
+          "Chondroitin Sulfate",
+          "Hyaluronic Acid",
+          "Vitamin C",
+          "Aloe Vera Gel",
+          "Zinc",
+          "Copper",
+          "Biotin"
+        ],
+        "keyBenefits": [
+          "Supports collagen and elastin production",
+          "Improves the appearance of skin elasticity and hydration",
+          "Diminishes the appearance of fine lines and wrinkles",
+          "Supports strong nails and hair",
+          "Promotes healthy joints",
+          "Free of gluten, dairy, soy, artificial flavors, and artificial sweeteners"
+        ],
+        "cautions": "Not suitable for children, pregnant or nursing women. Consult your healthcare professional before use if you are under medical treatment or allergic to certain ingredients. Once opened, consume immediately. Keep out of reach of children. Store in a cool, dry place away from light and humidity.",
+        "fdaDisclaimer": "These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure, or prevent any disease.",
+        "productImage": "https://example.com/images/collagensupreme-main.jpg",
+        "productBanners": [
+          "https://example.com/images/collagensupreme-banner1.jpg",
+          "https://example.com/images/collagensupreme-banner2.jpg",
+          "https://example.com/images/collagensupreme-banner3.jpg"
+        ]
+      },
+      {
+        "id": 17,
+        "productName": "Enhanced Essential Probiotics ",
+        "yourPrice": 3857.4,
+        "basePrice": 3857.4,
+        "preferredCustomerPrice": 3857.4,
+        "country": "Belgium",
+        "category": "Child Care",
+        "capsulesPerBottle": 30,
+        "description": "Enhanced probiotic supplement with patented delivery system to support digestive and immune health.",
+        "fullDescription": "“Bad bacteria” has finally met its match. NHT Global’s Enhanced Essential Probiotics helps support the health of our digestive system, protecting our immune system and safeguarding our intestinal tract from “bad bacteria.” Using a patented quadruple coating technology, Enhanced Essential Probiotics helps maintain the ecological balance of our intestinal system. It uses “good bacteria” to improve intestinal defense, relieve gastrointestinal discomforts, promote nutrient absorption and give overall peace of mind that our body is working hard for a healthy life.",
+        "keyIngredients": [
+          "Lactobacillus acidophilus",
+          "Lactobacillus plantarum",
+          "Lactobacillus casei",
+          "Bifidobacterium breve",
+          "Bifidobacterium animalis ssp. Lactis",
+          "Lactococcus lactis",
+          "Lactobacillus rhamnosus",
+          "Bifidobacterium bifidum",
+          "Chicory Root Extract",
+          "Maltodextrin",
+          "Fructo–Oligosaccharide",
+          "Galacto–Oligosaccharide"
+        ],
+        "keyBenefits": [
+          "Promotes ultimate intestinal health",
+          "Relieves common gastrointestinal discomforts",
+          "Helps facilitate the absorption of nutrients",
+          "Maintains optimal function of digestive system",
+          "Supports the body’s immune system"
+        ],
+        "cautions": "Consult your healthcare professional prior to use if taking medication or if under medical care. Keep out of reach of children. Keep product out of direct sunlight, high temperature or extreme humidity.",
+        "fdaDisclaimer": "These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure, or prevent any disease.",
+        "patentsAndCertifications": [
+          "Patented ingredient: Lactobacillus Rhamnosus (KR10-0646938 and KR10-007429)",
+          "Patented quadruple coating technology (KR10-1280232)",
+          "Certified by the Korean Ministry of Food and Drug Safety (MFDS)"
+        ],
+        "directionsForUse": "Consume contents of one stick pack per day after a meal. Children and elderly can consume with water.",
+        "productImage": "https://example.com/images/enhancedprobiotics-main.jpg",
+        "productBanners": [
+          "https://example.com/images/enhancedprobiotics-banner1.jpg",
+          "https://example.com/images/enhancedprobiotics-banner2.jpg",
+          "https://example.com/images/enhancedprobiotics-banner3.jpg"
+        ]
+      },
+      {
+        "id": 18,
+        "productName": "OcuFocus",
+        "yourPrice": 4531.5,
+        "basePrice": 6042.6,
+        "preferredCustomerPrice": 4531.5,
+        "country": "Belgium",
+        "category": "Elderly Wellness",
+        "capsulesPerBottle": null,
+        "description": "Powerful eye support supplement with Lutemax®2020 and carotenoids to promote vision health and protect against blue light.",
+        "fullDescription": "Very few of us are fortunate enough to have perfect 20/20 vision. And in an increasingly digital world, our eyes are now more challenged than ever before. To help protect one of our body’s most important assets, NHT Global has combined the world’s most eye-friendly nutrients in a single formula. Award-winning ingredient Lutemax®2020 and other beneficial carotenoids promote a healthy macula, assist visual performance and acuity, and help protect your eyes against harmful visible light and high-energy blue light. OcuFocus is the missing edge you need to maintain optimal long-term vision health!",
+        "keyIngredients": [
+          "Lutemax®2020 (Lutein and Zeaxanthin Isomers)",
+          "Astaxanthin",
+          "Lycopene",
+          "Bilberry",
+          "Lycium Berry",
+          "Beta Carotene",
+          "Vitamin A",
+          "Vitamin C",
+          "Vitamin E"
+        ],
+        "keyBenefits": [
+          "Supports eye health and vision function",
+          "Keeps eyes healthy as you age",
+          "Nourishes with carotenoids, antioxidants, and vitamins",
+          "Helps protect eyes against harmful visible and blue light",
+          "Promotes a healthy macula",
+          "Assists visual performance and acuity"
+        ],
+        "patentsAndCertifications": [
+          "Lutemax®2020 patented in Europe (EP2473065B1), China (CN102481011), Australia (AU2010290970B2), Canada (CA2771967C), Japan (JP5778676B2), Korea (KR101479821B1)",
+          "Clinically proven to increase MPOD in as little as 8 weeks",
+          "Halal Certified"
+        ],
+        "directionsForUse": "Take one capsule up to two times daily.",
+        "cautions": "If you are pregnant, lactating, or currently under medical supervision, please consult physician before using.",
+        "fdaDisclaimer": "These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure, or prevent any disease.",
+        "productImage": "https://example.com/images/ocufocuswellness-main.jpg",
+        "productBanners": [
+          "https://example.com/images/ocufocuswellness-banner1.jpg",
+          "https://example.com/images/ocufocuswellness-banner2.jpg",
+          "https://example.com/images/ocufocuswellness-banner3.jpg"
+        ]
+      },
+      {
+        "id": 19,
+        "productName": "StemRenu®",
+        "yourPrice": 5785.2,
+        "basePrice": 7713.9,
+        "preferredCustomerPrice": 5785.2,
+        "country": "Belgium",
+        "category": "Energy & Vitality",
+        "capsulesPerBottle": null,
+        "description": "Cellular-level support supplement with bioactive ingredients like Avian Egg Extract and Organic Maca to rejuvenate and renew the body.",
+        "fullDescription": "To help our bodies rejuvenate and renew, we need powerful nutrient support starting at the cellular level. NHT Global’s StemRenu® was created to deliver just that. It’s packed with specialized bioactive ingredients from around the world such as Avian Egg Extract and Organic Peruvian Maca that are designed to nourish and help restore the body to a more youthful and balanced state. From promoting faster recovery to countering the effects of stress, this supercharged formula arms the body with the tools it needs to achieve peak wellness and renewal.",
+        "keyIngredients": [
+          "Avian Egg Extract",
+          "Organic Marine Algae (AlgaeCal™)",
+          "Organic Aloe Vera",
+          "Green Tea Extract",
+          "Organic Maca",
+          "Red Grapes",
+          "Black Pepper Extract (Bioperine®)",
+          "Organic Fucoidan Algae"
+        ],
+        "keyBenefits": [
+          "Improves occasional sleeplessness and promotes deeper, more restful sleep",
+          "Counters the effects of stress",
+          "Promotes renewal and faster recovery",
+          "Supports healthy aging",
+          "Increases energy and endurance",
+          "Provides nutrient support for healthy cell signaling and overall cellular health",
+          "Supports bone, heart, and immune health"
+        ],
+        "patentsAndCertifications": [
+          "Bioperine® is patented for improvement of gastrointestinal absorption and systemic utilization (US Patents: US5536506, US6054585, US5744161, US5972382; European Patent: EP0810868; Canada Patent: CA2247467; Japan Patent: JP3953513)",
+          "Certified Organic Ingredients: AlgaeCal™, Aloe Vera, Maca, and Fucoidan Algae",
+          "Independently inspected for 500+ potential contaminants"
+        ],
+        "directionsForUse": "Take 1 – 2 capsule(s) daily based upon need or as directed by your healthcare professional. Consume with water or favorite beverage.",
+        "cautions": "Keep out of reach from children. If you are pregnant, lactating, or under medical supervision, consult your physician before using. Do not consume if allergic to eggs or any component of this product.",
+        "fdaDisclaimer": "These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure, or prevent any disease.",
+        "productImage": "https://example.com/images/stemrenu-main.jpg",
+        "productBanners": [
+          "https://example.com/images/stemrenu-banner1.jpg",
+          "https://example.com/images/stemrenu-banner2.jpg",
+          "https://example.com/images/stemrenu-banner3.jpg"
+        ]
+      },
+      {
+        "id": 20,
+        "productName": "Glucosamine ",
+        "yourPrice": 2893.5,
+        "basePrice": 3857.4,
+        "preferredCustomerPrice": 2893.5,
+        "country": "Belgium",
+        "category": "Elderly Wellness",
+        "description": "Unique dietary supplement that promotes joint health and cartilage production.",
+        "fullDescription": "Joint discomfort and stiffness can really alter the quality of life for many people. For some, the lack of Glucosamine the body produces is major contributor. Glucosamine 2200, NHT Global’s unique dietary supplement, creates building blocks to promote joint health and cartilage production. Our verified formula is made up of glucosamine for the friction between bones, shark cartilage for relief in the knee and back, green lipped mussel for cartilage repair, and turmeric for joint comfort. Our Glucosamine 2200 will help make for a healthier you!",
+        "keyIngredients": [
+          "Glucosamine HCL",
+          "Shark Cartilage",
+          "Green Lipped Mussel Powder",
+          "Turmeric Extract"
+        ],
+        "keyBenefits": [
+          "Directly supplies the body with glucosamine to help rebuild the body’s glucosamine and stimulate cartilage production",
+          "Promotes joint health, joint mobility and joint comfort",
+          "Contains turmeric extract, an antioxidant rich ingredient that studies have shown may promote joint comfort",
+          "Contains green lipped mussel, which supplements the body with omega 3 fatty acids, amino acids, and minerals"
+        ],
+        "patentsAndCertifications": ["Halal Certified"],
+        "directionsForUse": "Adults take 1 capsule three times daily.",
+        "cautions": "Keep out of reach from children. If you are pregnant, lactating, or currently under medical supervision, please consult physician before using.",
+        "fdaDisclaimer": "These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure, or prevent any disease.",
+        "allergyInfo": "Contains shellfish (mussel, crab, shrimp) and fish (shark).",
+        "productImage": "https://example.com/images/glucosamine-main.jpg",
+        "productBanners": [
+          "https://example.com/images/glucosamine-banner1.jpg",
+          "https://example.com/images/glucosamine-banner2.jpg",
+          "https://example.com/images/glucosamine-banner3.jpg"
+        ]
+      },
+      {
+        "id": 21,
+        "productName": "Omega 3 Essential Fatty Acids",
+        "yourPrice": 3182.4,
+        "basePrice": 4242.6,
+        "preferredCustomerPrice": 3182.4,
+        "country": "Belgium",
+        "category": "Men's Health",
+        "description": "Ultra-pure fish oil packed with essential EPA and DHA to support multiple bodily functions.",
+        "fullDescription": "NHT Global’s Omega-3 Essential Fatty Acids is an ultra-pure fish oil packed with good-for-you fats your body craves. Every serving provides an impressive 1,000mg of EPA and DHA, which are essential to the function of bodily systems such as the brain, heart, eyes, and joints. By taking Omega-3 Essential Fatty Acids every day, these delicious citrus flavored soft gels safeguard your health and keep your body working optimally from head to toe.",
+        "keyIngredients": [
+          "Highly Refined and Concentrated Omega-3 Fish Oil",
+          "Natural Citrus Flavors",
+          "Proprietary Antioxidant Blend"
+        ],
+        "keyBenefits": [
+          "Supports cardiovascular function",
+          "Supportive but not conclusive research shows that consumption of EPA and DHA omega-3 fatty acids may reduce the risk of coronary heart disease",
+          "Supports brain health",
+          "Promotes joint health",
+          "Supports a healthy weight and skin",
+          "Supports vision health"
+        ],
+        "patentsAndCertifications": [
+          "Independently lab tested for 500+ potential contaminants",
+          "Certified by Friends of the Sea (FOS) for sustainability",
+          "Awarded the Symbol of National Quality (SNQ) in Taiwan",
+          "Halal Certified"
+        ],
+        "directionsForUse": "Adults: Take 2 soft gels daily, preferably 10 minutes before a meal. Do not exceed 8 soft gels daily unless under supervision. Children 4+: One soft gel daily.",
+        "cautions": "Consult your healthcare professional before use if pregnant, lactating, suspect medical conditions, or taking prescription drugs. Do not consume if allergic to fish. Keep refrigerated.",
+        "fdaDisclaimer": "These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure, or prevent any disease.",
+        "allergyInfo": "Contains fish (anchovies, sardines, and mackerel).",
+        "productImage": "https://example.com/images/omega3-main.jpg",
+        "productBanners": [
+          "https://example.com/images/omega3-banner1.jpg",
+          "https://example.com/images/omega3-banner2.jpg",
+          "https://example.com/images/omega3-banner3.jpg"
+        ]
+      },
+      {
+        "id": 22,
+        "productName": "Premium Noni Juice",
+        "yourPrice": 3375,
+        "basePrice": 4500,
+        "preferredCustomerPrice": 3375.5,
+        "country": "Belgium",
+        "category": "Child Care",
+        "description": "Pure, USDA certified organic Noni Juice that supports immune function and promotes energy.",
+        "fullDescription": "Time tested, nature approved. For thousands of years, Pacific Islanders have enjoyed the health benefits of the noni fruit. The noni fruit naturally provides vitamins, minerals, enzymes, antioxidants, phytonutrients, and bioflavonoids, and works at a cellular level in the body to support the natural function of the immune system. Our formula is USDA certified organic to assure utmost organic quality and integrity. Harvested in the clean air and rich soil of the famed Tahitian Ring of the South Pacific, NHT Global’s Premium Noni Juice is pure, delicious and great for you.",
+        "keyIngredients": [
+          "Organic Noni Juice",
+          "Reconstituted Noni Fruit Juice from Organic Puree",
+          "Reconstituted Organic White Grape Juice",
+          "Reconstituted Organic Concord Grape Juice",
+          "Organic Noni Powder",
+          "Reconstituted Organic Pineapple Juice"
+        ],
+        "keyBenefits": [
+          "Supports immune function",
+          "Promotes increased energy levels",
+          "Supplies antioxidants known to help rid the body of harmful free radicals"
+        ],
+        "patentsAndCertifications": [
+          "USDA certified organic by QAI International",
+          "Manufacturer of the Year Award (2015) for innovation and quality in manufacturing",
+          "Export of the Year Award (2010) for excellence in exporting and contributions to the growth of the Samoan economy",
+          "Quality Crown Award (2004) for quality",
+          "Awarded the Symbol of National Quality (SNQ) in Taiwan",
+          "Halal Certified"
+        ],
+        "directionsForUse": "Shake well before using. Drink one ounce (30 ml) twice daily. Refrigerate after opening.",
+        "cautions": "Consult your health care professional prior to use if you have or suspect a medical condition, are taking prescription drugs, or are pregnant or lactating. No product testing is performed on animals.",
+        "fdaDisclaimer": "These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure, or prevent any disease.",
+        "productImage": "https://example.com/images/premium-noni-juice-main.jpg",
+        "productBanners": [
+          "https://example.com/images/premium-noni-juice-banner1.jpg",
+          "https://example.com/images/premium-noni-juice-banner2.jpg"
+        ]
+      },
+      {
+        "id": 23,
+        "productName": "Triotein",
+        "yourPrice": 6364.8,
+        "basePrice": 8486.1,
+        "preferredCustomerPrice": 6364.8,
+        "country": "Belgium",
+        "category": "Men's Health",
+        "description": "High-quality, 99% lactose-free whey protein powder supporting immune function and antioxidant protection.",
+        "fullDescription": "The body is made up of billions of cells…cells that have the ability to heal themselves when in the optimum health environment. NHT Global’s Triotein is a high-quality, 99% lactose-free whey protein powder that provides amino acid substrates needed to stimulate the body’s production of intracellular glutathione peroxidase (GSH). GSH is a crucial, naturally-occurring antioxidant in the body that helps defend against toxins.",
+        "keyIngredients": [
+          "Instantized Whey Protein Isolate",
+          "L-Glutamine (USP)",
+          "L-Glycine (USP)",
+          "L-Cystine (USP)",
+          "Vitamin D3"
+        ],
+        "contains": "milk",
+        "keyBenefits": [
+          "Supports immune function and provides antioxidant support",
+          "Improves intracellular protection",
+          "Delivers 9g of non-GMO protein and 50% of your Daily Recommended Value of Vitamin D",
+          "Soy-free, hormone-free, and antibiotic-free"
+        ],
+        "patentsAndCertifications": [
+          "Independently tested for 500+ environmental toxins",
+          "Halal Certified"
+        ],
+        "directionsForUse": "Mix one rounded scoop of Triotein with 8 oz. (250 ml) of water, juice or milk, preferably in the morning. Take up to three times a day or as recommended by your health practitioner. Preferable to not heat or cook product.",
+        "cautions": "Pregnant or lactating women and persons with known medical conditions or allergies should consult a physician before taking this product. Keep out of reach of children.",
+        "fdaDisclaimer": "These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure, or prevent any disease.",
+        "productImage": "https://example.com/images/triotein-main.jpg",
+        "productBanners": [
+          "https://example.com/images/triotein-banner1.jpg",
+          "https://example.com/images/triotein-banner2.jpg"
+        ]
+      },
+      {
+        "id": 24,
+        "productName": "ReStor Silver ",
+        "yourPrice": 3085.2,
+        "basePrice": 4113.9,
+        "preferredCustomerPrice": 3085.2,
+        "country": "Belgium",
+        "category": "Immunity & Cardiac",
+        "description": "Nutritional supplement targeting Calcium ATPase to support restful sleep, bladder function, muscle endurance, and joint comfort.",
+        "fullDescription": "As we age, our levels of the essential enzyme Calcium ATPase decline, affecting bodily functions such as sleep, muscle fatigue, bladder activity, and joint comfort. ReStor Silver is formulated with dietary supplement grade ingredients to support the body's natural responses to stress and activity, promoting balance and health.",
+        "keyIngredients": ["Jasmine Extract", "L-Arginine", "Taurine"],
+        "keyBenefits": [
+          "Improves occasional sleeplessness and promotes deeper, more restful sleep",
+          "Supports bladder function",
+          "Improves muscle endurance, strength, and recovery",
+          "Promotes comfort and mobility in joints and muscles"
+        ],
+        "patentsAndCertifications": [
+          "Patented for the use of jasmones and jasmonates to improve bladder function (US Patent Nos. US9492403 & US8865660 and Chinese Patent Nos. CN103140223A & CN103429234A)",
+          "Halal Certified"
+        ],
+        "directionsForUse": "Adults take 1ml to 2ml daily, mixed in 4-6 oz of water or other liquid. Shake well before use.",
+        "cautions": "If you are pregnant or lactating, or currently under medical supervision, consult a healthcare professional before using. Keep out of reach of children.",
+        "fdaDisclaimer": "These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure, or prevent any disease.",
+        "productImage": "https://example.com/images/restor-silver-main.jpg",
+        "productBanners": [
+          "https://example.com/images/restor-silver-banner1.jpg",
+          "https://example.com/images/restor-silver-banner2.jpg",
+          "https://example.com/images/restor-silver-banner3.jpg"
+        ]
+      },
+      {
+        "id": 25,
+        "productName": "Skindulgence 30 Minute Firming System",
+        "yourPrice": 900,
+        "basePrice": 900,
+        "preferredCustomerPrice": 900,
+        "country": "Belgium",
+        "category": "Skin & Beauty",
+        "description": "A 3-step skin care regimen to cleanse, firm, and moisturize, delivering visible anti-aging results in just 30 minutes.",
+        "fullDescription": "Look and feel years younger with the Skindulgence 30 Minute Firming System. This exquisite 3-step regimen visibly lifts and tones to help you achieve maximum age-defying results. Improve skin tone, firmness, and facial muscle lift in the time it takes to get ready for bed.",
+        "keyIngredients": [
+          "Aloe Barbadensis Leaf",
+          "Jojoba",
+          "Silk Amino Acids",
+          "Sodium Hyaluronate",
+          "Soluble Collagen",
+          "Chondrus Crispus (Carrageenan)",
+          "Acacia Senegal Gum Extract"
+        ],
+        "freeOf": "Parabens",
+        "keyBenefits": [
+          "Gently cleanses, firms, and moisturizes skin",
+          "Improves appearance of fine lines and wrinkles",
+          "Enhances skin firmness and tone"
+        ],
+        "directionsForUse": [
+          "Step 1 (Cleanser): Cleanse face with Cleanser. Rinse well.",
+          "Step 2 (Firming Masque): Apply Masque in upward and outward motions, let dry 20-25 minutes, then rinse.",
+          "Step 3 (Moisturizer): Apply Moisturizer in upward and outward direction."
+        ],
+        "cautions": [
+          "For external use only.",
+          "Discontinue use if irritation or rash occurs.",
+          "Avoid contact with eyes."
+        ],
+        "productImage": "https://example.com/images/skindulgence-main.jpg",
+        "productBanners": [
+          "https://example.com/images/skindulgence-banner1.jpg",
+          "https://example.com/images/skindulgence-banner2.jpg"
+        ],
+        "fdaDisclaimer": "These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure, or prevent any disease."
+      },
+      {
+        "id": 26,
+        "productName": "Root Revive Hair Serum",
+        "yourPrice": 4242.6,
+        "basePrice": 5657.4,
+        "preferredCustomerPrice": 4242.6,
+        "country": "Belgium",
+        "category": "Skin & Beauty",
+        "description": "A breakthrough serum to revive and strengthen hair from root to tip with a blend of 11 powerful nutrients.",
+        "fullDescription": "This ultra-concentrated botanical blend nourishes weak, thinning hair for real and science-backed results. Featuring patented Redensyl™ Complex, caffeine, hyaluronic acid, and vitamin B5, it revitalizes hair follicles, improves hair density, and restores scalp moisture and balance.",
+        "keyIngredients": [
+          "Redensyl™ Complex",
+          "Caffeine",
+          "Panthenol",
+          "Hyaluronic Acid",
+          "Limonene",
+          "Quillaja Saponaria Bark Extract",
+          "Aloe Vera",
+          "Saw Palmetto",
+          "Menthol",
+          "Chamomile",
+          "Biotin"
+        ],
+        "freeOf": "Parabens, phthalates, silicones, and fragrances",
+        "keyBenefits": [
+          "Supports hair strength and hydration",
+          "Reduces the look of shedding",
+          "Nourishes and balances the scalp",
+          "Improves appearance of hair density",
+          "Suitable for all hair types"
+        ],
+        "patentsAwardsCertifications": [
+          "Patented, clinically proven ingredient: Redensyl™ shown to reactivate hair follicles and improve hair density after 90 days of regular use"
+        ],
+        "directionsForUse": [
+          "Apply one dropper daily to wet or dry hair, morning or night.",
+          "Massage into the scalp.",
+          "Do not rinse.",
+          "Helpful Tips: Apply serum to problem areas first, then to the rest of the scalp.",
+          "Massage scalp for 2 minutes daily for best results."
+        ],
+        "cautions": [
+          "Avoid contact with eyes. Rinse thoroughly with water if contact occurs.",
+          "For external use only.",
+          "Redensyl™ is a trademark of Givaudan."
+        ],
+        "productImage": "https://example.com/images/rootrevive-main.jpg",
+        "productBanners": [
+          "https://example.com/images/rootrevive-banner1.jpg",
+          "https://example.com/images/rootrevive-banner2.jpg"
+        ],
+        "fdaDisclaimer": "These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure, or prevent any disease."
+      },
+      {
+        "id": 27,
+        "productName": "Botanical Hand Protector",
+        "yourPrice": 1542.6,
+        "basePrice": 2057.4,
+        "preferredCustomerPrice": 1542.6,
+        "country": "Belgium",
+        "category": "Skin & Beauty",
+        "description": "An ultra-buttery hand cream that nourishes and hydrates to keep hands silky soft all day.",
+        "fullDescription": "This luxurious formula is packed with exotic oils and natural botanicals including avocado oil, shea butter, and aloe vera to bring you luminous skin while shielding against environmental toxins. Infused with the comforting scent of vanilla.",
+        "keyIngredients": [
+          "Argan Oil",
+          "Shea Butter",
+          "Jojoba Oil",
+          "Aloe Vera",
+          "Avocado Oil",
+          "Tea Tree Oil",
+          "Bergamot Oil",
+          "Green Tea Extract",
+          "Vitamin E"
+        ],
+        "freeOf": "Parabens, phthalates, MEA, TEA, glycols, sulfates, and dyes",
+        "keyBenefits": [
+          "Intensely hydrates and moisturizes",
+          "Nourishes to keep hands silky soft and smooth all day",
+          "Promotes vibrant, healthy looking hands",
+          "Packed with antioxidants to protect against harmful environmental pollutants"
+        ],
+        "directionsForUse": [
+          "Apply cream to hands and gently massage into skin until fully absorbed.",
+          "Use throughout the day as needed."
+        ],
+        "cautions": ["For external use only.", "Keep out of reach of children."],
+        "productImage": "https://example.com/images/botanicalhandprotector-main.jpg",
+        "productBanners": [
+          "https://example.com/images/botanicalhandprotector-banner1.jpg",
+          "https://example.com/images/botanicalhandprotector-banner2.jpg"
+        ],
+        "fdaDisclaimer": "These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure, or prevent any disease."
+      },
+      {
+        "id": 28,
+        "productName": "Skindulgence 30 Minute Firming System",
+        "yourPrice": 5978.7,
+        "basePrice": 7971.3,
+        "preferredCustomerPrice": 5978.7,
+        "country": "Belgium",
+        "category": "Skin & Beauty",
+        "description": "A 3-step skin care regimen to cleanse, firm, and moisturize, delivering visible anti-aging results in just 30 minutes.",
+        "fullDescription": "Look and feel years younger with the Skindulgence 30 Minute Firming System. This exquisite 3-step regimen visibly lifts and tones to help you achieve maximum age-defying results. Improve skin tone, firmness, and facial muscle lift in the time it takes to get ready for bed.",
+        "keyIngredients": [
+          "Aloe Barbadensis Leaf",
+          "Jojoba",
+          "Silk Amino Acids",
+          "Sodium Hyaluronate",
+          "Soluble Collagen",
+          "Chondrus Crispus (Carrageenan)",
+          "Acacia Senegal Gum Extract"
+        ],
+        "freeOf": "Parabens",
+        "keyBenefits": [
+          "Gently cleanses, firms, and moisturizes skin",
+          "Improves appearance of fine lines and wrinkles",
+          "Enhances skin firmness and tone"
+        ],
+        "directionsForUse": [
+          "Step 1 (Cleanser): Cleanse face with Cleanser. Rinse well.",
+          "Step 2 (Firming Masque): Apply Masque in upward and outward motions, let dry 20-25 minutes, then rinse.",
+          "Step 3 (Moisturizer): Apply Moisturizer in upward and outward direction."
+        ],
+        "cautions": [
+          "For external use only.",
+          "Discontinue use if irritation or rash occurs.",
+          "Avoid contact with eyes."
+        ],
+        "productImage": "https://example.com/images/skindulgence-main.jpg",
+        "productBanners": [
+          "https://example.com/images/skindulgence-banner1.jpg",
+          "https://example.com/images/skindulgence-banner2.jpg"
+        ],
+        "fdaDisclaimer": "These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure, or prevent any disease."
+      },
+      {
+        "id": 29,
+        "productName": "Alura Lux",
+        "yourPrice": 3375,
+        "basePrice": 4500,
+        "preferredCustomerPrice": 3375,
+        "country": "Belgium",
+        "category": "Women's Health",
+        "description": "A revolutionary cosmetic gel designed to refresh and moisturize skin with a cooling sensation.",
+        "fullDescription": "Alura Lux features a patented combination of menthol and L-arginine based on the Nobel Prize-winning discovery of nitric oxide as a signaling molecule. This paraben-free gel provides an exhilarating 'cool tingling' sensation and is sold exclusively by NHT Global.",
+        "keyIngredients": ["L-arginine USP", "Menthol USP"],
+        "freeOf": "Parabens",
+        "keyBenefits": [
+          "Instantly refreshes and moisturizes skin",
+          "Benefits multiple areas of the body depending on where it’s applied",
+          "Sold exclusively by NHT Global"
+        ],
+        "patentsAwardsCertifications": [
+          "Patented for the topical application of menthol and L-arginine (US Patent No. US6322493 and US6702733 and all foreign counterparts, International Patent Application No. PCT/US00/33987, European Patent No. EP1242009, Hong Kong Patent No.HK1051480, Chinese Patent No. CN1326503, and Brazil Patent No. BRPI0016619)",
+          "Halal Certified"
+        ],
+        "directionsForUse": [
+          "Apply gel to fingertip and massage thoroughly into the desired area."
+        ],
+        "cautions": [
+          "Products are intended for external use only.",
+          "If irritation or rash occurs, discontinue use immediately.",
+          "Avoid contact with eyes."
+        ],
+        "productImage": "https://example.com/images/aluralux-main.jpg",
+        "productBanners": [
+          "https://example.com/images/aluralux-banner1.jpg",
+          "https://example.com/images/aluralux-banner2.jpg"
+        ],
+        "fdaDisclaimer": "These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure, or prevent any disease."
+      },
+
+  ]
+}

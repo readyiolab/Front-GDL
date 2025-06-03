@@ -1,11 +1,223 @@
-import React from 'react';
-import { Helmet } from 'react-helmet';
-import { motion } from 'framer-motion';
-import { CheckCircle, Globe, ArrowRight } from 'lucide-react';
+import React, { useState, useEffect, useCallback } from "react";
+import { Helmet } from "react-helmet";
+import { motion, useScroll } from "framer-motion";
+import { Button } from "@/components/ui/button";
+import {
+  CheckCircle,
+  Globe,
+  ArrowRight,
+  Users,
+  ShoppingBag,
+  Star,
+  ChevronRight,
+  Play,
+  ExternalLink,
+  Shield,
+} from "lucide-react";
+import Particles from "react-particles";
+import { loadFull } from "tsparticles";
+
+// Animation variants
+const staggerChildren = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+};
+
+const hoverScale = {
+  hover: { scale: 1.05 },
+  tap: { scale: 0.95 },
+};
+
+const HeroSection = () => {
+  const [particleOptions, setParticleOptions] = useState({});
+
+  const particlesInit = useCallback(async (engine) => {
+    await loadFull(engine);
+  }, []);
+
+  useEffect(() => {
+    const updateParticles = () => {
+      const isMobile = window.innerWidth < 640;
+      setParticleOptions({
+        particles: {
+          number: {
+            value: isMobile ? 50 : 100,
+            density: {
+              enable: true,
+              value_area: isMobile ? 600 : 800,
+            },
+          },
+          color: {
+            value: ["#f97316", "#fb923c", "#fdba74"],
+          },
+          shape: {
+            type: "circle",
+          },
+          opacity: {
+            value: isMobile ? 0.6 : 0.8,
+            random: true,
+          },
+          size: {
+            value: isMobile ? 3 : 5,
+            random: true,
+          },
+          move: {
+            enable: true,
+            speed: isMobile ? 1 : 2,
+            direction: "none",
+            random: true,
+            straight: false,
+            out_mode: "out",
+          },
+        },
+        interactivity: {
+          events: {
+            onhover: {
+              enable: !isMobile,
+              mode: "repulse",
+            },
+            onclick: {
+              enable: true,
+              mode: "push",
+            },
+          },
+          modes: {
+            repulse: {
+              distance: 100,
+              duration: 0.4,
+            },
+            push: {
+              quantity: 4,
+            },
+          },
+        },
+        retina_detect: true,
+      });
+    };
+
+    updateParticles();
+    window.addEventListener("resize", updateParticles);
+    return () => window.removeEventListener("resize", updateParticles);
+  }, []);
+
+  return (
+    <section
+      className="min-h-screen flex flex-col items-center justify-center text-center bg-gradient-to-br from-orange-50 via-white to-orange-50 px-6 py-20 lg:py-32 relative overflow-hidden"
+    >
+      <Particles
+        id="tsparticles"
+        init={particlesInit}
+        options={particleOptions}
+        className="absolute inset-0 z-10"
+        canvasClassName="h-full w-full"
+      />
+     
+      <motion.div
+        className="absolute bottom-20 right-10 w-32 h-32 bg-blue-400/20 rounded-full blur-xl z-0"
+        animate={{ scale: [1.2, 1, 1.2], opacity: [0.2, 0.5, 0.2] }}
+        transition={{ duration: 5, repeat: Infinity, repeatType: "reverse" }}
+      />
+      <motion.div
+        className="absolute inset-0 z-0"
+        style={{
+          backgroundImage:
+            "url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1200&auto=format&fit=crop&q=60')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          opacity: 0.05,
+        }}
+      />
+      <motion.div
+        className="relative z-10 max-w-4xl mx-auto w-full px-4"
+        variants={staggerChildren}
+        initial="hidden"
+        animate="visible"
+      >
+        <motion.div
+          className="inline-flex items-center gap-2 bg-orange-500/20 backdrop-blur-sm border border-orange-400/30 px-4 py-2 rounded-full mb-6"
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 0.5, duration: 0.6 }}
+        >
+          <Star className="h-4 w-4 text-orange-400" />
+          <span className="text-black font-medium text-sm">
+            Proven Business Model
+          </span>
+        </motion.div>
+        <motion.h1
+          className="text-2xl md:text-3xl lg:text-5xl font-bold text-gray-900 mb-6 bg-gradient-to-r from-white via-gray-100 to-gray-300 bg-clip-text leading-tight"
+          variants={itemVariants}
+        >
+          Unleash Your Potential <br />
+          <span className="block sm:inline">with NHT Global</span>
+        </motion.h1>
+        <motion.p
+          className="text-xl md:text-2xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed"
+          variants={itemVariants}
+        >
+          NHT Global offers better health, unlimited income, and freedom to live life on your terms.
+        </motion.p>
+        <motion.div
+          className="flex flex-col sm:flex-row gap-4 justify-center"
+          variants={itemVariants}
+        >
+          <motion.div whileHover="hover" whileTap="tap" variants={hoverScale}>
+            <Button
+              className="group bg-gradient-to-r from-orange-500 to-orange-600 text-white font-bold py-4 px-8 rounded-2xl shadow-2xl hover:shadow-orange-500/25 text-lg flex items-center gap-3"
+            >
+              <Play className="h-5 w-5" />
+              Join Our Community
+              <ChevronRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
+            </Button>
+          </motion.div>
+          <motion.div whileHover="hover" whileTap="tap" variants={hoverScale}>
+            <Button
+              className="group bg-black backdrop-blur-sm border border-white/20 text-white font-semibold py-4 px-8 rounded-2xl text-lg flex items-center gap-3"
+            >
+              <ExternalLink className="h-5 w-5" />
+              Learn More
+            </Button>
+          </motion.div>
+        </motion.div>
+      </motion.div>
+      <motion.div
+        className="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-10"
+        animate={{ y: [0, 8, 0] }}
+        transition={{ duration: 2, repeat: Infinity }}
+      >
+        <div className="w-6 h-10 border-2 border-gray-400 rounded-full relative flex justify-center items-center">
+          <div className="w-1.5 h-1.5 bg-gray-400 rounded-full absolute top-2 animate-bounce" />
+        </div>
+        <p className="text-xs text-gray-400 mt-2">SCROLL DOWN</p>
+      </motion.div>
+    </section>
+  );
+};
 
 const OpportunityPage = () => {
+  const [isScrolled, setIsScrolled] = useState(false);
+  const { scrollYProgress } = useScroll();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <>
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100">
       {/* SEO Meta Tags */}
       <Helmet>
         <title>NHT Global Opportunity - Unleash Your Potential</title>
@@ -18,305 +230,358 @@ const OpportunityPage = () => {
           content="NHT Global, network marketing, income opportunity, health and wellness, business opportunity"
         />
         <meta name="robots" content="index, follow" />
-        <meta property="og:title" content="NHT Global Opportunity - Unleash Your Potential" />
+        <meta
+          property="og:title"
+          content="NHT Global Opportunity - Unleash Your Potential"
+        />
         <meta
           property="og:description"
           content="Discover NHT Global's network marketing opportunity for financial freedom and wellness."
         />
-        <meta property="og:image" content="https://igrowbig.com/images/nht-global.jpg" />
+        <meta
+          property="og:image"
+          content="https://igrowbig.com/images/nht-global.jpg"
+        />
         <meta property="og:url" content="https://igrowbig.com/opportunity" />
         <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="NHT Global Opportunity - Unleash Your Potential" />
+        <meta
+          name="twitter:title"
+          content="NHT Global Opportunity - Unleash Your Potential"
+        />
         <meta
           name="twitter:description"
           content="Join NHT Global for a proven business model and unlimited earning potential."
         />
-        <meta name="twitter:image" content="https://igrowbig.com/images/nht-global.jpg" />
+        <meta
+          name="twitter:image"
+          content="https://igrowbig.com/images/nht-global.jpg"
+        />
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            name: "NHT Global",
+            url: "https://igrowbig.com",
+            description:
+              "NHT Global offers a network marketing opportunity for financial freedom and wellness with a proven business model.",
+            logo: "/logo.png",
+            sameAs: [
+              "https://www.facebook.com/nhtglobal",
+              "https://www.twitter.com/nhtglobal",
+              "https://www.linkedin.com/company/nhtglobal",
+            ],
+          })}
+        </script>
       </Helmet>
 
-      <div className="min-h-screen bg-gray-50">
-        {/* Hero Section (Dark) */}
-        <motion.section
-          className="bg-cover bg-center text-white px-4 py-32 md:py-40 relative"
-          style={{ backgroundImage: `url('https://images.unsplash.com/photo-1476304884326-cd2c88572c5f?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fGdsb2JhbCUyMG5ldHdvcmt8ZW58MHx8MHx8fDA%3D')` }}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8 }}
-          role="banner"
-        >
-          <div className="absolute inset-0 bg-gray-900 bg-opacity-70 z-0"></div>
-          <motion.div
-            className="relative z-10 max-w-6xl mx-auto text-center"
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3, duration: 0.8 }}
-          >
-            <h1 className="text-4xl md:text-6xl font-extrabold mb-6 tracking-tight">Unleash Your Potential</h1>
-            <p className="text-xl md:text-2xl mb-8 font-light max-w-3xl mx-auto">
-              NHT Global offers better health, unlimited income, and freedom to live life on your terms.
-            </p>
-            <motion.button
-              className="bg-orange-400 text-gray-900 hover:bg-orange-500 font-semibold py-4 px-10 rounded-full shadow-lg transition-all duration-300 text-lg"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              aria-label="Join NHT Global Community"
-            >
-              Join Our Community
-            </motion.button>
-          </motion.div>
-        </motion.section>
+      {/* Hero Section */}
+      <HeroSection />
 
-        {/* Main Content */}
-        <main className="   py-16">
-          {/* Section 1: Door of Opportunity (Light) */}
-          <motion.section
-            className="mb-24  p-10 "
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Open the Door of Opportunity</h2>
-              <div className="w-24 h-1 bg-orange-400 mx-auto rounded-full"></div>
-            </div>
-            <div className="flex flex-col lg:flex-row items-center gap-12">
+      {/* Main Content */}
+      <main className="pt-6 sm:pt-8">
+        {/* Section 1: Door of Opportunity */}
+        <motion.section
+          className="py-20 px-6"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8 }}
+        >
+          <div className="max-w-7xl mx-auto">
+            <div className="text-center mb-16">
               <motion.div
-                className="flex-1"
+                className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-500/10 to-purple-500/10 border border-blue-200 px-4 py-2 rounded-full mb-6"
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+              >
+                <Shield className="h-4 w-4 text-blue-500" />
+                <span className="text-blue-600 font-medium text-sm">
+                  Start Your Journey
+                </span>
+              </motion.div>
+              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4 bg-gradient-to-r from-gray-900 via-blue-900 to-purple-900 bg-clip-text text-transparent">
+                Open the Door of Opportunity
+              </h2>
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                Take the next step to changing your destiny with NHT Global.
+              </p>
+            </div>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+              <motion.div
+                className="space-y-6"
                 initial={{ opacity: 0, x: -30 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8 }}
               >
-                <ul className="space-y-5">
+                <ul className="space-y-4">
                   {[
-                    'Take the next step to changing your destiny',
-                    'Choose a proven formula to build your future',
-                    'Focus on building a healthy lifestyle',
-                    'Develop a wellness tradition globally',
-                    'Share this opportunity with others',
+                    "Take the next step to changing your destiny",
+                    "Choose a proven formula to build your future",
+                    "Focus on building a healthy lifestyle",
+                    "Develop a wellness tradition globally",
+                    "Share this opportunity with others",
                   ].map((item, index) => (
                     <motion.li
                       key={index}
-                      className="flex items-start gap-4"
+                      className="flex items-start gap-3"
                       initial={{ opacity: 0 }}
                       whileInView={{ opacity: 1 }}
                       viewport={{ once: true }}
                       transition={{ delay: index * 0.1, duration: 0.5 }}
                     >
-                      <div className="h-6 w-6 rounded-full bg-orange-400 flex items-center justify-center flex-shrink-0 mt-1">
-                        <CheckCircle className="h-4 w-4 text-white" />
+                      <div className="w-10 h-10 rounded-full bg-gradient-to-r from-orange-500 to-orange-600 flex items-center justify-center flex-shrink-0">
+                        <CheckCircle className="h-5 w-5 text-white" />
                       </div>
-                      <p className="text-lg text-gray-700 font-medium">{item}</p>
+                      <p className="text-lg text-gray-700 font-medium leading-relaxed">
+                        {item}
+                      </p>
                     </motion.li>
                   ))}
                 </ul>
                 <motion.div
-                  className="mt-10 bg-orange-50 p-8 rounded-lg border border-orange-100"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
+                  className="bg-orange-50 border border-orange-200 rounded-xl p-6"
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
-                  transition={{ delay: 0.5, duration: 0.5 }}
+                  transition={{ delay: 0.2, duration: 0.5 }}
                 >
-                  <h3 className="text-2xl font-bold text-gray-900 mb-2">Open the Door to NHT Global</h3>
-                  <p className="text-lg text-gray-600">Top Network Marketing Company Globally</p>
+                  <h3 className="text-2xl font-bold text-gray-900 mb-2">
+                    Open the Door to NHT Global
+                  </h3>
+                  <p className="text-lg text-gray-600">
+                    Top Network Marketing Company Globally
+                  </p>
                 </motion.div>
               </motion.div>
               <motion.div
-                className="flex-1 flex justify-center"
-                initial={{ opacity: 0, x: 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8 }}
+                className="relative"
+                whileHover={{ scale: 1.02 }}
+                transition={{ duration: 0.3 }}
               >
-                <div className="relative">
+                <div className="relative overflow-hidden rounded-3xl shadow-2xl group-hover:shadow-3xl transition-shadow duration-500">
                   <motion.div
-                    className="absolute -inset-4 bg-orange-200/50 rounded-full blur-xl"
-                    animate={{ scale: [1, 1.05, 1] }}
-                    transition={{ duration: 4, repeat: Infinity, repeatType: 'reverse' }}
+                    className="absolute inset-0 bg-gradient-to-r from-orange-500 to-orange-600 opacity-20 z-10"
+                    initial={{ opacity: 0 }}
+                    whileHover={{ opacity: 0.3 }}
+                    transition={{ duration: 0.3 }}
                   />
-                  <img
-                    src="https://plus.unsplash.com/premium_photo-1661767467261-4a4bed92a507?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                    alt="Team celebrating NHT Global success"
-                    className="rounded-xl shadow-xl relative z-10 w-full max-w-lg"
-                    loading="lazy"
-                  />
+                  <picture>
+                    <source
+                      srcSet="https://plus.unsplash.com/premium_photo-1661767467261-4a4bed92a507?q=80&w=600&auto=format&fit=crop"
+                      media="(max-width: 640px)"
+                    />
+                    <source
+                      srcSet="https://plus.unsplash.com/premium_photo-1661767467261-4a4bed92a507?q=80&w=1200&auto=format&fit=crop"
+                      media="(max-width: 1024px)"
+                    />
+                    <img
+                      src="https://plus.unsplash.com/premium_photo-1661767467261-4a4bed92a507?q=80&w=2070&auto=format&fit=crop"
+                      alt="Team celebrating NHT Global success"
+                      className="w-full h-80 lg:h-96 object-cover transform group-hover:scale-105 transition-transform duration-700"
+                      loading="lazy"
+                    />
+                  </picture>
                   <motion.div
-                    className="absolute -bottom-6 -right-6 bg-orange-400 text-white p-5 rounded-lg shadow-lg z-20"
+                    className="absolute top-6 left-6 z-20"
                     initial={{ opacity: 0, scale: 0.8 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
-                    transition={{ delay: 0.8, duration: 0.5 }}
+                    transition={{ delay: 0.3, duration: 0.5 }}
                   >
-                    <p className="font-bold text-lg">Join the Movement</p>
-                    <p>Transform your life today</p>
+                    <div className="w-12 h-12 rounded-full bg-gradient-to-r from-orange-500 to-orange-600 flex items-center justify-center shadow-lg backdrop-blur-sm">
+                      <Star className="h-6 w-6 text-white" />
+                    </div>
                   </motion.div>
                 </div>
               </motion.div>
             </div>
-          </motion.section>
+          </div>
+        </motion.section>
 
-          {/* Section 2: Why Network Marketing (Dark) */}
-          <motion.section
-            className="mb-24 bg-gray-900 text-white  p-12  mx-auto "
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <div className="text-center mb-14">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">Why Network Marketing?</h2>
-              <div className="w-24 h-1 bg-orange-400 mx-auto rounded-full"></div>
+        {/* Section 2: Why Network Marketing */}
+        <motion.section
+          className="py-20 bg-gradient-to-r from-gray-900 via-blue-900 to-gray-900 text-white"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8 }}
+        >
+          <div className="max-w-6xl mx-auto px-6">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+                Why Network Marketing?
+              </h2>
+              <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+                A proven industry with global impact and opportunity.
+              </p>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-y-8 gap-x-10">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {[
-                'Direct selling industry over 50 years old',
-                '$110B+ global industry and growing',
-                'Business in 172+ countries worldwide',
-                'Involves people of all backgrounds',
-                'Empowered millions globally',
-                'High income potential',
-                'Be your own boss',
-                'No employees, low overhead',
-                'Major tax advantages',
-                'Best chance for the average person to succeed',
-                'Global opportunity with no limits',
-                'Create an extraordinary life',
+                "Direct selling industry over 50 years old",
+                "$110B+ global industry and growing",
+                "Business in 172+ countries worldwide",
+                "Involves people of all backgrounds",
+                "Empowered millions globally",
+                "High income potential",
+                "Be your own boss",
+                "No employees, low overhead",
+                "Major tax advantages",
+                "Best chance for the average person to succeed",
+                "Global opportunity with no limits",
+                "Create an extraordinary life",
               ].map((text, index) => (
                 <motion.div
                   key={index}
-                  className="flex items-start space-x-4"
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
+                  className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-6 hover:bg-white/20 transition-all duration-300"
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ delay: index * 0.05, duration: 0.4 }}
+                  transition={{ delay: index * 0.1, duration: 0.6 }}
+                  whileHover={{ scale: 1.05, y: -5 }}
                 >
-                  <CheckCircle className="h-6 w-6 text-orange-400 flex-shrink-0 mt-0.5" />
-                  <p className="text-gray-100 text-lg">{text}</p>
+                  <div className="flex items-start gap-4">
+                    <div className="w-10 h-10 rounded-full bg-gradient-to-r from-orange-500 to-orange-600 flex items-center justify-center flex-shrink-0">
+                      <CheckCircle className="h-5 w-5 text-white" />
+                    </div>
+                    <p className="text-gray-100 font-medium leading-relaxed">
+                      {text}
+                    </p>
+                  </div>
                 </motion.div>
               ))}
             </div>
-          </motion.section>
+          </div>
+        </motion.section>
 
-          {/* Section 3: NHT Global Opportunity (Light) */}
-          <motion.section
-            className="mb-24 bg-gray-50  p-12 "
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <div className="text-center mb-14">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">World of Opportunity</h2>
-              <p className="text-xl text-gray-600 mb-4">A global company with true potential</p>
-              <div className="w-24 h-1 bg-orange-400 mx-auto rounded-full"></div>
+        {/* Section 3: NHT Global Opportunity */}
+        <motion.section
+          className="py-20 px-6"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8 }}
+        >
+          <div className="max-w-7xl mx-auto">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4 bg-gradient-to-r from-gray-900 via-blue-900 to-purple-900 bg-clip-text text-transparent">
+                World of Opportunity
+              </h2>
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                A global company with true potential
+              </p>
             </div>
-            <div className="flex flex-col lg:flex-row items-center gap-12 max-w-6xl mx-auto">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
               <motion.div
-                className="flex-1"
-                initial={{ opacity: 0, x: -30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8 }}
+                className="relative"
+                whileHover={{ scale: 1.02 }}
+                transition={{ duration: 0.3 }}
               >
-                <div className="relative">
+                <div className="relative overflow-hidden rounded-3xl shadow-2xl group-hover:shadow-3xl transition-shadow duration-500">
                   <motion.div
-                    className="absolute -inset-6 rounded-xl bg-orange-200/30 blur-xl"
-                    animate={{ scale: [1, 1.05, 1] }}
-                    transition={{ duration: 3, repeat: Infinity, repeatType: 'reverse' }}
+                    className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-600 opacity-20 z-10"
+                    initial={{ opacity: 0 }}
+                    whileHover={{ opacity: 0.3 }}
+                    transition={{ duration: 0.3 }}
                   />
-                  <div className="relative">
+                  <picture>
+                    <source
+                      srcSet="https://images.unsplash.com/photo-1588458977838-bdf7b9d8700e?w=600&auto=format&fit=crop"
+                      media="(max-width: 640px)"
+                    />
+                    <source
+                      srcSet="https://images.unsplash.com/photo-1588458977838-bdf7b9d8700e?w=1200&auto=format&fit=crop"
+                      media="(max-width: 1024px)"
+                    />
                     <img
-                      src="https://images.unsplash.com/photo-1588458977838-bdf7b9d8700e?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjR8fGdsb2JhbCUyMG5ldHdvcmt8ZW58MHx8MHx8fDA%3D"
+                      src="https://images.unsplash.com/photo-1588458977838-bdf7b9d8700e?w=2070&auto=format&fit=crop"
                       alt="NHT Global's worldwide business network"
-                      className="rounded-xl shadow-xl relative z-10 w-full max-w-lg object-cover"
+                      className="w-full h-80 lg:h-96 object-cover transform group-hover:scale-105 transition-transform duration-700"
                       loading="lazy"
                     />
-                    <motion.div
-                      className="absolute -left-4 -bottom-4 bg-orange-400 p-3 rounded-lg shadow-lg z-30"
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: 0.6, duration: 0.5 }}
-                      whileHover={{ scale: 1.05 }}
-                    >
-                      <div className="flex items-center gap-2">
-                        <Globe className="h-5 w-5 text-white" />
-                        <p className="text-white font-semibold text-sm">Global Presence</p>
-                      </div>
-                    </motion.div>
-                  </div>
+                  </picture>
+                  <motion.div
+                    className="absolute top-6 left-6 z-20"
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.3, duration: 0.5 }}
+                  >
+                    <div className="w-12 h-12 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 flex items-center justify-center shadow-lg backdrop-blur-sm">
+                      <Globe className="h-6 w-6 text-white" />
+                    </div>
+                  </motion.div>
                 </div>
               </motion.div>
               <motion.div
-                className="flex-1"
+                className="space-y-6"
                 initial={{ opacity: 0, x: 30 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8 }}
               >
-                <div className="bg-white p-8 rounded-xl shadow-lg border-l-4 border-orange-400 hover:shadow-xl transition-shadow duration-300">
-                  <motion.h3
-                    className="text-2xl font-bold text-orange-400 mb-6"
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6 }}
-                  >
-                    NHT Global has a PROVEN Business Model
-                  </motion.h3>
-                  <div className="space-y-5">
-                    {[
-                      'Offices worldwide and distribution within more than 50 countries',
-                      'More than $1.5 billion in sales and growing',
-                      'Member of the Direct Selling Association',
-                      'Subsidiary of 23-year-old publicly traded company, Natural Health Trends Corp. (trading symbol: NHTC)',
-                      'Experienced executive team and global leaders to support you at each step towards your success',
-                    ].map((item, index) => (
-                      <motion.div
-                        key={index}
-                        className="flex items-start gap-3"
-                        initial={{ opacity: 0, x: 20 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: index * 0.1, duration: 0.5 }}
-                      >
-                        <div className="h-6 w-6 rounded-full bg-orange-400 flex items-center justify-center flex-shrink-0 mt-1">
-                          <CheckCircle className="h-4 w-4 text-white" />
-                        </div>
-                        <p className="text-gray-700 text-base leading-relaxed">{item}</p>
-                      </motion.div>
-                    ))}
-                  </div>
-                  <motion.button
-                    className="mt-8 bg-orange-400 text-white py-3 px-6 rounded-full shadow-md hover:bg-orange-500 font-semibold text-base transition-all duration-300"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    initial={{ opacity: 0, y: 10 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.7, duration: 0.5 }}
-                    aria-label="Learn about NHT Global Business Model"
-                  >
-                    Learn About Our Business Model
-                  </motion.button>
+                <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">
+                  NHT Global has a PROVEN Business Model
+                </h3>
+                <div className="w-20 h-1 bg-gradient-to-r from-orange-400 to-orange-500 rounded-full"></div>
+                <div className="space-y-4">
+                  {[
+                    "Offices worldwide and distribution within more than 50 countries",
+                    "More than $1.5 billion in sales and growing",
+                    "Member of the Direct Selling Association",
+                    "Subsidiary of 23-year-old publicly traded company, Natural Health Trends Corp. (trading symbol: NHTC)",
+                    "Experienced executive team and global leaders to support you at each step towards your success",
+                  ].map((item, index) => (
+                    <motion.div
+                      key={index}
+                      className="flex items-start gap-3"
+                      initial={{ opacity: 0, x: 20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: index * 0.1, duration: 0.5 }}
+                    >
+                      <div className="w-10 h-10 rounded-full bg-gradient-to-r from-orange-500 to-orange-600 flex items-center justify-center flex-shrink-0">
+                        <CheckCircle className="h-5 w-5 text-white" />
+                      </div>
+                      <p className="text-lg text-gray-700 leading-relaxed">
+                        {item}
+                      </p>
+                    </motion.div>
+                  ))}
                 </div>
+                <motion.button
+                  className="group bg-gradient-to-r from-orange-500 to-orange-600 text-white px-6 py-3 rounded-xl font-semibold shadow-lg hover:shadow-orange-500/25 transition-all duration-300 flex items-center gap-3"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  <ExternalLink className="h-4 w-4" />
+                  Learn About Our Business Model
+                  <ChevronRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                </motion.button>
               </motion.div>
             </div>
-          </motion.section>
-          {/* Section 4: Compensation Plan (Dark) */}
-          <motion.section
-            className="mb-24 bg-gray-800 text-white  p-12"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <div className="text-center mb-14">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">Compensation Plan</h2>
-              <p className="text-xl mb-4">Understand your earning potential</p>
-              <div className="w-24 h-1 bg-orange-400 mx-auto rounded-full"></div>
+          </div>
+        </motion.section>
+
+        {/* Section 4: Compensation Plan */}
+        <motion.section
+          className="py-20 bg-gradient-to-r from-gray-900 via-blue-900 to-gray-900 text-white"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8 }}
+        >
+          <div className="max-w-6xl mx-auto px-6">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+                Compensation Plan
+              </h2>
+              <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+                Understand your earning potential
+              </p>
             </div>
             <motion.p
               className="text-xl mb-12 text-center max-w-4xl mx-auto"
@@ -325,165 +590,182 @@ const OpportunityPage = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
             >
-              To maximize your earnings with <span className="font-bold text-orange-400">NHT Global</span>, familiarize
-              yourself with these key terms:
+              To maximize your earnings with{" "}
+              <span className="font-bold text-orange-400">NHT Global</span>,
+              familiarize yourself with these key terms:
             </motion.p>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {[
                 {
-                  title: 'Bonus Volume (BV)',
+                  title: "Bonus Volume (BV)",
                   description:
                     'Each product is assigned a point value called <span class="font-bold text-orange-400">Bonus Volume (BV)</span>. The compensation plan is based on accumulating these points, ensuring <span class="font-bold text-orange-400">competitive retail pricing</span> and <span class="font-bold text-orange-400">profitable wholesale-to-retail margins</span> for distributors, balancing significant retail profits with substantial override income.',
                 },
                 {
-                  title: 'Personal Volume (PV)',
+                  title: "Personal Volume (PV)",
                   description:
                     'Your <span class="font-bold text-orange-400">Personal Volume (PV)</span> is the purchase or sales volume processed through your <span class="font-bold text-orange-400">Distributor ID#</span>, reflecting your direct contribution to product orders.',
                 },
                 {
-                  title: 'Personal Group Volume (PGV)',
+                  title: "Personal Group Volume (PGV)",
                   description:
                     'The <span class="font-bold text-orange-400">Personal Group Volume (PGV)</span> includes products purchased by you and your <span class="font-bold text-orange-400">directly sponsored members</span>, regardless of their placement in the genealogy tree. It’s the combined total of all wholesale product orders in your Personal Group.',
                 },
                 {
-                  title: 'Active Status',
+                  title: "Active Status",
                   description:
                     'Achieve <span class="font-bold text-orange-400">Active Status</span> to earn commissions by personally sponsoring <span class="font-bold text-orange-400">two people</span> in both legs of your network. Full details are available in the Compensation Plan.',
                 },
                 {
-                  title: 'Distributor Levels',
+                  title: "Distributor Levels",
                   description:
                     'There are three levels: <span class="font-bold text-orange-400">Bronze</span> (<span class="font-bold text-orange-400">3% discount</span>), <span class="font-bold text-orange-400">Silver</span> (<span class="font-bold text-orange-400">11% discount</span>), and <span class="font-bold text-orange-400">Gold</span> (<span class="font-bold text-orange-400">34% discount</span>). Become a Gold distributor instantly with a <span class="font-bold text-orange-400">Gold</span> or <span class="font-bold text-orange-400">Platinum</span> package for maximum discounts and commissions.',
                 },
                 {
-                  title: 'Product Packages',
+                  title: "Product Packages",
                   description:
                     'Packages include <span class="font-bold text-orange-400">Bronze</span>, <span class="font-bold text-orange-400">Silver</span>, <span class="font-bold text-orange-400">Gold</span>, and <span class="font-bold text-orange-400">Platinum</span>. The <span class="font-bold text-orange-400">Gold</span> package offers maximum discounts and commissions, while <span class="font-bold text-orange-400">Platinum</span> is a promotional package including all products, <span class="font-bold text-orange-400">lifetime back office access</span>, and an <span class="font-bold text-orange-400">e-commerce site</span>. <span class="font-bold text-orange-400">Silver</span> and <span class="font-bold text-orange-400">Bronze</span> packages require a <span class="font-bold text-orange-400">$50 annual back office fee</span>, while <span class="font-bold text-orange-400">Gold</span> provides <span class="font-bold text-orange-400">1-year free access</span>.',
                 },
               ].map((item, index) => (
                 <motion.div
                   key={index}
-                  className="bg-gray-700/60 backdrop-blur-lg border border-orange-500/20 rounded-xl p-6 flex flex-col h-full transition-shadow hover:shadow-lg hover:border-orange-500"
-                  initial={{ opacity: 0, y: 20 }}
+                  className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-6 hover:bg-white/20 transition-all duration-300"
+                  initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1, duration: 0.6 }}
+                  whileHover={{ scale: 1.05, y: -5 }}
                 >
-                  <h3 className="text-xl font-bold text-orange-400 mb-4 flex items-center">
-                    <ArrowRight className="h-5 w-5 mr-2 text-orange-400" />
-                    {item.title}
-                  </h3>
-                  <p
-                    className="text-gray-100 leading-relaxed text-sm flex-grow"
-                    dangerouslySetInnerHTML={{ __html: item.description }}
-                  />
+                  <div className="flex items-start gap-4">
+                    <div className="w-10 h-10 rounded-full bg-gradient-to-r from-orange-500 to-orange-600 flex items-center justify-center flex-shrink-0">
+                      <ArrowRight className="h-5 w-5 text-white" />
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-bold text-orange-400 mb-2">
+                        {item.title}
+                      </h3>
+                      <p
+                        className="text-gray-100 font-medium leading-relaxed"
+                        dangerouslySetInnerHTML={{ __html: item.description }}
+                      />
+                    </div>
+                  </div>
                 </motion.div>
               ))}
             </div>
-          </motion.section>
+          </div>
+        </motion.section>
 
-          {/* Section 5: Investment Options (Light) */}
-          <motion.section
-            className="mb-24   p-12 "
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <div className="text-center mb-14">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+        {/* Section 5: Investment Options */}
+        <motion.section
+          className="py-20 px-6"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8 }}
+        >
+          <div className="max-w-7xl mx-auto">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4 bg-gradient-to-r from-gray-900 via-blue-900 to-purple-900 bg-clip-text text-transparent">
                 Investment Options
               </h2>
-              <p className="text-xl text-gray-600 mb-4">Choose the package that fits your goals</p>
-              <div className="w-24 h-1 bg-orange-400 mx-auto rounded-full"></div>
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                Choose the package that fits your goals
+              </p>
             </div>
             <motion.div
-              className="mb-12  p-8text-center"
+              className="mb-12 text-center"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
             >
               <p className="text-xl text-gray-700">
-                Start with any package, but we recommend{' '}
-                <span className="font-bold text-orange-400">Platinum</span> or{' '}
-                <span className="font-bold text-orange-400">Gold</span> for serious entrepreneurs to maximize{' '}
-                <span className="font-bold text-orange-400">discounts</span> and{' '}
-                <span className="font-bold text-orange-400">commissions</span> from day one.
+                Start with any package, but we recommend{" "}
+                <span className="font-bold text-orange-400">Platinum</span> or{" "}
+                <span className="font-bold text-orange-400">Gold</span> for serious
+                entrepreneurs to maximize{" "}
+                <span className="font-bold text-orange-400">discounts</span> and{" "}
+                <span className="font-bold text-orange-400">commissions</span> from day
+                one.
               </p>
             </motion.div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {[
                 {
-                  title: 'Platinum Package',
-                  price: '$2,000',
+                  title: "Platinum Package",
+                  price: "$2,000",
                   description:
                     'Includes <span class="font-bold text-orange-400">all NHT Global products</span> and tools to kickstart your business with maximum benefits.',
                   features: [
-                    'All NHT Global products',
+                    "All NHT Global products",
                     '<span class="font-bold text-orange-400">Gold distributor level (34% discount)</span>',
                     '<span class="font-bold text-orange-400">Lifetime free back office access</span>',
                     '<span class="font-bold text-orange-400">E-commerce site access</span>',
-                    'Maximum commission potential',
+                    "Maximum commission potential",
                   ],
                   recommended: true,
-                  color: 'bg-gradient-to-br from-orange-300 to-orange-400',
-                  textColor: 'text-white',
+                  color: "bg-gradient-to-br from-orange-300 to-orange-400",
+                  textColor: "text-white",
                 },
                 {
-                  title: 'Gold Package',
-                  price: '$1,000',
+                  title: "Gold Package",
+                  price: "$1,000",
                   description:
                     'Flexible <span class="font-bold text-orange-400">product selections</span> for serious entrepreneurs.',
                   features: [
-                    'Various product selections',
+                    "Various product selections",
                     '<span class="font-bold text-orange-400">Gold distributor level (34% discount)</span>',
                     '<span class="font-bold text-orange-400">Free back office access for 1 year</span>',
-                    'Maximum commission potential',
+                    "Maximum commission potential",
                   ],
                   recommended: true,
-                  color: 'bg-gradient-to-br from-orange-200 to-orange-300',
-                  textColor: 'text-gray-900',
+                  color: "bg-gradient-to-br from-orange-200 to-orange-300",
+                  textColor: "text-gray-900",
                 },
                 {
-                  title: 'Silver Package',
-                  price: '$500',
+                  title: "Silver Package",
+                  price: "$500",
                   description:
                     'Moderate investment with <span class="font-bold text-orange-400">selected products</span> for those starting their journey.',
                   features: [
-                    'Selected products',
+                    "Selected products",
                     '<span class="font-bold text-orange-400">Silver distributor level (11% discount)</span>',
                     '<span class="font-bold text-orange-400">$50 annual back office fee</span>',
-                    'Medium commission potential',
+                    "Medium commission potential",
                   ],
                   recommended: false,
-                  color: 'bg-gradient-to-br from-gray-200 to-gray-300',
-                  textColor: 'text-gray-800',
+                  color: "bg-gradient-to-br from-gray-200 to-gray-300",
+                  textColor: "text-gray-800",
                 },
                 {
-                  title: 'Bronze Package',
-                  price: '$300',
+                  title: "Bronze Package",
+                  price: "$300",
                   description:
                     'Entry-level package with <span class="font-bold text-orange-400">90 BV worth of products ($250)</span> and <span class="font-bold text-orange-400">Business Builder Package ($50)</span>.',
                   features: [
                     '<span class="font-bold text-orange-400">90 BV worth of products ($250)</span>',
                     '<span class="font-bold text-orange-400">Business Builder Package ($50)</span>',
                     '<span class="font-bold text-orange-400">Bronze distributor level (3% discount)</span>',
-                    'Basic commission structure',
+                    "Basic commission structure",
                   ],
                   recommended: false,
-                  color: 'bg-gradient-to-br from-amber-200 to-amber-300',
-                  textColor: 'text-gray-800',
+                  color: "bg-gradient-to-br from-amber-200 to-amber-300",
+                  textColor: "text-gray-800",
                 },
               ].map((item, index) => (
                 <motion.div
                   key={index}
-                  className={`rounded-xl shadow-xl overflow-hidden bg-white flex flex-col h-full ${item.recommended ? 'ring-2 ring-orange-400' : ''}`}
+                  className={`rounded-3xl shadow-2xl overflow-hidden bg-white flex flex-col h-full ${item.recommended ? "ring-2 ring-orange-400" : ""}`}
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1, duration: 0.5 }}
-                  whileHover={{ y: -8, boxShadow: '0 10px 20px rgba(0, 0, 0, 0.15)', transition: { duration: 0.2 } }}
+                  whileHover={{
+                    y: -8,
+                    boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
+                    transition: { duration: 0.2 },
+                  }}
                 >
                   {item.recommended && (
                     <div className="absolute top-0 right-0 bg-orange-400 text-white px-4 py-1 rounded-bl-lg font-semibold text-sm z-10">
@@ -507,49 +789,66 @@ const OpportunityPage = () => {
                         </li>
                       ))}
                     </ul>
-                    
                   </div>
                 </motion.div>
               ))}
             </div>
-          </motion.section>
+          </div>
+        </motion.section>
 
-          {/* Call to Action (Dark) */}
-          <motion.section
-            className="text-center bg-gradient-to-r from-gray-800 to-gray-900 p-10 "
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+        {/* Section 6: Call to Action */}
+        <motion.section
+          className="py-20 bg-gradient-to-r from-gray-900 via-blue-900 to-purple-900 text-white relative overflow-hidden"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8 }}
+        >
+          <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1200&auto=format&fit=crop&q=60')] bg-cover bg-center opacity-10"></div>
+          <div className="relative z-10 max-w-4xl mx-auto text-center px-6">
+            <motion.div
+              className="mb-8"
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              <div className="w-24 h-24 mx-auto mb-6 bg-gradient-to-r from-orange-500 to-red-500 rounded-full flex items-center justify-center">
+                <Users className="h-12 w-12 text-white" />
+              </div>
+            </motion.div>
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
               Ready to Transform Your Life?
             </h2>
-            <p className="text-gray-200 text-lg mb-8 max-w-3xl mx-auto">
+            <p className="text-xl text-gray-300 mb-8 max-w-3xl mx-auto leading-relaxed">
               Join thousands of successful entrepreneurs who have changed their lives with NHT Global's opportunity.
             </p>
-            <div className="flex flex-col sm:flex-row justify-center gap-4">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <motion.button
-                className="bg-orange-300 text-gray-900 hover:bg-orange-400 font-semibold py-3 px-8 rounded-full shadow-lg transition-all duration-300"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+                className="group bg-gradient-to-r from-orange-500 to-orange-600 text-white px-8 py-4 rounded-2xl font-bold text-lg shadow-2xl hover:shadow-orange-600/25 transition-all duration-300 flex items-center gap-3"
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.98 }}
                 aria-label="Join NHT Global Now"
               >
+                <Play className="h-5 w-5" />
                 Join Now
+                <ChevronRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
               </motion.button>
               <motion.button
-                className="bg-transparent text-white border-2 border-orange-300 hover:bg-orange-300/10 font-semibold py-3 px-8 rounded-full transition-all duration-300"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+                className="group bg-white/10 backdrop-blur-sm border border-white/20 text-white px-8 py-4 rounded-2xl font-semibold text-lg hover:bg-white/20 transition-all duration-300 flex items-center gap-3"
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.98 }}
                 aria-label="Learn More About NHT Global"
               >
+                <ExternalLink className="h-5 w-5" />
                 Learn More
+                <ChevronRight className="h-4 w-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
               </motion.button>
             </div>
-          </motion.section>
-        </main>
-      </div>
-    </>
+          </div>
+        </motion.section>
+      </main>
+    </div>
   );
 };
 

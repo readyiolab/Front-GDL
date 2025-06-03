@@ -10,7 +10,7 @@ const Layout = () => {
 
             <Header />
            
-            <main className="flex-grow  bg-gray-50">
+            <main className="flex-grow ">
                 <div className="container mx-auto">
 
                     <Outlet />
