@@ -123,7 +123,7 @@ const HeroSection = () => {
       />
      
       <motion.div
-        className="absolute bottom-20 right-10 w-32 h-32 bg-blue-400/20 rounded-full blur-xl z-0"
+        className="absolute bottom-20 right-10 w-32 h-32 bg-red-700 rounded-full blur-xl z-0"
         animate={{ scale: [1.2, 1, 1.2], opacity: [0.2, 0.5, 0.2] }}
         transition={{ duration: 5, repeat: Infinity, repeatType: "reverse" }}
       />
@@ -173,18 +173,18 @@ const HeroSection = () => {
         >
           <motion.div whileHover="hover" whileTap="tap" variants={hoverScale}>
             <Button
-              className="group bg-gradient-to-r from-orange-500 to-orange-600 text-white font-bold py-4 px-8 rounded-2xl shadow-2xl hover:shadow-orange-500/25 text-lg flex items-center gap-3"
+              className="bg-orange-500 text-white font-semibold py-4 sm:py-5 px-6 sm:px-10 rounded-full hover:bg-orange-600 shadow-lg flex items-center justify-center text-sm sm:text-base transition-all duration-300 hover:scale-105 active:scale-95"
             >
-              <Play className="h-5 w-5" />
+             
               Join Our Community
               <ChevronRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
             </Button>
           </motion.div>
           <motion.div whileHover="hover" whileTap="tap" variants={hoverScale}>
             <Button
-              className="group bg-black backdrop-blur-sm border border-white/20 text-white font-semibold py-4 px-8 rounded-2xl text-lg flex items-center gap-3"
+              className="bg-white text-orange-500 border border-orange-500 font-semibold py-4 sm:py-5 px-6 sm:px-10 rounded-full hover:bg-orange-50 shadow-lg text-sm sm:text-base transition-all duration-300 hover:scale-105 active:scale-95"
             >
-              <ExternalLink className="h-5 w-5" />
+              
               Learn More
             </Button>
           </motion.div>
@@ -302,7 +302,7 @@ const OpportunityPage = () => {
                   Start Your Journey
                 </span>
               </motion.div>
-              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4 bg-gradient-to-r from-gray-900 via-blue-900 to-purple-900 bg-clip-text text-transparent">
+              <h2 className="text-4xl md:text-5xl font-semibold  mb-4 bg-gradient-to-r from-gray-900 via-blue-900 to-purple-900 bg-clip-text text-transparent">
                 Open the Door of Opportunity
               </h2>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
@@ -317,7 +317,7 @@ const OpportunityPage = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.8 }}
               >
-                <ul className="space-y-4">
+                <ul className="space-y-3">
                   {[
                     "Take the next step to changing your destiny",
                     "Choose a proven formula to build your future",
@@ -349,7 +349,7 @@ const OpportunityPage = () => {
                   viewport={{ once: true }}
                   transition={{ delay: 0.2, duration: 0.5 }}
                 >
-                  <h3 className="text-2xl font-bold text-gray-900 mb-2">
+                  <h3 className="text-xl font-bold text-gray-900 mb-2">
                     Open the Door to NHT Global
                   </h3>
                   <p className="text-lg text-gray-600">
@@ -412,7 +412,7 @@ const OpportunityPage = () => {
         >
           <div className="max-w-6xl mx-auto px-6">
             <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+              <h2 className="text-4xl md:text-5xl font-semibold mb-4 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
                 Why Network Marketing?
               </h2>
               <p className="text-xl text-gray-300 max-w-3xl mx-auto">
@@ -467,7 +467,7 @@ const OpportunityPage = () => {
         >
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4 bg-gradient-to-r from-gray-900 via-blue-900 to-purple-900 bg-clip-text text-transparent">
+              <h2 className="text-4xl md:text-5xl font-semibold  mb-4 bg-gradient-to-r from-gray-900 via-blue-900 to-purple-900 bg-clip-text text-transparent">
                 World of Opportunity
               </h2>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
@@ -523,7 +523,7 @@ const OpportunityPage = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.8 }}
               >
-                <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">
+                <h3 className="text-xl md:text-2xl font-semibold text-gray-900 mb-2">
                   NHT Global has a PROVEN Business Model
                 </h3>
                 <div className="w-20 h-1 bg-gradient-to-r from-orange-400 to-orange-500 rounded-full"></div>
@@ -576,7 +576,7 @@ const OpportunityPage = () => {
         >
           <div className="max-w-6xl mx-auto px-6">
             <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+              <h2 className="text-4xl md:text-5xl font-semibold mb-4 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
                 Compensation Plan
               </h2>
               <p className="text-xl text-gray-300 max-w-3xl mx-auto">
@@ -637,15 +637,13 @@ const OpportunityPage = () => {
                   whileHover={{ scale: 1.05, y: -5 }}
                 >
                   <div className="flex items-start gap-4">
-                    <div className="w-10 h-10 rounded-full bg-gradient-to-r from-orange-500 to-orange-600 flex items-center justify-center flex-shrink-0">
-                      <ArrowRight className="h-5 w-5 text-white" />
-                    </div>
+                    
                     <div>
-                      <h3 className="text-xl font-bold text-orange-400 mb-2">
+                      <h3 className="text-xl font-bold text-orange-400 mb-2 text-center pb-4">
                         {item.title}
                       </h3>
                       <p
-                        className="text-gray-100 font-medium leading-relaxed"
+                        className="text-gray-100 font-sm leading-relaxed"
                         dangerouslySetInnerHTML={{ __html: item.description }}
                       />
                     </div>
@@ -666,7 +664,7 @@ const OpportunityPage = () => {
         >
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4 bg-gradient-to-r from-gray-900 via-blue-900 to-purple-900 bg-clip-text text-transparent">
+              <h2 className="text-4xl md:text-5xl font-semibold  mb-4 bg-gradient-to-r from-gray-900 via-blue-900 to-purple-900 bg-clip-text text-transparent">
                 Investment Options
               </h2>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
@@ -817,7 +815,7 @@ const OpportunityPage = () => {
                 <Users className="h-12 w-12 text-white" />
               </div>
             </motion.div>
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+            <h2 className="text-4xl md:text-5xl font-semibold mb-6 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
               Ready to Transform Your Life?
             </h2>
             <p className="text-xl text-gray-300 mb-8 max-w-3xl mx-auto leading-relaxed">

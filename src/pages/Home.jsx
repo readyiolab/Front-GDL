@@ -141,7 +141,7 @@ const Homes = () => {
                   Start Your Journey Today
                 </span>
               </motion.div>
-              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4 bg-gradient-to-r from-gray-900 via-blue-900 to-purple-900 bg-clip-text text-transparent">
+              <h2 className="text-4xl md:text-5xl font-semibold  mb-4 bg-gradient-to-r from-gray-900 via-blue-900 to-purple-900 bg-clip-text text-transparent">
                 Welcome to Get Dream Life
               </h2>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
@@ -156,13 +156,13 @@ const Homes = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.8 }}
               >
-                <ul className="space-y-4">
+                <ul className="space-y-3">
                   {[
-                    "Excellent Health",
-                    "Better Financial Potential",
-                    "Enriching Personal Relationships",
-                    "Freedom to spend your time enjoying what makes you happy",
-                    "Start your own business and be your own boss",
+                    "Excellent Health.",
+                    "Better Financial Potential.",
+                    "Enriching Personal Relationships.",
+                    "Freedom to spend your time enjoying what makes you happy.",
+                    "Start your own business and be your own boss.",
                   ].map((item, index) => (
                     <motion.li
                       key={index}
@@ -172,7 +172,7 @@ const Homes = () => {
                       viewport={{ once: true }}
                       transition={{ delay: index * 0.1, duration: 0.5 }}
                     >
-                      <div className="w-10 h-10 rounded-full bg-gradient-to-r from-orange-500 to-orange-600 flex items-center justify-center flex-shrink-0">
+                      <div className="w-7 h-7 rounded-full bg-gradient-to-r from-orange-500 to-orange-600 flex items-center justify-center flex-shrink-0">
                         <CheckCircle className="h-5 w-5 text-white" />
                       </div>
                       <p className="text-lg text-gray-700 font-medium leading-relaxed">
@@ -188,10 +188,10 @@ const Homes = () => {
                   viewport={{ once: true }}
                   transition={{ delay: 0.2, duration: 0.5 }}
                 >
-                  <h3 className="text-2xl font-bold text-gray-900 mb-2">
+                  <h3 className="text-xl font-bold text-gray-900 mb-2">
                     Your Dream Life Awaits
                   </h3>
-                  <p className="text-lg text-gray-600">
+                  <p className="text-md text-gray-600">
                     Partner with NHT Global for infinite potential
                   </p>
                 </motion.div>
@@ -251,7 +251,7 @@ const Homes = () => {
         >
           <div className="max-w-6xl mx-auto px-6">
             <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+              <h2 className="text-4xl md:text-5xl font-semibold mb-4 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
                 About NHT Global
               </h2>
               <p className="text-xl text-gray-300 max-w-3xl mx-auto">
@@ -301,7 +301,7 @@ const Homes = () => {
         >
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4 bg-gradient-to-r from-gray-900 via-blue-900 to-purple-900 bg-clip-text text-transparent">
+              <h2 className="text-4xl md:text-5xl font-semibold  mb-4 bg-gradient-to-r from-gray-900 via-blue-900 to-purple-900 bg-clip-text text-transparent">
                 History of NHT Global
               </h2>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
@@ -378,7 +378,7 @@ const Homes = () => {
                       viewport={{ once: true }}
                       transition={{ delay: index * 0.1, duration: 0.5 }}
                     >
-                      <div className="w-10 h-10 rounded-full bg-gradient-to-r from-orange-500 to-orange-600 flex items-center justify-center flex-shrink-0">
+                      <div className="w-7 h-7 rounded-full bg-gradient-to-r from-orange-500 to-orange-600 flex items-center justify-center flex-shrink-0">
                         <CheckCircle className="h-5 w-5 text-white" />
                       </div>
                       <p className="text-lg text-gray-700 leading-relaxed">
@@ -388,7 +388,7 @@ const Homes = () => {
                   ))}
                 </div>
                 <motion.button
-                  className="group bg-gradient-to-r from-orange-500 to-orange-600 text-white px-6 py-3 rounded-xl font-semibold shadow-lg hover:shadow-orange-500/25 transition-all duration-300 flex items-center gap-3"
+                  className="group bg-gradient-to-r from-orange-500 to-orange-600 text-white px-6 py-3 rounded-full font-semibold shadow-lg hover:shadow-orange-500/25 transition-all duration-300 flex items-center gap-3"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.98 }}
                 >
@@ -411,7 +411,7 @@ const Homes = () => {
         >
           <div className="max-w-6xl mx-auto px-6">
             <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+              <h2 className="text-4xl md:text-5xl font-semibold mb-4 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
                 How Get Dream Life Can Help
               </h2>
               <p className="text-xl text-gray-300 max-w-3xl mx-auto">
@@ -479,7 +479,7 @@ const Homes = () => {
         >
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4 bg-gradient-to-r from-gray-900 via-blue-900 to-purple-900 bg-clip-text text-transparent">
+              <h2 className="text-4xl md:text-5xl font-semibold pb-6  mb-4 bg-gradient-to-r from-gray-900 via-blue-900 to-purple-900 bg-clip-text text-transparent">
                 NHT Global Core Strengths
               </h2>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
@@ -554,11 +554,11 @@ const Homes = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              <div className="w-24 h-24 mx-auto mb-6 bg-gradient-to-r from-orange-500 to-red-500 rounded-full flex items-center justify-center">
+              <div className="w-16 h-16 mx-auto mb-6 bg-gradient-to-r from-orange-500 to-red-500 rounded-full flex items-center justify-center">
                 <Users className="h-12 w-12 text-white" />
               </div>
             </motion.div>
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+            <h2 className="text-4xl md:text-5xl font-sembold mb-6 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
               Join Our Team Today
             </h2>
             <p className="text-xl text-gray-300 mb-8 max-w-3xl mx-auto leading-relaxed">

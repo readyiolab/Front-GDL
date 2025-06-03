@@ -97,7 +97,7 @@ export default function ProductsSection() {
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100">
       {/* Hero Banner */}
       <motion.section
-        className="relative  flex items-center justify-center overflow-hidden py-10 lg:py-10"
+        className="relative  flex items-center justify-center overflow-hidden py-8"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8 }}
@@ -140,24 +140,24 @@ export default function ProductsSection() {
             variants={itemVariants}
           >
             <motion.button
-              className="group bg-gradient-to-r from-orange-500 to-orange-600 text-white px-8 py-4 rounded-2xl font-bold text-lg shadow-2xl hover:shadow-orange-500/25 transition-all duration-300 flex items-center gap-3"
+              className="bg-orange-500 text-white font-semibold py-4 sm:py-5 px-6 sm:px-10 rounded-full hover:bg-orange-600 shadow-lg flex items-center justify-center text-sm sm:text-base transition-all duration-300 hover:scale-105 active:scale-95"
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.98 }}
               variants={hoverScale}
               aria-label="Explore NHT Global Products"
             >
-              <Play className="h-5 w-5" />
+              
               Explore Products
               <ChevronRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
             </motion.button>
             <motion.button
-              className="group bg-white/10 backdrop-blur-sm border border-white/20 text-white px-8 py-4 rounded-2xl font-semibold text-lg hover:bg-white/20 transition-all duration-300 flex items-center gap-3"
+              className="bg-white text-orange-500 border border-orange-500 font-semibold py-4 sm:py-5 px-6 sm:px-10 rounded-full hover:bg-orange-50 shadow-lg text-sm sm:text-base transition-all duration-300 hover:scale-105 active:scale-95"
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.98 }}
               variants={hoverScale}
               aria-label="Learn More About Products"
             >
-              <ExternalLink className="h-5 w-5" />
+             
               Learn More
             </motion.button>
           </motion.div>
@@ -187,10 +187,10 @@ export default function ProductsSection() {
                 Trusted Quality
               </span>
             </motion.div>
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4 bg-gradient-to-r from-gray-900 via-blue-900 to-purple-900 bg-clip-text text-transparent">
+            <h2 className="text-4xl md:text-5xl font-semibold  mb-4 bg-gradient-to-r from-gray-900 via-blue-900 to-purple-900 bg-clip-text text-transparent">
               Why Choose NHT Global Products?
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-xl text-gray-600 font-semibold max-w-3xl mx-auto">
               Premium quality products designed for your health and lifestyle needs.
             </p>
           </div>
@@ -215,10 +215,10 @@ export default function ProductsSection() {
                     viewport={{ once: true }}
                     transition={{ delay: index * 0.1, duration: 0.5 }}
                   >
-                    <div className="w-10 h-10 rounded-full bg-gradient-to-r from-orange-500 to-orange-600 flex items-center justify-center flex-shrink-0">
+                    <div className="w-7 h-7 rounded-full bg-gradient-to-r from-orange-500 to-orange-600 flex items-center justify-center flex-shrink-0">
                       <Check className="h-5 w-5 text-white" />
                     </div>
-                    <span className="text-lg text-gray-700 font-medium leading-relaxed">
+                    <span className="text-md text-gray-700 font-medium leading-relaxed">
                       {point}
                     </span>
                   </motion.li>
@@ -279,18 +279,18 @@ export default function ProductsSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <div className="inline-block p-3 rounded-full bg-orange-500 shadow-xl shadow-orange-500/20 mb-8">
+            <div className="inline-block p-2 rounded-full bg-orange-500 shadow-xl shadow-orange-500/20 mb-8">
               <motion.button
                 className="bg-white rounded-full p-4 flex items-center justify-center group"
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
               >
                 <div className="bg-orange-500 rounded-full p-4 group-hover:scale-110 transition-transform duration-300 shadow-md">
-                  <Play className="h-8 w-8 text-white" fill="white" />
+                  <Play className="h-5 w-5 text-white" fill="white" />
                 </div>
               </motion.button>
             </div>
-            <h3 className="text-3xl md:text-4xl font-bold text-white mb-4 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+            <h3 className="text-3xl md:text-4xl font-semibold  mb-4 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
               Watch NHT Global Product Video
             </h3>
             <p className="text-xl text-gray-300 mb-8 max-w-3xl mx-auto leading-relaxed">
@@ -332,7 +332,7 @@ export default function ProductsSection() {
                 Universal Solutions
               </span>
             </motion.div>
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4 bg-gradient-to-r from-gray-900 via-blue-900 to-purple-900 bg-clip-text text-transparent">
+            <h2 className="text-4xl md:text-5xl font-semibold  mb-4 bg-gradient-to-r from-gray-900 via-blue-900 to-purple-900 bg-clip-text text-transparent">
               Targeted Solutions for All
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
@@ -384,7 +384,7 @@ export default function ProductsSection() {
 
       {/* Call to Action Section */}
       <motion.section
-        className="py-20 bg-gradient-to-r from-orange-500 to-orange-600 text-white relative overflow-hidden"
+        className="py-20 bg-gradient-to-r from-gray-900 via-blue-900 to-purple-900 text-white relative overflow-hidden"
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
@@ -403,7 +403,7 @@ export default function ProductsSection() {
               <Heart className="h-12 w-12 text-white" />
             </div>
           </motion.div>
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+          <h2 className="text-4xl md:text-5xl font-semibold mb-6 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
             Ready to Experience Premium Health?
           </h2>
           <p className="text-xl text-gray-200 mb-8 max-w-3xl mx-auto leading-relaxed">
