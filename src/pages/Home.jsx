@@ -16,30 +16,10 @@ import {
   ExternalLink,
   Shield,
 } from "lucide-react";
-import Particles from "react-particles";
-import { loadFull } from "tsparticles";
+
 import Section from "./Section";
 
-// Animation variants for Section
-const staggerChildren = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.2,
-    },
-  },
-};
 
-const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
-};
-
-const hoverScale = {
-  hover: { scale: 1.05 },
-  tap: { scale: 0.95 },
-};
 
 
 

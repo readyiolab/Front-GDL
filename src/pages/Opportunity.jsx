@@ -14,132 +14,23 @@ import {
   ExternalLink,
   Shield,
 } from "lucide-react";
-import Particles from "react-particles";
-import { loadFull } from "tsparticles";
 
-// Animation variants
-const staggerChildren = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.2,
-    },
-  },
-};
 
-const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
-};
-
-const hoverScale = {
-  hover: { scale: 1.05 },
-  tap: { scale: 0.95 },
-};
 
 const HeroSection = () => {
-  const [particleOptions, setParticleOptions] = useState({});
-
-  const particlesInit = useCallback(async (engine) => {
-    await loadFull(engine);
-  }, []);
-
-  useEffect(() => {
-    const updateParticles = () => {
-      const isMobile = window.innerWidth < 640;
-      setParticleOptions({
-        particles: {
-          number: {
-            value: isMobile ? 50 : 100,
-            density: {
-              enable: true,
-              value_area: isMobile ? 600 : 800,
-            },
-          },
-          color: {
-            value: ["#f97316", "#fb923c", "#fdba74"],
-          },
-          shape: {
-            type: "circle",
-          },
-          opacity: {
-            value: isMobile ? 0.6 : 0.8,
-            random: true,
-          },
-          size: {
-            value: isMobile ? 3 : 5,
-            random: true,
-          },
-          move: {
-            enable: true,
-            speed: isMobile ? 1 : 2,
-            direction: "none",
-            random: true,
-            straight: false,
-            out_mode: "out",
-          },
-        },
-        interactivity: {
-          events: {
-            onhover: {
-              enable: !isMobile,
-              mode: "repulse",
-            },
-            onclick: {
-              enable: true,
-              mode: "push",
-            },
-          },
-          modes: {
-            repulse: {
-              distance: 100,
-              duration: 0.4,
-            },
-            push: {
-              quantity: 4,
-            },
-          },
-        },
-        retina_detect: true,
-      });
-    };
-
-    updateParticles();
-    window.addEventListener("resize", updateParticles);
-    return () => window.removeEventListener("resize", updateParticles);
-  }, []);
-
   return (
-    <section
-      className="min-h-screen flex flex-col items-center justify-center text-center bg-gradient-to-br from-orange-50 via-white to-orange-50 px-6 py-20 lg:py-32 relative overflow-hidden"
-    >
-      <Particles
-        id="tsparticles"
-        init={particlesInit}
-        options={particleOptions}
-        className="absolute inset-0 z-10"
-        canvasClassName="h-full w-full"
-      />
-     
+    <section className=" flex flex-col items-center justify-center text-center bg-gradient-to-br from-orange-50 via-white to-orange-50 px-6 py-16 overflow-hidden">
+      {/* Background image blur layer */}
       <motion.div
         className="absolute bottom-20 right-10 w-32 h-32 bg-red-700 rounded-full blur-xl z-0"
         animate={{ scale: [1.2, 1, 1.2], opacity: [0.2, 0.5, 0.2] }}
         transition={{ duration: 5, repeat: Infinity, repeatType: "reverse" }}
       />
-      <motion.div
-        className="absolute inset-0 z-0"
-        style={{
-          backgroundImage:
-            "url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1200&auto=format&fit=crop&q=60')",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          opacity: 0.05,
-        }}
-      />
+   
+
+      {/* Content */}
       <motion.div
         className="relative z-10 max-w-4xl mx-auto w-full px-4"
-        variants={staggerChildren}
         initial="hidden"
         animate="visible"
       >
@@ -154,52 +45,36 @@ const HeroSection = () => {
             Proven Business Model
           </span>
         </motion.div>
+
         <motion.h1
-          className="text-2xl md:text-3xl lg:text-5xl font-bold text-gray-900 mb-6 bg-gradient-to-r from-white via-gray-100 to-gray-300 bg-clip-text leading-tight"
-          variants={itemVariants}
+          className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-black leading-tight transition-all duration-700 delay-200"
         >
           Unleash Your Potential <br />
           <span className="block sm:inline">with NHT Global</span>
         </motion.h1>
+
         <motion.p
           className="text-xl md:text-2xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed"
-          variants={itemVariants}
         >
           NHT Global offers better health, unlimited income, and freedom to live life on your terms.
         </motion.p>
-        <motion.div
-          className="flex flex-col sm:flex-row gap-4 justify-center"
-          variants={itemVariants}
-        >
-          <motion.div whileHover="hover" whileTap="tap" variants={hoverScale}>
-            <Button
-              className="bg-orange-500 text-white font-semibold py-4 sm:py-5 px-6 sm:px-10 rounded-full hover:bg-orange-600 shadow-lg flex items-center justify-center text-sm sm:text-base transition-all duration-300 hover:scale-105 active:scale-95"
-            >
-             
+
+        <motion.div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+            <button className="bg-orange-500 text-white font-semibold py-4 sm:py-5 px-6 sm:px-10 rounded-full hover:bg-orange-600 shadow-lg flex items-center justify-center text-sm sm:text-base transition-all duration-300 hover:scale-105 active:scale-95">
               Join Our Community
-              <ChevronRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
-            </Button>
+              <ChevronRight className="h-5 w-5 ml-2 transition-transform" />
+            </button>
           </motion.div>
-          <motion.div whileHover="hover" whileTap="tap" variants={hoverScale}>
-            <Button
-              className="bg-white text-orange-500 border border-orange-500 font-semibold py-4 sm:py-5 px-6 sm:px-10 rounded-full hover:bg-orange-50 shadow-lg text-sm sm:text-base transition-all duration-300 hover:scale-105 active:scale-95"
-            >
-              
+          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+            <button className="bg-white text-orange-500 border border-orange-500 font-semibold py-4 sm:py-5 px-6 sm:px-10 rounded-full hover:bg-orange-50 shadow-lg text-sm sm:text-base transition-all duration-300 hover:scale-105 active:scale-95">
               Learn More
-            </Button>
+            </button>
           </motion.div>
         </motion.div>
       </motion.div>
-      <motion.div
-        className="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-10"
-        animate={{ y: [0, 8, 0] }}
-        transition={{ duration: 2, repeat: Infinity }}
-      >
-        <div className="w-6 h-10 border-2 border-gray-400 rounded-full relative flex justify-center items-center">
-          <div className="w-1.5 h-1.5 bg-gray-400 rounded-full absolute top-2 animate-bounce" />
-        </div>
-        <p className="text-xs text-gray-400 mt-2">SCROLL DOWN</p>
-      </motion.div>
+
+      
     </section>
   );
 };
