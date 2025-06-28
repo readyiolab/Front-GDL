@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import {
   Gift,
   User,
@@ -12,102 +14,138 @@ import {
   Play,
   ArrowRight,
   Check,
-  ChevronDown,
-  ChevronRight,
-  ExternalLink,
   Star,
   Mail,
+  ExternalLink,
+  Shield,
+  Award,
+  Sparkles,
 } from "lucide-react";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Button } from "@/components/ui/button";
 
 // Animation variants
 const staggerChildren = {
   hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.2,
-    },
-  },
+  visible: { opacity: 1, transition: { staggerChildren: 0.15 } },
 };
 
 const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
 };
 
 const hoverScale = {
-  hover: { scale: 1.05 },
-  tap: { scale: 0.95 },
+  hover: { scale: 1.02, y: -2 },
+  tap: { scale: 0.98 },
 };
 
-export default function ProductsSection() {
-  const productTargets = [
-    {
-      icon: <Scale className="h-5 w-5 sm:h-6 sm:w-6 text-orange-500" />,
-      title: "Weight & Metabolism",
-      image: "./weight.png",
-    },
-    {
-      icon: <Gift className="h-5 w-5 sm:h-6 sm:w-6 text-orange-500" />,
-      title: "Skin & Beauty",
-      image: "/beauty.png",
-    },
-    {
-      icon: <Baby className="h-5 w-5 sm:h-6 sm:w-6 text-orange-500" />,
-      title: "Child Care",
-      image: "/child.png",
-    },
-    {
-      icon: <Users className="h-5 w-5 sm:h-6 sm:w-6 text-orange-500" />,
-      title: "Elderly Wellness",
-      image: "/elderly.png",
-    },
-    {
-      icon: <Zap className="h-5 w-5 sm:h-6 sm:w-6 text-orange-500" />,
-      title: "Energy & Vitality",
-      image: "/energy.png",
-    },
-    {
-      icon: <User className="h-5 w-5 sm:h-6 sm:w-6 text-orange-500" />,
-      title: "Men's Health",
-      image: "/man.png",
-    },
-    {
-      icon: <Heart className="h-5 w-5 sm:h-6 sm:w-6 text-orange-500" />,
-      title: "Women's Health",
-      image: "/woman.png",
-    },
-    {
-      icon: <HeartPulse className="h-5 w-5 sm:h-6 sm:w-6 text-orange-500" />,
-      title: "Immunity & Cardiac Health",
-      image: "/cardiac.png",
-    },
-  ];
+const ProductsSection = () => {
+  const [country, setCountry] = useState("US");
+  const [countries, setCountries] = useState([]);
+  const [categories, setCategories] = useState([]);
+  const navigate = useNavigate();
+
+  // Icon mapping
+  const iconMap = {
+    "Weight & Metabolism": <Scale className="h-6 w-6 text-blue-600" />,
+    "Skin & Beauty": <Sparkles className="h-6 w-6 text-purple-600" />,
+    "Child Care": <Baby className="h-6 w-6 text-green-600" />,
+    "Elderly Wellness": <Users className="h-6 w-6 text-indigo-600" />,
+    "Energy & Vitality": <Zap className="h-6 w-6 text-emerald-600" />,
+    "Men's Health": <User className="h-6 w-6 text-slate-600" />,
+    "Women's Health": <Heart className="h-6 w-6 text-rose-600" />,
+    "Immunity & Cardiac Health": <HeartPulse className="h-6 w-6 text-red-600" />,
+  };
+
+  // Image mapping
+  const imageMap = {
+    "Weight & Metabolism": "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=200&h=200&fit=crop&crop=center",
+    "Skin & Beauty": "https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=200&h=200&fit=crop&crop=center",
+    "Child Care": "https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=200&h=200&fit=crop&crop=center",
+    "Elderly Wellness": "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=200&h=200&fit=crop&crop=center",
+    "Energy & Vitality": "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=200&h=200&fit=crop&crop=center",
+    "Men's Health": "https://images.unsplash.com/photo-1594824388641-d7cb250d3d6b?w=200&h=200&fit=crop&crop=center",
+    "Women's Health": "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=200&h=200&fit=crop&crop=center",
+    "Immunity & Cardiac Health": "https://images.unsplash.com/photo-1559757175-0eb30cd8c768?w=200&h=200&fit=crop&crop=center",
+  };
+
+  // Fetch countries
+  useEffect(() => {
+    axios
+      .get("http://localhost:3001/api/countries")
+      .then((res) => setCountries(res.data.data))
+      .catch((err) => console.error("Error fetching countries:", err));
+  }, []);
+
+  // Fetch categories
+  useEffect(() => {
+    axios
+      .get("http://localhost:3001/api/categories")
+      .then((res) => setCategories(res.data.data))
+      .catch((err) => console.error("Error fetching categories:", err));
+  }, []);
+
+  // Auto-detect country
+  useEffect(() => {
+    axios
+      .get("http://localhost:3001/api/products")
+      .then((res) => setCountry(res.data.country))
+      .catch((err) => console.error("Error detecting country:", err));
+  }, []);
 
   const keyPoints = [
-    "Categories: Beauty, Lifestyle, Wellness, Herbal, and Cozy-Home (air and water purifiers in select markets).",
-    "Use leading domestic and foreign GMP certified contract manufacturers.",
-    "Utilize high technology and source the finest ingredients.",
-    "Fueled by market trends and the latest scientific research.",
-    "Quality and satisfaction guaranteed for all products.",
-    "Designed for health, beauty, vitality, longevity, and protection.",
+    {
+      icon: <Award className="h-5 w-5" />,
+      title: "Premium Categories",
+      description: "Beauty, Lifestyle, Wellness, Herbal, and Cozy-Home products with air and water purifiers in select markets."
+    },
+    {
+      icon: <Shield className="h-5 w-5" />,
+      title: "Certified Manufacturing",
+      description: "We use leading domestic and foreign GMP certified contract manufacturers for quality assurance."
+    },
+    {
+      icon: <Sparkles className="h-5 w-5" />,
+      title: "Advanced Technology",
+      description: "Utilize high technology and source the finest ingredients for optimal results."
+    },
+    {
+      icon: <Star className="h-5 w-5" />,
+      title: "Research-Driven",
+      description: "Fueled by market trends and the latest scientific research for innovative solutions."
+    },
+    {
+      icon: <Check className="h-5 w-5" />,
+      title: "Quality Guaranteed",
+      description: "Quality and satisfaction guaranteed for all products with comprehensive support."
+    },
+    {
+      icon: <Heart className="h-5 w-5" />,
+      title: "Holistic Wellness",
+      description: "Designed for health, beauty, vitality, longevity, and protection in one comprehensive range."
+    },
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50">
       {/* Hero Banner */}
       <motion.section
-        className="relative  flex items-center justify-center overflow-hidden py-8"
+        className="relative flex items-center justify-center overflow-hidden py-12"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 0.8 }}
+        transition={{ duration: 1 }}
         role="banner"
       >
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: `url('/products-web-banner.jpg')` }}
-        />
-        <div className="absolute inset-0 bg-gradient-to-r from-gray-900/60 to-blue-900/60"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-blue-900 to-purple-900"></div>
+        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=1920&h=1080&fit=crop')] bg-cover bg-center opacity-10"></div>
+
         <motion.div
           className="relative z-10 max-w-7xl mx-auto text-center px-6"
           variants={staggerChildren}
@@ -115,324 +153,380 @@ export default function ProductsSection() {
           animate="visible"
         >
           <motion.div
-            className="inline-flex items-center gap-2 bg-orange-500/20 backdrop-blur-sm border border-orange-400/30 px-4 py-2 rounded-full mb-6"
+            className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-lg border border-white/20 px-6 py-3 rounded-full mb-8"
             variants={itemVariants}
           >
-            <Star className="h-4 w-4 text-orange-400" />
-            <span className="text-orange-300 font-medium text-sm">
-              Premium Quality
+            <Star className="h-4 w-4 text-blue-300" />
+            <span className="text-blue-200 font-semibold text-sm">
+              Premium Quality Products
             </span>
           </motion.div>
+          
           <motion.h1
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 bg-gradient-to-r from-white via-gray-100 to-gray-300 bg-clip-text text-transparent leading-tight"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-8 bg-gradient-to-r from-white via-blue-100 to-purple-200 bg-clip-text text-transparent leading-tight"
             variants={itemVariants}
           >
-            Premium Products for a <br /> <span className="text-orange-400">Better Life</span>
+            Transform Your <br />
+            <span className="bg-gradient-to-r from-blue-400 via-purple-400 to-indigo-400 bg-clip-text text-transparent">
+              Wellness Journey
+            </span>
           </motion.h1>
+          
           <motion.p
-            className="text-xl md:text-2xl text-gray-200 mb-8 max-w-3xl mx-auto leading-relaxed"
+            className="text-lg md:text-xl text-slate-200 mb-10 max-w-4xl mx-auto leading-relaxed font-light"
             variants={itemVariants}
           >
-            Unique products in Health & Wellness, Beauty & Anti-Aging make business easy and evergreen.
+            Discover premium health & wellness solutions designed to elevate your lifestyle 
+            with cutting-edge science and natural ingredients.
           </motion.p>
+          
           <motion.div
-            className="flex flex-col sm:flex-row justify-center gap-4"
+            className="flex flex-col sm:flex-row justify-center gap-6"
             variants={itemVariants}
           >
-            <motion.button
-              className="bg-orange-500 text-white font-semibold py-4 sm:py-5 px-6 sm:px-10 rounded-full hover:bg-orange-600 shadow-lg flex items-center justify-center text-sm sm:text-base transition-all duration-300 hover:scale-105 active:scale-95"
-              whileHover={{ scale: 1.05, y: -2 }}
-              whileTap={{ scale: 0.98 }}
-              variants={hoverScale}
-              aria-label="Explore NHT Global Products"
+            <Button
+              className="bg-white text-blue-950 font-semibold py-6 px-10 rounded-2xl hover:from-blue-700 hover:to-purple-700 shadow-xl border-0 text-lg"
+              asChild
             >
-              
-              Explore Products
-              <ChevronRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
-            </motion.button>
-            <motion.button
-              className="bg-white text-orange-500 border border-orange-500 font-semibold py-4 sm:py-5 px-6 sm:px-10 rounded-full hover:bg-orange-50 shadow-lg text-sm sm:text-base transition-all duration-300 hover:scale-105 active:scale-95"
-              whileHover={{ scale: 1.05, y: -2 }}
-              whileTap={{ scale: 0.98 }}
-              variants={hoverScale}
-              aria-label="Learn More About Products"
+              <motion.a
+                href="#categories"
+                whileHover={{ scale: 1.05, y: -3 }}
+                whileTap={{ scale: 0.98 }}
+                className="flex items-center gap-3"
+              >
+                Explore Products
+                <ArrowRight className="h-5 w-5" />
+              </motion.a>
+            </Button>
+            
+            <Button
+              className="bg-white/10 backdrop-blur-lg text-white border-2 border-white/30 font-semibold py-6 px-10 rounded-2xl hover:bg-white/20 shadow-xl text-lg"
+              asChild
             >
-             
-              Learn More
-            </motion.button>
+              <motion.a
+                href="#learn-more"
+                whileHover={{ scale: 1.05, y: -3 }}
+                whileTap={{ scale: 0.98 }}
+                className="flex items-center gap-3"
+              >
+                Learn More
+                <Play className="h-5 w-5" />
+              </motion.a>
+            </Button>
           </motion.div>
         </motion.div>
-       
+      </motion.section>
+
+      {/* Country Selector */}
+      <motion.section
+        className="py-12 px-6"
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8 }}
+      >
+        <div className="max-w-7xl mx-auto flex justify-center">
+          <div className="bg-white rounded-2xl shadow-lg border border-slate-200 p-2">
+            <Select value={country} onValueChange={setCountry}>
+              <SelectTrigger className="w-[250px] bg-transparent border-0 text-lg font-medium">
+                <SelectValue placeholder="Select Your Country" />
+              </SelectTrigger>
+              <SelectContent>
+                {countries.map((c) => (
+                  <SelectItem key={c} value={c} className="text-lg">
+                    {c}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+        </div>
       </motion.section>
 
       {/* Why Choose NHT Global Products */}
       <motion.section
-        className="py-20 px-6"
+        className="py-24 px-6"
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-100px" }}
+        viewport={{ once: true }}
         transition={{ duration: 0.8 }}
       >
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
+          <div className="text-center mb-20">
             <motion.div
-              className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-500/10 to-purple-500/10 border border-blue-200 px-4 py-2 rounded-full mb-6"
+              className="inline-flex items-center gap-3 bg-gradient-to-r from-blue-50 to-purple-50 border border-blue-200 px-6 py-3 rounded-full mb-8"
               initial={{ opacity: 0, scale: 0.8 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              <Star className="h-4 w-4 text-blue-500" />
-              <span className="text-blue-600 font-medium text-sm">
-                Trusted Quality
+              <Shield className="h-5 w-5 text-blue-600" />
+              <span className="text-blue-700 font-semibold text-base">
+                Trusted Excellence
               </span>
             </motion.div>
-            <h2 className="text-4xl md:text-5xl font-semibold  mb-4 bg-gradient-to-r from-gray-900 via-blue-900 to-purple-900 bg-clip-text text-transparent">
-              Why Choose NHT Global Products?
+            
+            <h2 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-slate-900 via-blue-900 to-purple-900 bg-clip-text text-transparent">
+              Why Choose NHT Global?
             </h2>
-            <p className="text-xl text-gray-600 font-semibold max-w-3xl mx-auto">
-              Premium quality products designed for your health and lifestyle needs.
+            
+            <p className="text-2xl text-slate-600 max-w-4xl mx-auto leading-relaxed">
+              Experience the difference with our scientifically-backed, premium quality products 
+              designed for modern wellness needs.
             </p>
           </div>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+          
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <motion.div
-              className="space-y-6"
+              className="space-y-8"
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
             >
-              <p className="text-lg text-gray-700 leading-relaxed">
-                At NHT Global, we understand that urban lifestyles bring stress, busy schedules, environmental toxins, poor food choices, and work pressure. Our products, from anti-aging skincare to antioxidant-rich beverages, are designed to support your daily routine and help you live healthier. We offer multi-functional, safe, and easy-to-use solutions tailored to your needs, ensuring health, beauty, vitality, longevity, and protection.
-              </p>
-              <ul className="space-y-4">
-                {keyPoints.map((point, index) => (
-                  <motion.li
-                    key={index}
-                    className="flex items-start gap-3"
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: index * 0.1, duration: 0.5 }}
-                  >
-                    <div className="w-7 h-7 rounded-full bg-gradient-to-r from-orange-500 to-orange-600 flex items-center justify-center flex-shrink-0">
-                      <Check className="h-5 w-5 text-white" />
-                    </div>
-                    <span className="text-md text-gray-700 font-medium leading-relaxed">
-                      {point}
-                    </span>
-                  </motion.li>
-                ))}
-              </ul>
-              <p className="text-sm text-gray-500 italic">
-                Note: Product availability may vary by country. Contact us for details on purchasing for personal use.
-              </p>
+              <div className="bg-gradient-to-br from-white to-slate-50 rounded-3xl p-8 shadow-lg border border-slate-100">
+                <p className="text-lg text-slate-700 leading-relaxed mb-8 font-medium">
+                  Modern urban lifestyles bring unique challenges: stress, environmental toxins, 
+                  busy schedules, and poor nutrition choices. Our comprehensive product range addresses 
+                  these challenges with innovative, multi-functional solutions that seamlessly integrate 
+                  into your daily routine.
+                </p>
+                
+                <div className="grid grid-cols-1 gap-6">
+                  {keyPoints.map((point, index) => (
+                    <motion.div
+                      key={index}
+                      className="flex items-start gap-4 p-4 rounded-2xl bg-white shadow-sm border border-slate-100 hover:shadow-md transition-all duration-300"
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: index * 0.1, duration: 0.5 }}
+                      whileHover={{ scale: 1.02 }}
+                    >
+                      <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center flex-shrink-0 shadow-lg">
+                        {React.cloneElement(point.icon, { className: "h-5 w-5 text-white" })}
+                      </div>
+                      <div className="flex-1">
+                        <h4 className="font-bold text-slate-900 mb-2 text-lg">{point.title}</h4>
+                        <p className="text-slate-600 leading-relaxed">{point.description}</p>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+                
+                <div className="mt-8 p-4 bg-blue-50 rounded-2xl border border-blue-200">
+                  <p className="text-sm text-blue-700 italic font-medium">
+                    Note: Product availability may vary by country. Contact us for personalized recommendations 
+                    and purchasing information.
+                  </p>
+                </div>
+              </div>
             </motion.div>
+            
             <motion.div
               className="relative"
               whileHover={{ scale: 1.02 }}
-              transition={{ duration: 0.3 }}
+              transition={{ duration: 0.4 }}
             >
               <div className="relative overflow-hidden rounded-3xl shadow-2xl group">
                 <motion.div
-                  className="absolute inset-0 bg-gradient-to-r from-orange-500 to-orange-600 opacity-20 z-10"
+                  className="absolute inset-0 bg-gradient-to-br from-blue-600/20 to-purple-600/20 z-10"
                   initial={{ opacity: 0 }}
-                  whileHover={{ opacity: 0.3 }}
+                  whileHover={{ opacity: 1 }}
                   transition={{ duration: 0.3 }}
                 />
                 <img
-                  src="/products-web-banner.png"
-                  alt="NHT Global Products"
-                  className="w-full h-80 lg:h-96 object-cover transform group-hover:scale-105 transition-transform duration-700"
+                  src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=600&h=500&fit=crop"
+                  alt="NHT Global Premium Products"
+                  className="w-full h-96 lg:h-[500px] object-cover transform group-hover:scale-105 transition-transform duration-700"
                   loading="lazy"
                 />
                 <motion.div
-                  className="absolute top-6 left-6 z-20"
+                  className="absolute top-8 left-8 z-20"
                   initial={{ opacity: 0, scale: 0.8 }}
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
                   transition={{ delay: 0.3, duration: 0.5 }}
                 >
-                  <div className="w-12 h-12 rounded-full bg-gradient-to-r from-orange-500 to-orange-600 flex items-center justify-center shadow-lg backdrop-blur-sm">
-                    <Star className="h-6 w-6 text-white" />
+                  <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-600 to-purple-600 flex items-center justify-center shadow-xl backdrop-blur-sm">
+                    <Award className="h-8 w-8 text-white" />
                   </div>
                 </motion.div>
+                <div className="absolute bottom-8 left-8 right-8 z-20">
+                  <div className="bg-white/90 backdrop-blur-lg rounded-2xl p-6 shadow-xl">
+                    <h4 className="font-bold text-slate-900 text-xl mb-2">Premium Quality Assured</h4>
+                    <p className="text-slate-600">GMP certified manufacturing with the finest ingredients</p>
+                  </div>
+                </div>
               </div>
             </motion.div>
           </div>
         </div>
       </motion.section>
 
-      {/* Video Showcase Section */}
+      {/* Categories Grid */}
       <motion.section
-        className="py-20 bg-gradient-to-r from-gray-900 via-blue-900 to-gray-900 text-white"
+        id="categories"
+        className="py-24 px-6 bg-gradient-to-br from-slate-50 to-blue-50"
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-100px" }}
-        transition={{ duration: 0.8 }}
-      >
-        <div className="max-w-7xl mx-auto px-6 text-center">
-          <motion.div
-            className="flex flex-col items-center mb-10"
-            initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <div className="inline-block p-2 rounded-full bg-orange-500 shadow-xl shadow-orange-500/20 mb-8">
-              <motion.button
-                className="bg-white rounded-full p-4 flex items-center justify-center group"
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <div className="bg-orange-500 rounded-full p-4 group-hover:scale-110 transition-transform duration-300 shadow-md">
-                  <Play className="h-5 w-5 text-white" fill="white" />
-                </div>
-              </motion.button>
-            </div>
-            <h3 className="text-3xl md:text-4xl font-semibold  mb-4 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
-              Watch NHT Global Product Video
-            </h3>
-            <p className="text-xl text-gray-300 mb-8 max-w-3xl mx-auto leading-relaxed">
-              See how NHT Global products can transform your health and wellness journey.
-            </p>
-            <motion.button
-              className="group bg-gradient-to-r from-orange-500 to-orange-600 text-white px-8 py-4 rounded-2xl font-bold text-lg shadow-2xl hover:shadow-orange-500/25 transition-all duration-300 flex items-center gap-3 mx-auto"
-              whileHover={{ scale: 1.05, y: -2 }}
-              whileTap={{ scale: 0.98 }}
-              aria-label="Watch Product Video"
-            >
-              <Play className="h-5 w-5" fill="currentColor" />
-              Watch Video
-              <ChevronRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
-            </motion.button>
-          </motion.div>
-        </div>
-      </motion.section>
-
-      {/* Product Targets Grid */}
-      <motion.section
-        className="py-20 px-6"
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-100px" }}
+        viewport={{ once: true }}
         transition={{ duration: 0.8 }}
       >
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
+          <div className="text-center mb-20">
             <motion.div
-              className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-500/10 to-purple-500/10 border border-blue-200 px-4 py-2 rounded-full mb-6"
+              className="inline-flex items-center gap-3 bg-white border border-slate-200 px-6 py-3 rounded-full mb-8 shadow-sm"
               initial={{ opacity: 0, scale: 0.8 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              <Star className="h-4 w-4 text-blue-500" />
-              <span className="text-blue-600 font-medium text-sm">
-                Universal Solutions
+              <Sparkles className="h-5 w-5 text-purple-600" />
+              <span className="text-slate-700 font-semibold">
+                Complete Wellness Solutions
               </span>
             </motion.div>
-            <h2 className="text-4xl md:text-5xl font-semibold  mb-4 bg-gradient-to-r from-gray-900 via-blue-900 to-purple-900 bg-clip-text text-transparent">
-              Targeted Solutions for All
+            
+            <h2 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-slate-900 via-blue-900 to-purple-900 bg-clip-text text-transparent">
+              Explore Our Categories
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Explore our universal products designed for Men, Women, Kids, and Elderly to support better health.
+            
+            <p className="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
+              Discover targeted solutions for every aspect of your health and wellness journey.
             </p>
           </div>
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
-            {productTargets.map((target, index) => (
+          
+          <motion.div 
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8"
+            variants={staggerChildren}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+          >
+            {categories.map((category, index) => (
               <motion.div
-                key={index}
-                className="group bg-white rounded-2xl shadow-lg hover:shadow-xl border border-gray-100 p-4 flex flex-col items-center transition-all duration-300"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1, duration: 0.6 }}
-                whileHover={{ y: -8, scale: 1.02 }}
+                key={category.categoryId}
+                className="group bg-white rounded-3xl shadow-lg hover:shadow-2xl border border-slate-100 p-8 flex flex-col items-center transition-all duration-500 cursor-pointer relative overflow-hidden"
+                variants={itemVariants}
+                whileHover={{ y: -12, scale: 1.03 }}
+                onClick={() =>
+                  navigate(
+                    `/products/${encodeURIComponent(category.categoryName)}`,
+                    { state: { country } }
+                  )
+                }
               >
-                <div className="relative w-24 h-24 mb-4">
+                <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 to-purple-50/50 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                
+                <div className="relative w-32 h-32 mb-6">
                   <img
-                    src={target.image}
-                    alt={target.title}
-                    className="w-full h-full object-cover rounded-full transition-transform duration-500 group-hover:scale-105"
+                    src={
+                      imageMap[category.categoryName] ||
+                      category.categoryBanner ||
+                      "https://via.placeholder.com/200"
+                    }
+                    alt={category.categoryName}
+                    className="w-full h-full object-cover rounded-2xl transition-transform duration-500 group-hover:scale-110 shadow-md"
                     loading="lazy"
                   />
-                  <div className="absolute -top-2 -right-2 bg-white p-2 rounded-full shadow-md border border-gray-100">
-                    {React.cloneElement(target.icon, {
-                      className: "h-5 w-5 text-orange-500",
-                    })}
+                  <div className="absolute -bottom-3 -right-3 bg-white p-3 rounded-xl shadow-lg border border-slate-100 group-hover:shadow-xl transition-shadow duration-300">
+                    {iconMap[category.categoryName] || (
+                      <Star className="h-6 w-6 text-blue-600" />
+                    )}
                   </div>
                 </div>
-                <h3 className="text-base md:text-lg font-semibold text-gray-900 text-center">
-                  {target.title}
+                
+                <h3 className="text-lg font-bold text-slate-900 text-center mb-4 leading-tight">
+                  {category.categoryName}
                 </h3>
+                
                 <motion.div
-                  className="mt-3 flex items-center justify-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                  initial={{ opacity: 0 }}
-                  whileHover={{ opacity: 1 }}
+                  className="flex items-center justify-center gap-2 opacity-0 group-hover:opacity-100 transition-all duration-300 bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-full shadow-lg"
+                  initial={{ opacity: 0, y: 10 }}
+                  whileHover={{ opacity: 1, y: 0 }}
                 >
-                  <span className="text-sm font-medium text-orange-500">
-                    Learn more
+                  <span className="text-sm font-semibold">
+                    Explore Products
                   </span>
-                  <ArrowRight className="h-4 w-4 text-orange-500" />
+                  <ArrowRight className="h-4 w-4" />
                 </motion.div>
               </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </motion.section>
 
-      {/* Call to Action Section */}
+      {/* Call to Action */}
       <motion.section
-        className="py-20 bg-gradient-to-r from-gray-900 via-blue-900 to-purple-900 text-white relative overflow-hidden"
+        className="py-24 bg-gradient-to-br from-slate-900 via-blue-900 to-purple-900 text-white relative overflow-hidden"
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-100px" }}
+        viewport={{ once: true }}
         transition={{ duration: 0.8 }}
       >
-        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1451187580459-43490279c0fa')] bg-cover bg-center opacity-10"></div>
-        <div className="relative z-10 max-w-4xl mx-auto text-center px-6">
+        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1451187580459-43490279c0fa')] bg-cover bg-center opacity-5"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-900/50 to-purple-900/50"></div>
+        
+        <div className="relative z-10 max-w-5xl mx-auto text-center px-6">
           <motion.div
-            className="mb-8"
+            className="mb-10"
             initial={{ opacity: 0, scale: 0.8 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <div className="w-24 h-24 mx-auto mb-6 rounded-full bg-gradient-to-r from-orange-600 to-red-500 flex items-center justify-center">
+            <div className="w-16 h-16 mx-auto mb-8 rounded-2xl bg-gradient-to-br from-blue-600 to-purple-600 flex items-center justify-center shadow-2xl">
               <Heart className="h-12 w-12 text-white" />
             </div>
           </motion.div>
-          <h2 className="text-4xl md:text-5xl font-semibold mb-6 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
-            Ready to Experience Premium Health?
+          
+          <h2 className="text-4xl md:text-5xl font-bold mb-8 bg-gradient-to-r from-white to-blue-200 bg-clip-text text-transparent">
+            Ready to Transform Your Health?
           </h2>
-          <p className="text-xl text-gray-200 mb-8 max-w-3xl mx-auto leading-relaxed">
-            Discover the complete range of NHT Global's premium products and transform your health and wellness journey today.
+          
+          <p className="text-xl text-slate-200 mb-12 max-w-4xl mx-auto leading-relaxed">
+            Join thousands who have already discovered the power of premium wellness products. 
+            Start your journey to better health, beauty, and vitality today.
           </p>
-          <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <motion.button
-              className="group bg-gradient-to-r from-white to-gray-100 text-orange-600 px-8 py-4 rounded-2xl font-semibold text-lg shadow-lg hover:shadow-gray-200/25 transition-all duration-300 flex items-center gap-3"
-              whileHover={{ scale: 1.05, y: -2 }}
-              whileTap={{ scale: 0.98 }}
-              aria-label="Explore Full Product Catalog"
+          
+          <div className="flex flex-col sm:flex-row justify-center gap-6">
+            <Button
+              className="bg-white text-slate-900 font-bold px-10 py-5 rounded-2xl shadow-2xl hover:bg-slate-100 text-lg"
+              asChild
             >
-              <ExternalLink className="h-5 w-5" />
-              Explore Our Full Catalog
-              <ChevronRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
-            </motion.button>
-            <motion.button
-              className="group bg-transparent text-white border-2 border-white px-8 py-4 rounded-2xl font-semibold text-lg hover:bg-white/10 transition-all duration-300 flex items-center gap-3"
-              whileHover={{ scale: 1.05, y: -2 }}
-              whileTap={{ scale: 0.98 }}
-              aria-label="Contact Us"
+              <motion.a
+                href="#categories"
+                whileHover={{ scale: 1.05, y: -3 }}
+                whileTap={{ scale: 0.98 }}
+                className="flex items-center gap-3"
+              >
+                <ExternalLink className="h-6 w-6" />
+                Explore Our Complete Catalog
+                <ArrowRight className="h-6 w-6" />
+              </motion.a>
+            </Button>
+            
+            <Button
+              className="bg-transparent text-white border-2 border-white/30 font-bold px-10 py-5 rounded-2xl hover:bg-white/10 backdrop-blur-lg text-lg"
+              asChild
             >
-              <Mail className="h-5 w-5" />
-              Contact Us
-              <ChevronRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
-            </motion.button>
+              <motion.a
+                href="/contact"
+                whileHover={{ scale: 1.05, y: -3 }}
+                whileTap={{ scale: 0.98 }}
+                className="flex items-center gap-3"
+              >
+                <Mail className="h-6 w-6" />
+                Get Personalized Consultation
+                <ArrowRight className="h-6 w-6" />
+              </motion.a>
+            </Button>
           </div>
         </div>
       </motion.section>
     </div>
   );
-}
+};
+
+export default ProductsSection;

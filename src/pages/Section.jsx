@@ -27,13 +27,12 @@ const CustomParticles = () => {
       constructor() {
         this.x = Math.random() * canvas.width;
         this.y = Math.random() * canvas.height;
-        this.size = Math.random() * 4 + 1;
-        this.speedX = (Math.random() - 0.5) * 2;
-        this.speedY = (Math.random() - 0.5) * 2;
-        this.opacity = Math.random() * 0.8 + 0.2;
-        this.colors = ["#f97316", "#fb923c", "#fdba74"];
-        this.color =
-          this.colors[Math.floor(Math.random() * this.colors.length)];
+        this.size = Math.random() * 3 + 0.5;
+        this.speedX = (Math.random() - 0.5) * 1.5;
+        this.speedY = (Math.random() - 0.5) * 1.5;
+        this.opacity = Math.random() * 0.6 + 0.1;
+        this.colors = ["#f97316", "#fb923c", "#fdba74", "#fed7aa"];
+        this.color = this.colors[Math.floor(Math.random() * this.colors.length)];
       }
 
       update() {
@@ -57,7 +56,7 @@ const CustomParticles = () => {
       }
     }
 
-    const particleCount = window.innerWidth < 640 ? 50 : 100;
+    const particleCount = window.innerWidth < 640 ? 30 : 60;
     for (let i = 0; i < particleCount; i++) {
       particles.push(new Particle());
     }
@@ -84,38 +83,19 @@ const CustomParticles = () => {
         const dx = mouseX - particle.x;
         const dy = mouseY - particle.y;
         const distance = Math.sqrt(dx * dx + dy * dy);
-        if (distance < 100) {
-          const force = (100 - distance) / 100;
-          particle.x -= (dx / distance) * force * 2;
-          particle.y -= (dy / distance) * force * 2;
+        if (distance < 120) {
+          const force = (120 - distance) / 120;
+          particle.x -= (dx / distance) * force * 1.5;
+          particle.y -= (dy / distance) * force * 1.5;
         }
       });
     };
 
-    const handleClick = (e) => {
-      const rect = canvas.getBoundingClientRect();
-      const mouseX = e.clientX - rect.left;
-      const mouseY = e.clientY - rect.top;
-
-      for (let i = 0; i < 5; i++) {
-        const newParticle = new Particle();
-        newParticle.x = mouseX + (Math.random() - 0.5) * 20;
-        newParticle.y = mouseY + (Math.random() - 0.5) * 20;
-        particles.push(newParticle);
-      }
-
-      if (particles.length > particleCount + 20) {
-        particles.splice(0, 5);
-      }
-    };
-
     canvas.addEventListener("mousemove", handleMouseMove);
-    canvas.addEventListener("click", handleClick);
 
     return () => {
       window.removeEventListener("resize", resizeCanvas);
       canvas.removeEventListener("mousemove", handleMouseMove);
-      canvas.removeEventListener("click", handleClick);
       if (animationRef.current) {
         cancelAnimationFrame(animationRef.current);
       }
@@ -131,64 +111,98 @@ const CustomParticles = () => {
   );
 };
 
-// Section Component
-const Section = () => {
+// Hero Section Component
+const HeroSection = () => {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    setIsVisible(true);
+    const timer = setTimeout(() => setIsVisible(true), 100);
+    return () => clearTimeout(timer);
   }, []);
 
   return (
-    <section className="min-h-screen flex items-center justify-center relative bg-gradient-to-br from-gray-50 via-white to-gray-100 overflow-hidden">
+    <section className="min-h-screen flex items-center relative bg-gradient-to-br from-slate-50 via-white to-orange-50/30 overflow-hidden">
       {/* Particle background */}
       <CustomParticles />
 
-      {/* Main Content */}
-      <div
-        className={`relative max-w-4xl mx-auto w-full px-4 transition-all duration-1000 ${
-          isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-        }`}
-        style={{ zIndex: 10 }}
-      >
-        <div className="flex flex-col items-center text-center gap-6">
-          <h1
-            className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-black leading-tight transition-all duration-700 delay-200 ${
-              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-            }`}
-          >
-            Start Your Own Business <br />
-            <span className="block sm:inline">with NHT Global</span>
-          </h1>
+      {/* Gradient overlays for depth */}
+      <div className="absolute inset-0 bg-gradient-to-r from-white/80 via-white/40 to-transparent" style={{ zIndex: 2 }} />
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-white/20" style={{ zIndex: 2 }} />
 
-          <p
-            className={`text-base sm:text-lg md:text-xl text-gray-600 max-w-xl font-medium transition-all duration-700 delay-400 ${
-              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-            }`}
-          >
-            An evergreen network marketing company – with a proven track record since 2001.
-          </p>
+      {/* Main Content Container */}
+      <div className="relative w-full max-w-7xl mx-auto px-6 lg:px-8" style={{ zIndex: 10 }}>
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
+          {/* Left Content */}
+          <div className="space-y-8">
+            {/* Subtitle Badge */}
+            <div
+              className={`inline-flex items-center px-4 py-2  bg-blue-200 text-blue-950 rounded-full text-sm font-medium transition-all duration-700 delay-100 ${
+                isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+              }`}
+            >
+              <span className="w-2 h-2  bg-blue-950 rounded-full mr-2 animate-pulse"></span>
+              Established Since 2001
+            </div>
 
-          <div
-            className={`flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center transition-all duration-700 delay-600 ${
-              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-            }`}
-          >
-            <button className="bg-orange-500 text-white font-semibold py-4 sm:py-5 px-6 sm:px-10 rounded-full hover:bg-orange-600 shadow-lg flex items-center justify-center text-sm sm:text-base transition-all duration-300 hover:scale-105 active:scale-95">
-              BECOME A DISTRIBUTOR
-              <ChevronRight className="ml-2 h-4 sm:h-5 w-4 sm:w-5" />
-            </button>
+            {/* Main Headline */}
+            <div className="space-y-1">
+              <h1
+                className={`text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-900 leading-tight transition-all duration-700 delay-200 ${
+                  isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+                }`}
+              >
+                Start Your Own{" "}
+                <span className="text-transparent bg-blue-950 bg-clip-text">
+                  Business with
+                </span>
+              </h1>
+              
+              <h2
+                className={`text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-black transition-all duration-700 delay-300 ${
+                  isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+                }`}
+              >
+                 NHT Global
+              </h2>
+            </div>
 
-            <button className="bg-white text-orange-500 border border-orange-500 font-semibold py-4 sm:py-5 px-6 sm:px-10 rounded-full hover:bg-orange-50 shadow-lg text-sm sm:text-base transition-all duration-300 hover:scale-105 active:scale-95">
-              LEARN MORE
-            </button>
+            {/* Description */}
+            <p
+              className={`text-lg sm:text-xl text-black  font-semibold leading-relaxed max-w-lg transition-all duration-700 delay-400 ${
+                isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+              }`}
+            >
+              An evergreen network marketing company – with a proven track record since 2001
+            </p>
+
+            {/* CTA Buttons */}
+            <div
+              className={`flex flex-col sm:flex-row gap-4 transition-all duration-700 delay-500 ${
+                isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+              }`}
+            >
+              <button className="group bg-blue-950 text-white cursor-pointer font-semibold py-4 px-8 rounded-2xl shadow-xl hover:shadow-2xl flex items-center justify-center text-base transition-all duration-300 hover:scale-105 active:scale-95 hover:from-orange-600 hover:to-orange-700">
+                BECOME A DISTRIBUTOR
+                <ChevronRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform duration-200" />
+              </button>
+
+              <button className="bg-white text-bue-950 border-2 border-blue-950 font-semibold py-4 px-8 rounded-2xl hover:bg-blue-950 hover:border-white hover:text-white cursor-pointer shadow-lg text-base transition-all duration-300 hover:scale-105 active:scale-95">
+                LEARN MORE
+              </button>
+            </div>
+
+            
+          </div>
+
+          {/* Right side - Visual space for branding or imagery */}
+          <div className="hidden lg:block relative">
+            <div className="w-full h-96 rounded-3xl bg-gradient-to-br from-orange-100 to-orange-200 opacity-20 animate-pulse"></div>
+            <div className="absolute inset-4 rounded-2xl bg-gradient-to-tl from-orange-200 to-orange-300 opacity-30"></div>
           </div>
         </div>
       </div>
-
-      
     </section>
   );
 };
 
-export default Section;
+export default HeroSection;

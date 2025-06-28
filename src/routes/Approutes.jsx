@@ -1,40 +1,142 @@
-import Layout from '@/layout/Layout';
-import React from 'react';
-import {
-  createBrowserRouter,
-  RouterProvider,
-} from 'react-router-dom';
-import Home from '@/pages/Home';
-import Products from '@/pages/Products';
-import Opportunity from '@/pages/Opportunity';
-import OpportunityOverview from '@/pages/OpportunityOverview';
-import CompensationPlan from '@/pages/CompensationPlan';
-import JoinNow from '@/pages/JoinNow';
-import Leaders from '@/pages/Leaders';
-import Contact from '@/pages/Contact';
-import Blog from '@/pages/Blog';
-import BlogDetail from '@/pages/BlogDetail';
+import React, { Suspense, lazy } from 'react';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+
+// Lazy load components
+const Layout = lazy(() => import('@/layout/Layout'));
+const Home = lazy(() => import('@/pages/Home'));
+const Products = lazy(() => import('@/pages/Products'));
+const ProductDetails = lazy(() => import('@/pages/ProductDetails'));
+const ProductDetail = lazy(() => import('@/pages/product-detail'));
+const Opportunity = lazy(() => import('@/pages/Opportunity'));
+const OpportunityOverview = lazy(() => import('@/pages/OpportunityOverview'));
+const CompensationPlan = lazy(() => import('@/pages/CompensationPlan'));
+const JoinNow = lazy(() => import('@/pages/JoinNow'));
+const Leaders = lazy(() => import('@/pages/Leaders'));
+const Contact = lazy(() => import('@/pages/Contact'));
+const Blog = lazy(() => import('@/pages/Blog'));
+const BlogDetail = lazy(() => import('@/pages/BlogDetail'));
+
+// Simple spinner component
+const Spinner = () => (
+  <div className="flex items-center justify-center min-h-screen">
+    <div className="w-12 h-12 border-4 border-blue-950 border-t-transparent rounded-full animate-spin"></div>
+  </div>
+);
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <Layout />,
+    element: (
+      <Suspense fallback={<Spinner />}>
+        <Layout />
+      </Suspense>
+    ),
     children: [
-      { path: '/', element: <Home /> },
-      { path: '/products', element: <Products /> },
-      { path: '/opportunity', element: <Opportunity /> },
-      { path: '/opportunity-overview', element: <OpportunityOverview /> },
-      { path: '/compensation-plan', element: <CompensationPlan /> },
-      { path: '/join-now', element: <JoinNow /> },
-      { path: '/leaders', element: <Leaders /> },
-      { path: '/contact', element: <Contact /> },
-      { path: '/blog', element: <Blog /> },
-      { path: '/blog/:id', element: <BlogDetail /> },
+      {
+        path: '/',
+        element: (
+          <Suspense fallback={<Spinner />}>
+            <Home />
+          </Suspense>
+        ),
+      },
+      {
+        path: '/products',
+        element: (
+          <Suspense fallback={<Spinner />}>
+            <Products />
+          </Suspense>
+        ),
+      },
+      {
+        path: '/products/:categoryName',
+        element: (
+          <Suspense fallback={<Spinner />}>
+            <ProductDetails />
+          </Suspense>
+        ),
+      },
+      {
+        path: '/products/:categoryName/:productId',
+        element: (
+          <Suspense fallback={<Spinner />}>
+            <ProductDetail />
+          </Suspense>
+        ),
+      },
+      {
+        path: '/opportunity',
+        element: (
+          <Suspense fallback={<Spinner />}>
+            <Opportunity />
+          </Suspense>
+        ),
+      },
+      {
+        path: '/opportunity-overview',
+        element: (
+          <Suspense fallback={<Spinner />}>
+            <OpportunityOverview />
+          </Suspense>
+        ),
+      },
+      {
+        path: '/compensation-plan',
+        element: (
+          <Suspense fallback={<Spinner />}>
+            <CompensationPlan />
+          </Suspense>
+        ),
+      },
+      {
+        path: '/join-now',
+        element: (
+          <Suspense fallback={<Spinner />}>
+            <JoinNow />
+          </Suspense>
+        ),
+      },
+      {
+        path: '/leaders',
+        element: (
+          <Suspense fallback={<Spinner />}>
+            <Leaders />
+          </Suspense>
+        ),
+      },
+      {
+        path: '/contact',
+        element: (
+          <Suspense fallback={<Spinner />}>
+            <Contact />
+          </Suspense>
+        ),
+      },
+      {
+        path: '/blog',
+        element: (
+          <Suspense fallback={<Spinner />}>
+            <Blog />
+          </Suspense>
+        ),
+      },
+      {
+        path: '/blog/:id',
+        element: (
+          <Suspense fallback={<Spinner />}>
+            <BlogDetail />
+          </Suspense>
+        ),
+      },
     ],
   },
   {
     path: '*',
-    element: <h1 className="text-2xl font-bold text-center mt-10">Not Found</h1>,
+    element: (
+      <Suspense fallback={<Spinner />}>
+        <h1 className="text-2xl font-bold text-center mt-10">Not Found</h1>
+      </Suspense>
+    ),
   },
 ]);
 

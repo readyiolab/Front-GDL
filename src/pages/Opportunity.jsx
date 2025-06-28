@@ -1,13 +1,10 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect } from "react";
 import { Helmet } from "react-helmet";
 import { motion, useScroll } from "framer-motion";
-import { Button } from "@/components/ui/button";
 import {
   CheckCircle,
   Globe,
-  ArrowRight,
   Users,
-  ShoppingBag,
   Star,
   ChevronRight,
   Play,
@@ -15,18 +12,15 @@ import {
   Shield,
 } from "lucide-react";
 
-
-
 const HeroSection = () => {
   return (
-    <section className=" flex flex-col items-center justify-center text-center bg-gradient-to-br from-orange-50 via-white to-orange-50 px-6 py-16 overflow-hidden">
+    <section className="flex flex-col items-center justify-center text-center bg-gradient-to-br from-orange-50 via-white to-orange-50 px-6 py-12 overflow-hidden">
       {/* Background image blur layer */}
       <motion.div
         className="absolute bottom-20 right-10 w-32 h-32 bg-red-700 rounded-full blur-xl z-0"
         animate={{ scale: [1.2, 1, 1.2], opacity: [0.2, 0.5, 0.2] }}
         transition={{ duration: 5, repeat: Infinity, repeatType: "reverse" }}
       />
-   
 
       {/* Content */}
       <motion.div
@@ -41,40 +35,38 @@ const HeroSection = () => {
           transition={{ delay: 0.5, duration: 0.6 }}
         >
           <Star className="h-4 w-4 text-orange-400" />
-          <span className="text-black font-medium text-sm">
+          <span className="text-black font-medium text-xs">
             Proven Business Model
           </span>
         </motion.div>
 
         <motion.h1
-          className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-black leading-tight transition-all duration-700 delay-200"
+          className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-black leading-tight transition-all duration-700 delay-200"
         >
           Unleash Your Potential <br />
           <span className="block sm:inline">with NHT Global</span>
         </motion.h1>
 
         <motion.p
-          className="text-xl md:text-2xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed"
+          className="text-lg md:text-xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed"
         >
           NHT Global offers better health, unlimited income, and freedom to live life on your terms.
         </motion.p>
 
         <motion.div className="flex flex-col sm:flex-row gap-4 justify-center">
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-            <button className="bg-orange-500 text-white font-semibold py-4 sm:py-5 px-6 sm:px-10 rounded-full hover:bg-orange-600 shadow-lg flex items-center justify-center text-sm sm:text-base transition-all duration-300 hover:scale-105 active:scale-95">
+            <button className="bg-orange-500 text-white font-semibold py-3 sm:py-4 px-5 sm:px-8 rounded-full hover:bg-orange-600 shadow-lg flex items-center justify-center text-xs sm:text-sm transition-all duration-300 hover:scale-105 active:scale-95">
               Join Our Community
-              <ChevronRight className="h-5 w-5 ml-2 transition-transform" />
+              <ChevronRight className="h-4 w-4 ml-2 transition-transform" />
             </button>
           </motion.div>
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-            <button className="bg-white text-orange-500 border border-orange-500 font-semibold py-4 sm:py-5 px-6 sm:px-10 rounded-full hover:bg-orange-50 shadow-lg text-sm sm:text-base transition-all duration-300 hover:scale-105 active:scale-95">
+            <button className="bg-white text-orange-500 border border-orange-500 font-semibold py-3 sm:py-4 px-5 sm:px-8 rounded-full hover:bg-orange-50 shadow-lg text-xs sm:text-sm transition-all duration-300">
               Learn More
             </button>
           </motion.div>
         </motion.div>
       </motion.div>
-
-      
     </section>
   );
 };
@@ -157,14 +149,14 @@ const OpportunityPage = () => {
       <main className="pt-6 sm:pt-8">
         {/* Section 1: Door of Opportunity */}
         <motion.section
-          className="py-20 px-6"
+          className="py-16 px-6"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8 }}
         >
           <div className="max-w-7xl mx-auto">
-            <div className="text-center mb-16">
+            <div className="text-center mb-12">
               <motion.div
                 className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-500/10 to-purple-500/10 border border-blue-200 px-4 py-2 rounded-full mb-6"
                 initial={{ opacity: 0, scale: 0.8 }}
@@ -173,14 +165,14 @@ const OpportunityPage = () => {
                 transition={{ duration: 0.6 }}
               >
                 <Shield className="h-4 w-4 text-blue-500" />
-                <span className="text-blue-600 font-medium text-sm">
+                <span className="text-blue-600 font-medium text-xs">
                   Start Your Journey
                 </span>
               </motion.div>
-              <h2 className="text-4xl md:text-5xl font-semibold  mb-4 bg-gradient-to-r from-gray-900 via-blue-900 to-purple-900 bg-clip-text text-transparent">
+              <h2 className="text-3xl md:text-4xl font-semibold mb-4 bg-gradient-to-r from-gray-900 via-blue-900 to-purple-900 bg-clip-text text-transparent">
                 Open the Door of Opportunity
               </h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              <p className="text-lg text-gray-600 max-w-3xl mx-auto">
                 Take the next step to changing your destiny with NHT Global.
               </p>
             </div>
@@ -208,27 +200,27 @@ const OpportunityPage = () => {
                       viewport={{ once: true }}
                       transition={{ delay: index * 0.1, duration: 0.5 }}
                     >
-                      <div className="w-10 h-10 rounded-full bg-gradient-to-r from-orange-500 to-orange-600 flex items-center justify-center flex-shrink-0">
-                        <CheckCircle className="h-5 w-5 text-white" />
+                      <div className="w-7 h-7 rounded-full bg-gradient-to-r from-orange-500 to-orange-600 flex items-center justify-center flex-shrink-0">
+                        <CheckCircle className="h-4 w-4 text-white" />
                       </div>
-                      <p className="text-lg text-gray-700 font-medium leading-relaxed">
+                      <p className="text-base text-gray-700 font-medium leading-relaxed">
                         {item}
                       </p>
                     </motion.li>
                   ))}
                 </ul>
                 <motion.div
-                  className="bg-orange-50 border border-orange-200 rounded-xl p-6"
+                  className="bg-orange-50 border border-orange-200 rounded-xl p-5"
                   initial={{ opacity: 0, x: -20 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: 0.2, duration: 0.5 }}
                 >
-                  <h3 className="text-xl font-bold text-gray-900 mb-2">
+                  <h3 className="text-lg font-bold text-orange-900 mb-2">
                     Open the Door to NHT Global
                   </h3>
-                  <p className="text-lg text-gray-600">
-                    Top Network Marketing Company Globally
+                  <p className="text-sm text-gray-600">
+                    Top Network Marketing Company
                   </p>
                 </motion.div>
               </motion.div>
@@ -254,9 +246,9 @@ const OpportunityPage = () => {
                       media="(max-width: 1024px)"
                     />
                     <img
-                      src="https://plus.unsplash.com/premium_photo-1661767467261-4a4bed92a507?q=80&w=2070&auto=format&fit=crop"
+                      src="https://plus.unsplash.com/premium_photo-1661767467261-4bed92a507?q=80&w=2070&auto=format&fit=crop"
                       alt="Team celebrating NHT Global success"
-                      className="w-full h-80 lg:h-96 object-cover transform group-hover:scale-105 transition-transform duration-700"
+                      className="w-full h-72 lg:h-80 object-cover transform group-hover:scale-105 transition-transform duration-700"
                       loading="lazy"
                     />
                   </picture>
@@ -267,8 +259,8 @@ const OpportunityPage = () => {
                     viewport={{ once: true }}
                     transition={{ delay: 0.3, duration: 0.5 }}
                   >
-                    <div className="w-12 h-12 rounded-full bg-gradient-to-r from-orange-500 to-orange-600 flex items-center justify-center shadow-lg backdrop-blur-sm">
-                      <Star className="h-6 w-6 text-white" />
+                    <div className="w-10 h-10 rounded-full bg-gradient-to-r from-orange-500 to-orange-600 flex items-center justify-center shadow-lg backdrop-blur-sm">
+                      <Star className="h-5 w-5 text-white" />
                     </div>
                   </motion.div>
                 </div>
@@ -279,18 +271,18 @@ const OpportunityPage = () => {
 
         {/* Section 2: Why Network Marketing */}
         <motion.section
-          className="py-20 bg-gradient-to-r from-gray-900 via-blue-900 to-gray-900 text-white"
+          className="py-16 bg-gradient-to-r from-gray-900 via-blue-900 to-gray-900 text-white"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8 }}
         >
           <div className="max-w-6xl mx-auto px-6">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-semibold mb-4 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-semibold mb-4 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
                 Why Network Marketing?
               </h2>
-              <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+              <p className="text-lg text-gray-300 max-w-3xl mx-auto">
                 A proven industry with global impact and opportunity.
               </p>
             </div>
@@ -319,10 +311,10 @@ const OpportunityPage = () => {
                   whileHover={{ scale: 1.05, y: -5 }}
                 >
                   <div className="flex items-start gap-4">
-                    <div className="w-10 h-10 rounded-full bg-gradient-to-r from-orange-500 to-orange-600 flex items-center justify-center flex-shrink-0">
-                      <CheckCircle className="h-5 w-5 text-white" />
+                    <div className="w-7 h-7 rounded-full bg-gradient-to-r from-orange-500 to-orange-600 flex items-center justify-center flex-shrink-0">
+                      <CheckCircle className="h-4 w-4 text-white" />
                     </div>
-                    <p className="text-gray-100 font-medium leading-relaxed">
+                    <p className="text-base text-gray-100 font-medium leading-relaxed">
                       {text}
                     </p>
                   </div>
@@ -334,18 +326,18 @@ const OpportunityPage = () => {
 
         {/* Section 3: NHT Global Opportunity */}
         <motion.section
-          className="py-20 px-6"
+          className="py-16 px-6"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8 }}
         >
           <div className="max-w-7xl mx-auto">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-semibold  mb-4 bg-gradient-to-r from-gray-900 via-blue-900 to-purple-900 bg-clip-text text-transparent">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-semibold mb-4 bg-gradient-to-r from-gray-900 via-blue-900 to-purple-900 bg-clip-text text-transparent">
                 World of Opportunity
               </h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              <p className="text-lg text-gray-600 max-w-3xl mx-auto">
                 A global company with true potential
               </p>
             </div>
@@ -374,7 +366,7 @@ const OpportunityPage = () => {
                     <img
                       src="https://images.unsplash.com/photo-1588458977838-bdf7b9d8700e?w=2070&auto=format&fit=crop"
                       alt="NHT Global's worldwide business network"
-                      className="w-full h-80 lg:h-96 object-cover transform group-hover:scale-105 transition-transform duration-700"
+                      className="w-full h-72 lg:h-80 object-cover transform group-hover:scale-105 transition-transform duration-700"
                       loading="lazy"
                     />
                   </picture>
@@ -385,8 +377,8 @@ const OpportunityPage = () => {
                     viewport={{ once: true }}
                     transition={{ delay: 0.3, duration: 0.5 }}
                   >
-                    <div className="w-12 h-12 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 flex items-center justify-center shadow-lg backdrop-blur-sm">
-                      <Globe className="h-6 w-6 text-white" />
+                    <div className="w-10 h-10 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 flex items-center justify-center shadow-lg backdrop-blur-sm">
+                      <Globe className="h-5 w-5 text-white" />
                     </div>
                   </motion.div>
                 </div>
@@ -398,10 +390,10 @@ const OpportunityPage = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.8 }}
               >
-                <h3 className="text-xl md:text-2xl font-semibold text-gray-900 mb-2">
+                <h3 className="text-lg md:text-xl font-semibold text-gray-900 mb-2">
                   NHT Global has a PROVEN Business Model
                 </h3>
-                <div className="w-20 h-1 bg-gradient-to-r from-orange-400 to-orange-500 rounded-full"></div>
+                <div className="w-16 h-1 bg-gradient-to-r from-orange-400 to-orange-500 rounded-full"></div>
                 <div className="space-y-4">
                   {[
                     "Offices worldwide and distribution within more than 50 countries",
@@ -418,17 +410,17 @@ const OpportunityPage = () => {
                       viewport={{ once: true }}
                       transition={{ delay: index * 0.1, duration: 0.5 }}
                     >
-                      <div className="w-10 h-10 rounded-full bg-gradient-to-r from-orange-500 to-orange-600 flex items-center justify-center flex-shrink-0">
-                        <CheckCircle className="h-5 w-5 text-white" />
+                      <div className="w-7 h-7 rounded-full bg-gradient-to-r from-orange-500 to-orange-600 flex items-center justify-center flex-shrink-0">
+                        <CheckCircle className="h-4 w-4 text-white" />
                       </div>
-                      <p className="text-lg text-gray-700 leading-relaxed">
+                      <p className="text-base text-gray-700 leading-relaxed">
                         {item}
                       </p>
                     </motion.div>
                   ))}
                 </div>
                 <motion.button
-                  className="group bg-gradient-to-r from-orange-500 to-orange-600 text-white px-6 py-3 rounded-xl font-semibold shadow-lg hover:shadow-orange-500/25 transition-all duration-300 flex items-center gap-3"
+                  className="group bg-gradient-to-r from-orange-500 to-orange-600 text-white px-5 py-2 rounded-xl font-semibold text-sm shadow-lg hover:shadow-orange-500/25 transition-all duration-300 flex items-center gap-3"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.98 }}
                 >
@@ -443,23 +435,23 @@ const OpportunityPage = () => {
 
         {/* Section 4: Compensation Plan */}
         <motion.section
-          className="py-20 bg-gradient-to-r from-gray-900 via-blue-900 to-gray-900 text-white"
+          className="py-16 bg-gradient-to-r from-gray-900 via-blue-900 to-gray-900 text-white"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8 }}
         >
           <div className="max-w-6xl mx-auto px-6">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-semibold mb-4 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-semibold mb-4 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
                 Compensation Plan
               </h2>
-              <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+              <p className="text-lg text-gray-300 max-w-3xl mx-auto">
                 Understand your earning potential
               </p>
             </div>
             <motion.p
-              className="text-xl mb-12 text-center max-w-4xl mx-auto"
+              className="text-lg mb-12 text-center max-w-4xl mx-auto"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -512,13 +504,12 @@ const OpportunityPage = () => {
                   whileHover={{ scale: 1.05, y: -5 }}
                 >
                   <div className="flex items-start gap-4">
-                    
                     <div>
-                      <h3 className="text-xl font-bold text-orange-400 mb-2 text-center pb-4">
+                      <h3 className="text-lg font-bold text-orange-400 mb-2 text-center pb-4">
                         {item.title}
                       </h3>
                       <p
-                        className="text-gray-100 font-sm leading-relaxed"
+                        className="text-base text-gray-100 leading-relaxed"
                         dangerouslySetInnerHTML={{ __html: item.description }}
                       />
                     </div>
@@ -531,18 +522,18 @@ const OpportunityPage = () => {
 
         {/* Section 5: Investment Options */}
         <motion.section
-          className="py-20 px-6"
+          className="py-16 px-6"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8 }}
         >
           <div className="max-w-7xl mx-auto">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-semibold  mb-4 bg-gradient-to-r from-gray-900 via-blue-900 to-purple-900 bg-clip-text text-transparent">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-semibold mb-4 bg-gradient-to-r from-gray-900 via-blue-900 to-purple-900 bg-clip-text text-transparent">
                 Investment Options
               </h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              <p className="text-lg text-gray-600 max-w-3xl mx-auto">
                 Choose the package that fits your goals
               </p>
             </div>
@@ -553,7 +544,7 @@ const OpportunityPage = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
             >
-              <p className="text-xl text-gray-700">
+              <p className="text-lg text-gray-700">
                 Start with any package, but we recommend{" "}
                 <span className="font-bold text-orange-400">Platinum</span> or{" "}
                 <span className="font-bold text-orange-400">Gold</span> for serious
@@ -641,24 +632,24 @@ const OpportunityPage = () => {
                   }}
                 >
                   {item.recommended && (
-                    <div className="absolute top-0 right-0 bg-orange-400 text-white px-4 py-1 rounded-bl-lg font-semibold text-sm z-10">
+                    <div className="absolute top-0 right-0 bg-orange-400 text-white px-3 py-1 rounded-bl-lg font-semibold text-xs">
                       Recommended
                     </div>
                   )}
-                  <div className={`${item.color} px-6 pt-8 pb-6 ${item.textColor} text-center`}>
-                    <h3 className="text-xl font-bold mb-2">{item.title}</h3>
-                    <p className="text-3xl font-extrabold">{item.price}</p>
+                  <div className={`${item.color} px-6 pt-6 pb-6 ${item.textColor} text-center`}>
+                    <h3 className="text-lg font-bold mb-2">{item.title}</h3>
+                    <p className="text-2xl font-extrabold">{item.price}</p>
                   </div>
-                  <div className="p-6 flex flex-col flex-grow">
+                  <div className="p-6 flex flex-col">
                     <p
                       className="text-gray-600 mb-6 text-sm"
                       dangerouslySetInnerHTML={{ __html: item.description }}
-                    ></p>
+                    />
                     <ul className="space-y-3 mb-6 flex-grow">
                       {item.features.map((feature, i) => (
-                        <li key={i} className="flex items-start space-x-3 text-sm">
-                          <CheckCircle className="h-5 w-5 text-orange-400 flex-shrink-0 mt-0.5" />
-                          <span dangerouslySetInnerHTML={{ __html: feature }}></span>
+                        <li key={i} className="flex items-start gap-1 text-sm">
+                          <CheckCircle className="h-4 w-4 text-orange-400 flex-shrink-0 mt-0.5" />
+                          <span dangerouslySetInnerHTML={{ __html: feature }} />
                         </li>
                       ))}
                     </ul>
@@ -671,13 +662,13 @@ const OpportunityPage = () => {
 
         {/* Section 6: Call to Action */}
         <motion.section
-          className="py-20 bg-gradient-to-r from-gray-900 via-blue-900 to-purple-900 text-white relative overflow-hidden"
+          className="py-16 bg-gradient-to-r from-gray-900 via-blue-900 to-gray-900 text-white relative overflow-hidden"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8 }}
         >
-          <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1200&auto=format&fit=crop&q=60')] bg-cover bg-center opacity-10"></div>
+          <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1451187580459-43490279c0fa')] bg-cover bg-center opacity-10"></div>
           <div className="relative z-10 max-w-4xl mx-auto text-center px-6">
             <motion.div
               className="mb-8"
@@ -686,34 +677,34 @@ const OpportunityPage = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              <div className="w-24 h-24 mx-auto mb-6 bg-gradient-to-r from-orange-500 to-red-500 rounded-full flex items-center justify-center">
-                <Users className="h-12 w-12 text-white" />
+              <div className="w-20 h-20 mx-auto mb-auto mb-6 bg-gradient-to-r from-orange-500 to-red-500 rounded-full flex items-center justify-center">
+                <Users className="h-auto10 w-auto10 text-white" />
               </div>
             </motion.div>
-            <h2 className="text-4xl md:text-5xl font-semibold mb-6 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+            <h2 className="text-3xl md:text-4xl font-semibold mb-auto6 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-centertransparent">
               Ready to Transform Your Life?
             </h2>
-            <p className="text-xl text-gray-300 mb-8 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-centerlg text-gray-300 mb-auto8 max-w-3xlmx-auto leading-relaxed">
               Join thousands of successful entrepreneurs who have changed their lives with NHT Global's opportunity.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <motion.button
-                className="group bg-gradient-to-r from-orange-500 to-orange-600 text-white px-8 py-4 rounded-2xl font-bold text-lg shadow-2xl hover:shadow-orange-600/25 transition-all duration-300 flex items-center gap-3"
+                className="group bg-gradient-to-r from-orange-500 to-orange-600 text-white px-6 py-3 rounded-2xl font-semibold text-sm shadow-lg hover:shadow-orange-600/25 transition-all duration-300 flex items-center gap-1"
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.98 }}
                 aria-label="Join NHT Global Now"
               >
-                <Play className="h-5 w-5" />
+                <Play className="h-4 w-4" />
                 Join Now
-                <ChevronRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                <ChevronRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
               </motion.button>
               <motion.button
-                className="group bg-white/10 backdrop-blur-sm border border-white/20 text-white px-8 py-4 rounded-2xl font-semibold text-lg hover:bg-white/20 transition-all duration-300 flex items-center gap-3"
+                className="group bg-white/10 backdrop-blur-sm border border-white/20 text-white px-6 py-3 rounded-2xl font-semibold text-sm hover:bg-white/20 transition-all duration-300 flex items-center gap-1"
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.98 }}
                 aria-label="Learn More About NHT Global"
               >
-                <ExternalLink className="h-5 w-5" />
+                <ExternalLink className="h-4 w-4" />
                 Learn More
                 <ChevronRight className="h-4 w-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
               </motion.button>
