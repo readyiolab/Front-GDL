@@ -159,46 +159,46 @@ const LandingPage = () => {
       </section>
 
       {/* Section 2: About NHT Global */}
-      <section className="py-16 bg-blue-950 text-white">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6">
-          <div className="text-center mb-12">
-            <div className="inline-flex items-center gap-2 bg-white/10 border border-white/20 px-4 py-2 rounded-full mb-6">
-              <Globe className="h-4 w-4 text-white" />
-              <span className="text-white font-semibold text-xs uppercase tracking-wide">
-                 Company Overview
-              </span>
-            </div>
-            <h2 className="text-4xl sm:text-5xl font-bold mb-4 text-white">
-              About NHT Global
-            </h2>
-            <p className="text-lg text-gray-300 max-w-2xl mx-auto leading-relaxed">
-              Global leader in network marketing.
-            </p>
+      <section className="py-20 bg-blue-950 text-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-16">
+          <div className="inline-flex items-center gap-3 bg-white/5 border border-white/10 px-5 py-2 rounded-full mb-8 shadow-sm">
+            <Globe className="h-5 w-5 text-blue-300" />
+            <span className="text-blue-200 font-medium text-sm uppercase tracking-wider">
+              Company Overview
+            </span>
           </div>
+          <h2 className="text-4xl sm:text-5xl font-extrabold mb-6 text-white tracking-tight">
+            About NHT Global
+          </h2>
+          <p className="text-xl text-blue-200 max-w-3xl mx-auto leading-relaxed">
+            Pioneering the future of network marketing with innovation and global impact.
+          </p>
+        </div>
 
-          <div className="max-w-4xl mx-auto">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-              {nhtGlobalFeatures.map((text, index) => (
-                <div
-                  key={index}
-                  className="group relative"
-                >
-                  <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-4 hover:bg-white/20 transition-all duration-300 hover:scale-105">
-                    <div className="flex flex-col items-center text-center">
-                      <div className="w-10 h-10 rounded-full bg-gradient-to-r from-orange-500 to-red-500 flex items-center justify-center mb-3 shadow-md">
-                        <span className="text-white font-bold text-base">{index + 1}</span>
-                      </div>
-                      <p className="text-white text-sm font-medium leading-relaxed">
-                        {text}
-                      </p>
+        <div className="max-w-5xl mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {nhtGlobalFeatures.map((text, index) => (
+              <div
+                key={index}
+                className="group relative"
+              >
+                <div className="bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition-all duration-300 hover:scale-105 hover:shadow-lg">
+                  <div className="flex flex-col items-center text-center">
+                    <div className="w-12 h-12 rounded-full bg-gradient-to-r from-blue-500 to-blue-700 flex items-center justify-center mb-4 shadow-md">
+                      <span className="text-white font-bold text-lg">{index + 1}</span>
                     </div>
+                    <p className="text-blue-100 text-base font-medium leading-relaxed">
+                      {text}
+                    </p>
                   </div>
                 </div>
-              ))}
-            </div>
+              </div>
+            ))}
           </div>
         </div>
-      </section>
+      </div>
+    </section>
 
       {/* Section 3: History of NHT Global */}
       <section className="py-16 px-4 sm:px-6 bg-gradient-to-br from-gray-50 via-white to-blue-50">

@@ -41,10 +41,6 @@ const itemVariants = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
 };
 
-const hoverScale = {
-  hover: { scale: 1.02, y: -2 },
-  tap: { scale: 0.98 },
-};
 
 const ProductsSection = () => {
   const [country, setCountry] = useState("US");
@@ -338,7 +334,7 @@ const ProductsSection = () => {
                 <img
                   src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=600&h=500&fit=crop"
                   alt="NHT Global Premium Products"
-                  className="w-full h-96 lg:h-[500px] object-cover transform group-hover:scale-105 transition-transform duration-700"
+                  className="w-full h-auto  object-cover transform group-hover:scale-105 transition-transform duration-700"
                   loading="lazy"
                 />
                 <motion.div
@@ -388,7 +384,7 @@ const ProductsSection = () => {
               </span>
             </motion.div>
             
-            <h2 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-slate-900 via-blue-900 to-purple-900 bg-clip-text text-transparent">
+            <h2 className="text-5xl md:text-6xl font-bold mb-6 pb-5 bg-gradient-to-r from-slate-900 via-blue-900 to-purple-900 bg-clip-text text-transparent">
               Explore Our Categories
             </h2>
             
@@ -417,7 +413,7 @@ const ProductsSection = () => {
                   )
                 }
               >
-                <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 to-purple-50/50 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div className="absolute  transition-opacity duration-500"></div>
                 
                 <div className="relative w-32 h-32 mb-6">
                   <img
@@ -442,9 +438,8 @@ const ProductsSection = () => {
                 </h3>
                 
                 <motion.div
-                  className="flex items-center justify-center gap-2 opacity-0 group-hover:opacity-100 transition-all duration-300 bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-full shadow-lg"
-                  initial={{ opacity: 0, y: 10 }}
-                  whileHover={{ opacity: 1, y: 0 }}
+                  className="flex items-center justify-center gap-2 bg-blue-950  text-white px-6 py-3 rounded-full shadow-lg"
+                 
                 >
                   <span className="text-sm font-semibold">
                     Explore Products

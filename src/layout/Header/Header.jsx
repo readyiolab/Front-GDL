@@ -26,12 +26,7 @@ const Header = () => {
             className="flex items-center space-x-3 group"
             onClick={() => setIsOpen(false)}
           >
-            <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-blue-800 rounded-xl flex items-center justify-center shadow-md group-hover:shadow-lg transition-all duration-300">
-              <span className="text-white font-bold text-lg">C</span>
-            </div>
-            <span className="text-2xl font-bold bg-gradient-to-r from-blue-950 to-blue-800 bg-clip-text text-transparent hidden sm:block">
-              Company
-            </span>
+            <img src="./gdl.png" alt="" className="w-30 h-auto"/>
           </Link>
         </div>
 

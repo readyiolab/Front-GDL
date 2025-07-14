@@ -180,7 +180,7 @@ const ProductDetail = () => {
                   <img
                     src={product.productImage}
                     alt={product.productName}
-                    className="w-full h-64 sm:h-80 lg:h-96 object-cover rounded-2xl shadow-xl border border-slate-200 transition-transform duration-300 hover:scale-[1.02]"
+                    className="w-full h-64 sm:h-80 lg:h-96 object-contain rounded-2xl shadow-xl border border-slate-200 "
                     loading="lazy"
                   />
                 ) : (
@@ -193,11 +193,11 @@ const ProductDetail = () => {
                     </div>
                   </div>
                 )}
-                {discountPercent > 0 && (
+                {/* {discountPercent > 0 && (
                   <div className="absolute top-4 left-4 bg-gradient-to-r from-red-500 to-pink-500 text-white px-3 py-1 rounded-full text-sm font-semibold shadow-md">
                     {discountPercent}% OFF
                   </div>
-                )}
+                )} */}
               </div>
 
               <div className=" p-6 ">
@@ -245,7 +245,7 @@ const ProductDetail = () => {
             )}
 
             {product.keyBenefits && (
-              <div className=" p-6 border border-b-2 border-slate-200">
+              <div className=" p-6  border-b-2 border-slate-200">
                 <h3 className="text-xl font-bold text-blue-950 mb-3">Key Benefits</h3>
                 <ul className="list-disc pl-5 space-y-2 text-base text-slate-600">
                   {parseField(product.keyBenefits).map((benefit, index) => (
@@ -271,7 +271,7 @@ const ProductDetail = () => {
             {product.directionsForUse && (
               <div className="border-b-2 border-slate-200  p-6 ">
                 <h3 className="text-xl font-bold text-blue-950 mb-3 flex items-center">
-                  <CheckCircle className="w-5 h-5 mr-2 text-green-500" />
+                
                   Directions for Use
                 </h3>
                 <ul className="list-disc pl-5 space-y-2 text-base text-slate-600">
@@ -285,7 +285,7 @@ const ProductDetail = () => {
             {product.cautions && (
               <div className="border-b-2 border-slate-200 p-6 ">
                 <h3 className="text-xl font-bold text-blue-950 mb-3 flex items-center">
-                  <AlertTriangle className="w-5 h-5 mr-2 text-yellow-500" />
+                  
                   Cautions
                 </h3>
                 <ul className="list-disc pl-5 space-y-2 text-base text-slate-600">

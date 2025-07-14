@@ -1,115 +1,24 @@
-import React, { useCallback, useEffect, useState, useRef } from "react";
-import { ChevronRight } from "lucide-react";
+import React, { useEffect, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import {
+  ChevronRight,
+  Star,
+  Users,
+  TrendingUp,
+  Award,
+  Globe,
+} from "lucide-react";
 
-// Custom Particles Component
-const CustomParticles = () => {
-  const canvasRef = useRef(null);
-  const animationRef = useRef(null);
-  const particlesRef = useRef([]);
-
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-
-    const ctx = canvas.getContext("2d");
-    const particles = [];
-
-    // Resize canvas
-    const resizeCanvas = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    };
-    resizeCanvas();
-    window.addEventListener("resize", resizeCanvas);
-
-    // Particle class
-    class Particle {
-      constructor() {
-        this.x = Math.random() * canvas.width;
-        this.y = Math.random() * canvas.height;
-        this.size = Math.random() * 3 + 0.5;
-        this.speedX = (Math.random() - 0.5) * 1.5;
-        this.speedY = (Math.random() - 0.5) * 1.5;
-        this.opacity = Math.random() * 0.6 + 0.1;
-        this.colors = ["#f97316", "#fb923c", "#fdba74", "#fed7aa"];
-        this.color = this.colors[Math.floor(Math.random() * this.colors.length)];
-      }
-
-      update() {
-        this.x += this.speedX;
-        this.y += this.speedY;
-
-        if (this.x > canvas.width) this.x = 0;
-        if (this.x < 0) this.x = canvas.width;
-        if (this.y > canvas.height) this.y = 0;
-        if (this.y < 0) this.y = canvas.height;
-      }
-
-      draw() {
-        ctx.save();
-        ctx.globalAlpha = this.opacity;
-        ctx.fillStyle = this.color;
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fill();
-        ctx.restore();
-      }
-    }
-
-    const particleCount = window.innerWidth < 640 ? 30 : 60;
-    for (let i = 0; i < particleCount; i++) {
-      particles.push(new Particle());
-    }
-
-    particlesRef.current = particles;
-
-    const animate = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      particles.forEach((particle) => {
-        particle.update();
-        particle.draw();
-      });
-      animationRef.current = requestAnimationFrame(animate);
-    };
-
-    animate();
-
-    const handleMouseMove = (e) => {
-      const rect = canvas.getBoundingClientRect();
-      const mouseX = e.clientX - rect.left;
-      const mouseY = e.clientY - rect.top;
-
-      particles.forEach((particle) => {
-        const dx = mouseX - particle.x;
-        const dy = mouseY - particle.y;
-        const distance = Math.sqrt(dx * dx + dy * dy);
-        if (distance < 120) {
-          const force = (120 - distance) / 120;
-          particle.x -= (dx / distance) * force * 1.5;
-          particle.y -= (dy / distance) * force * 1.5;
-        }
-      });
-    };
-
-    canvas.addEventListener("mousemove", handleMouseMove);
-
-    return () => {
-      window.removeEventListener("resize", resizeCanvas);
-      canvas.removeEventListener("mousemove", handleMouseMove);
-      if (animationRef.current) {
-        cancelAnimationFrame(animationRef.current);
-      }
-    };
-  }, []);
-
-  return (
-    <canvas
-      ref={canvasRef}
-      className="absolute inset-0 pointer-events-auto"
-      style={{ zIndex: 1 }}
-    />
-  );
-};
+// Particle Component for Background Effects
+const Particle = ({ style, delay }) => (
+  <motion.div
+    className="absolute bg-cyan-400/40 rounded-full"
+    style={style}
+    initial={{ scale: 0, opacity: 0 }}
+    animate={{ scale: [0, 1, 0], opacity: [0, 0.8, 0] }}
+    transition={{ duration: 2, repeat: Infinity, delay, ease: "easeInOut" }}
+  />
+);
 
 // Hero Section Component
 const HeroSection = () => {
@@ -120,87 +29,132 @@ const HeroSection = () => {
     return () => clearTimeout(timer);
   }, []);
 
+  // Animation Variants
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
+  };
+
   return (
-    <section className="min-h-screen flex items-center relative bg-gradient-to-br from-slate-50 via-white to-orange-50/30 overflow-hidden">
-      {/* Particle background */}
-      <CustomParticles />
+    <section className="relative min-h-screen flex items-center overflow-hidden bg-gray-900">
+      {/* Background with Dynamic Gradient Overlay */}
+      <div className="absolute inset-0 z-0">
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage: `url('https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-4.0.3&auto=format&fit=crop&w=2074&q=80')`,
+          }}
+        />
+        <motion.div
+          className="absolute inset-0 bg-gradient-to-r from-gray-900/95 via-gray-800/85 to-cyan-900/75"
+          animate={{ opacity: [0.8, 1, 0.8] }}
+          transition={{ duration: 5, repeat: Infinity, ease: "linear" }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-gray-900/30 via-transparent to-gray-900/50" />
+      </div>
 
-      {/* Gradient overlays for depth */}
-      <div className="absolute inset-0 bg-gradient-to-r from-white/80 via-white/40 to-transparent" style={{ zIndex: 2 }} />
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-white/20" style={{ zIndex: 2 }} />
+      {/* Particle Effects */}
+      <div className="absolute inset-0 z-10 overflow-hidden">
+        <Particle style={{ top: "20%", right: "15%", width: "8px", height: "8px" }} delay={0} />
+        <Particle style={{ top: "40%", right: "35%", width: "6px", height: "6px" }} delay={1} />
+        <Particle style={{ bottom: "30%", left: "20%", width: "10px", height: "10px" }} delay={2} />
+        <Particle style={{ bottom: "20%", right: "25%", width: "7px", height: "7px" }} delay={3} />
+        <motion.div
+          className="absolute top-1/3 left-12 w-24 h-24 border border-cyan-500/30 rounded-xl"
+          animate={{ rotate: 360 }}
+          transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+        />
+      </div>
 
-      {/* Main Content Container */}
-      <div className="relative w-full max-w-7xl mx-auto px-6 lg:px-8" style={{ zIndex: 10 }}>
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+      {/* Main Content */}
+      <motion.div
+        className="relative w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-20"
+        variants={containerVariants}
+        initial="hidden"
+        animate={isVisible ? "visible" : "hidden"}
+      >
+        <div className="grid lg:grid-cols-12 gap-8 lg:gap-16 items-center min-h-screen py-12 lg:py-0">
           {/* Left Content */}
-          <div className="space-y-8">
+          <motion.div className="lg:col-span-7 space-y-3 lg:space-y-8 text-center lg:text-left" variants={itemVariants}>
             {/* Subtitle Badge */}
-            <div
-              className={`inline-flex items-center px-4 py-2  bg-blue-200 text-blue-950 rounded-full text-sm font-medium transition-all duration-700 delay-100 ${
-                isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-              }`}
+            <motion.div
+              className="inline-flex items-center px-6 py-3 bg-gray-800/90 backdrop-blur-lg border border-cyan-500/40 text-cyan-100 rounded-full text-sm font-medium shadow-lg hover:shadow-xl transition-shadow duration-300"
+              variants={itemVariants}
+              whileHover={{ scale: 1.05 }}
+              role="region"
+              aria-label="Company Information"
             >
-              <span className="w-2 h-2  bg-blue-950 rounded-full mr-2 animate-pulse"></span>
-              Established Since 2001
-            </div>
+              <Award className="w-4 h-4 mr-2 text-cyan-400" aria-hidden="true" />
+              Established Since 2001 • Trusted Worldwide
+            </motion.div>
 
             {/* Main Headline */}
-            <div className="space-y-1">
-              <h1
-                className={`text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-900 leading-tight transition-all duration-700 delay-200 ${
-                  isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
-                }`}
+            <div className="space-y-2 lg:space-y-4">
+              <motion.h1
+                className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-extrabold text-white leading-tight font-['Playfair_Display']"
+                variants={itemVariants}
               >
                 Start Your Own{" "}
-                <span className="text-transparent bg-blue-950 bg-clip-text">
-                  Business with
+                <span className="bg-gradient-to-r from-cyan-400 via-cyan-300 to-cyan-500 bg-clip-text text-transparent">
+                  Business
                 </span>
-              </h1>
-              
-              <h2
-                className={`text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-black transition-all duration-700 delay-300 ${
-                  isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
-                }`}
+              </motion.h1>
+              <motion.h2
+                className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-extrabold bg-gradient-to-r from-gray-200 via-cyan-200 to-gray-300 bg-clip-text text-transparent font-['Playfair_Display']"
+                variants={itemVariants}
               >
-                 NHT Global
-              </h2>
+                with NHT Global
+              </motion.h2>
             </div>
 
             {/* Description */}
-            <p
-              className={`text-lg sm:text-xl text-black  font-semibold leading-relaxed max-w-lg transition-all duration-700 delay-400 ${
-                isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
-              }`}
+            <motion.p
+              className="text-base sm:text-lg lg:text-xl text-gray-200 leading-relaxed max-w-2xl mx-auto lg:mx-0 font-['Inter'] font-light"
+              variants={itemVariants}
             >
-              An evergreen network marketing company – with a proven track record since 2001
-            </p>
+              Join the world's most trusted network marketing company. Build your empire with proven strategies and unlimited potential.
+            </motion.p>
 
             {/* CTA Buttons */}
-            <div
-              className={`flex flex-col sm:flex-row gap-4 transition-all duration-700 delay-500 ${
-                isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
-              }`}
+            <motion.div
+              className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
+              variants={itemVariants}
             >
-              <button className="group bg-blue-950 text-white cursor-pointer font-semibold py-4 px-8 rounded-2xl shadow-xl hover:shadow-2xl flex items-center justify-center text-base transition-all duration-300 hover:scale-105 active:scale-95 hover:from-orange-600 hover:to-orange-700">
-                BECOME A DISTRIBUTOR
-                <ChevronRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform duration-200" />
-              </button>
+              <motion.button
+                className="group relative bg-gradient-to-r from-cyan-500 to-cyan-400 text-gray-900 font-semibold py-4 px-6 rounded-full shadow-2xl hover:shadow-3xl flex items-center justify-center text-base font-['Inter'] transition-all duration-300"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                aria-label="Become a Distributor"
+              >
+                <div className="absolute inset-0 bg-gradient-to-r from-cyan-300 to-cyan-200 opacity-0 group-hover:opacity-20 transition-opacity duration-300 rounded-full" />
+                <span className="relative z-10 font-bold tracking-wide">
+                  BECOME A DISTRIBUTOR
+                </span>
+                <ChevronRight className="relative z-10 ml-3 h-5 w-5 group-hover:translate-x-1 transition-transform duration-200" aria-hidden="true" />
+              </motion.button>
 
-              <button className="bg-white text-bue-950 border-2 border-blue-950 font-semibold py-4 px-8 rounded-2xl hover:bg-blue-950 hover:border-white hover:text-white cursor-pointer shadow-lg text-base transition-all duration-300 hover:scale-105 active:scale-95">
-                LEARN MORE
-              </button>
-            </div>
-
-            
-          </div>
-
-          {/* Right side - Visual space for branding or imagery */}
-          <div className="hidden lg:block relative">
-            <div className="w-full h-96 rounded-3xl bg-gradient-to-br from-orange-100 to-orange-200 opacity-20 animate-pulse"></div>
-            <div className="absolute inset-4 rounded-2xl bg-gradient-to-tl from-orange-200 to-orange-300 opacity-30"></div>
-          </div>
+              <motion.button
+                className="group bg-gray-800/90 backdrop-blur-lg text-cyan-100 border-2 border-cyan-500/40 font-semibold py-4 px-6 rounded-full hover:bg-cyan-500/10 hover:text-cyan-50 text-base font-['Inter'] transition-all duration-300"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                aria-label="Learn More"
+              >
+                <span className="tracking-wide">LEARN MORE</span>
+              </motion.button>
+            </motion.div>
+          </motion.div>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 };
