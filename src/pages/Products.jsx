@@ -1,34 +1,18 @@
-import React, { useState, useEffect } from "react";
-import { motion } from "framer-motion";
-import { useNavigate } from "react-router-dom";
-import axios from "axios";
-import {
-  Gift,
-  User,
-  Heart,
-  Baby,
-  Scale,
-  Users,
-  Zap,
-  HeartPulse,
-  Play,
-  ArrowRight,
-  Check,
-  Star,
-  Mail,
-  ExternalLink,
-  Shield,
-  Award,
-  Sparkles,
-} from "lucide-react";
+import React, { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
-import { Button } from "@/components/ui/button";
+} from '@/components/ui/select';
+import { Button } from '@/components/ui/button';
+import { Star, Play, ArrowRight, Check, Shield, Award, Heart, Mail, ExternalLink } from 'lucide-react';
+import { createSlug } from '@/utils/slugify';
+import { useApi } from '@/hooks/useApi'; 
 
 // Animation variants
 const staggerChildren = {
@@ -38,94 +22,76 @@ const staggerChildren = {
 
 const itemVariants = {
   hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } },
 };
 
-
 const ProductsSection = () => {
-  const [country, setCountry] = useState("US");
+  const [country, setCountry] = useState('US');
   const [countries, setCountries] = useState([]);
   const [categories, setCategories] = useState([]);
   const navigate = useNavigate();
-
-  // Icon mapping
-  const iconMap = {
-    "Weight & Metabolism": <Scale className="h-6 w-6 text-blue-600" />,
-    "Skin & Beauty": <Sparkles className="h-6 w-6 text-purple-600" />,
-    "Child Care": <Baby className="h-6 w-6 text-green-600" />,
-    "Elderly Wellness": <Users className="h-6 w-6 text-indigo-600" />,
-    "Energy & Vitality": <Zap className="h-6 w-6 text-emerald-600" />,
-    "Men's Health": <User className="h-6 w-6 text-slate-600" />,
-    "Women's Health": <Heart className="h-6 w-6 text-rose-600" />,
-    "Immunity & Cardiac Health": <HeartPulse className="h-6 w-6 text-red-600" />,
-  };
-
-  // Image mapping
-  const imageMap = {
-    "Weight & Metabolism": "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=200&h=200&fit=crop&crop=center",
-    "Skin & Beauty": "https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=200&h=200&fit=crop&crop=center",
-    "Child Care": "https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=200&h=200&fit=crop&crop=center",
-    "Elderly Wellness": "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=200&h=200&fit=crop&crop=center",
-    "Energy & Vitality": "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=200&h=200&fit=crop&crop=center",
-    "Men's Health": "https://images.unsplash.com/photo-1594824388641-d7cb250d3d6b?w=200&h=200&fit=crop&crop=center",
-    "Women's Health": "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=200&h=200&fit=crop&crop=center",
-    "Immunity & Cardiac Health": "https://images.unsplash.com/photo-1559757175-0eb30cd8c768?w=200&h=200&fit=crop&crop=center",
-  };
+  const { get } = useApi();
 
   // Fetch countries
   useEffect(() => {
     axios
-      .get("http://localhost:3001/api/countries")
+      get('/countries')
       .then((res) => setCountries(res.data.data))
-      .catch((err) => console.error("Error fetching countries:", err));
+      .catch((err) => console.error('Error fetching countries:', err));
   }, []);
 
   // Fetch categories
   useEffect(() => {
     axios
-      .get("http://localhost:3001/api/categories")
+      get('/categories')
       .then((res) => setCategories(res.data.data))
-      .catch((err) => console.error("Error fetching categories:", err));
+      .catch((err) => console.error('Error fetching categories:', err));
   }, []);
 
   // Auto-detect country
   useEffect(() => {
     axios
-      .get("http://localhost:3001/api/products")
+      get('/products')
       .then((res) => setCountry(res.data.country))
-      .catch((err) => console.error("Error detecting country:", err));
+      .catch((err) => console.error('Error detecting country:', err));
   }, []);
 
   const keyPoints = [
     {
       icon: <Award className="h-5 w-5" />,
-      title: "Premium Categories",
-      description: "Beauty, Lifestyle, Wellness, Herbal, and Cozy-Home products with air and water purifiers in select markets."
+      title: 'Premium Categories',
+      description:
+        'Beauty, Lifestyle, Wellness, Herbal, and Cozy-Home products with air and water purifiers in select markets.',
     },
     {
       icon: <Shield className="h-5 w-5" />,
-      title: "Certified Manufacturing",
-      description: "We use leading domestic and foreign GMP certified contract manufacturers for quality assurance."
-    },
-    {
-      icon: <Sparkles className="h-5 w-5" />,
-      title: "Advanced Technology",
-      description: "Utilize high technology and source the finest ingredients for optimal results."
+      title: 'Certified Manufacturing',
+      description:
+        'We use leading domestic and foreign GMP certified contract manufacturers for quality assurance.',
     },
     {
       icon: <Star className="h-5 w-5" />,
-      title: "Research-Driven",
-      description: "Fueled by market trends and the latest scientific research for innovative solutions."
+      title: 'Advanced Technology',
+      description:
+        'Utilize high technology and source the finest ingredients for optimal results.',
     },
     {
       icon: <Check className="h-5 w-5" />,
-      title: "Quality Guaranteed",
-      description: "Quality and satisfaction guaranteed for all products with comprehensive support."
+      title: 'Research-Driven',
+      description:
+        'Fueled by market trends and the latest scientific research for innovative solutions.',
     },
     {
       icon: <Heart className="h-5 w-5" />,
-      title: "Holistic Wellness",
-      description: "Designed for health, beauty, vitality, longevity, and protection in one comprehensive range."
+      title: 'Quality Guaranteed',
+      description:
+        'Quality and satisfaction guaranteed for all products with comprehensive support.',
+    },
+    {
+      icon: <Star className="h-5 w-5" />,
+      title: 'Holistic Wellness',
+      description:
+        'Designed for health, beauty, vitality, longevity, and protection in one comprehensive range.',
     },
   ];
 
@@ -157,7 +123,7 @@ const ProductsSection = () => {
               Premium Quality Products
             </span>
           </motion.div>
-          
+
           <motion.h1
             className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-8 bg-gradient-to-r from-white via-blue-100 to-purple-200 bg-clip-text text-transparent leading-tight"
             variants={itemVariants}
@@ -167,21 +133,21 @@ const ProductsSection = () => {
               Wellness Journey
             </span>
           </motion.h1>
-          
+
           <motion.p
             className="text-lg md:text-xl text-slate-200 mb-10 max-w-4xl mx-auto leading-relaxed font-light"
             variants={itemVariants}
           >
-            Discover premium health & wellness solutions designed to elevate your lifestyle 
-            with cutting-edge science and natural ingredients.
+            Discover premium health & wellness solutions designed to elevate your
+            lifestyle with cutting-edge science and natural ingredients.
           </motion.p>
-          
+
           <motion.div
             className="flex flex-col sm:flex-row justify-center gap-6"
             variants={itemVariants}
           >
             <Button
-              className="bg-white text-blue-950 font-semibold py-6 px-10 rounded-2xl hover:from-blue-700 hover:to-purple-700 shadow-xl border-0 text-lg"
+              className="bg-white text-blue-950 font-semibold py-6 px-10 rounded-2xl hover:bg-blue-100 shadow-xl border-0 text-lg"
               asChild
             >
               <motion.a
@@ -194,7 +160,7 @@ const ProductsSection = () => {
                 <ArrowRight className="h-5 w-5" />
               </motion.a>
             </Button>
-            
+
             <Button
               className="bg-white/10 backdrop-blur-lg text-white border-2 border-white/30 font-semibold py-6 px-10 rounded-2xl hover:bg-white/20 shadow-xl text-lg"
               asChild
@@ -261,17 +227,17 @@ const ProductsSection = () => {
                 Trusted Excellence
               </span>
             </motion.div>
-            
+
             <h2 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-slate-900 via-blue-900 to-purple-900 bg-clip-text text-transparent">
               Why Choose NHT Global?
             </h2>
-            
+
             <p className="text-2xl text-slate-600 max-w-4xl mx-auto leading-relaxed">
-              Experience the difference with our scientifically-backed, premium quality products 
-              designed for modern wellness needs.
+              Experience the difference with our scientifically-backed, premium
+              quality products designed for modern wellness needs.
             </p>
           </div>
-          
+
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <motion.div
               className="space-y-8"
@@ -282,12 +248,13 @@ const ProductsSection = () => {
             >
               <div className="bg-gradient-to-br from-white to-slate-50 rounded-3xl p-8 shadow-lg border border-slate-100">
                 <p className="text-lg text-slate-700 leading-relaxed mb-8 font-medium">
-                  Modern urban lifestyles bring unique challenges: stress, environmental toxins, 
-                  busy schedules, and poor nutrition choices. Our comprehensive product range addresses 
-                  these challenges with innovative, multi-functional solutions that seamlessly integrate 
-                  into your daily routine.
+                  Modern urban lifestyles bring unique challenges: stress,
+                  environmental toxins, busy schedules, and poor nutrition
+                  choices. Our comprehensive product range addresses these
+                  challenges with innovative, multi-functional solutions that
+                  seamlessly integrate into your daily routine.
                 </p>
-                
+
                 <div className="grid grid-cols-1 gap-6">
                   {keyPoints.map((point, index) => (
                     <motion.div
@@ -300,7 +267,7 @@ const ProductsSection = () => {
                       whileHover={{ scale: 1.02 }}
                     >
                       <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center flex-shrink-0 shadow-lg">
-                        {React.cloneElement(point.icon, { className: "h-5 w-5 text-white" })}
+                        {React.cloneElement(point.icon, { className: 'h-5 w-5 text-white' })}
                       </div>
                       <div className="flex-1">
                         <h4 className="font-bold text-slate-900 mb-2 text-lg">{point.title}</h4>
@@ -309,16 +276,16 @@ const ProductsSection = () => {
                     </motion.div>
                   ))}
                 </div>
-                
+
                 <div className="mt-8 p-4 bg-blue-50 rounded-2xl border border-blue-200">
                   <p className="text-sm text-blue-700 italic font-medium">
-                    Note: Product availability may vary by country. Contact us for personalized recommendations 
-                    and purchasing information.
+                    Note: Product availability may vary by country. Contact us for
+                    personalized recommendations and purchasing information.
                   </p>
                 </div>
               </div>
             </motion.div>
-            
+
             <motion.div
               className="relative"
               whileHover={{ scale: 1.02 }}
@@ -334,7 +301,7 @@ const ProductsSection = () => {
                 <img
                   src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=600&h=500&fit=crop"
                   alt="NHT Global Premium Products"
-                  className="w-full h-auto  object-cover transform group-hover:scale-105 transition-transform duration-700"
+                  className="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-700"
                   loading="lazy"
                 />
                 <motion.div
@@ -378,72 +345,65 @@ const ProductsSection = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              <Sparkles className="h-5 w-5 text-purple-600" />
+              <Star className="h-5 w-5 text-purple-600" />
               <span className="text-slate-700 font-semibold">
                 Complete Wellness Solutions
               </span>
             </motion.div>
-            
+
             <h2 className="text-5xl md:text-6xl font-bold mb-6 pb-5 bg-gradient-to-r from-slate-900 via-blue-900 to-purple-900 bg-clip-text text-transparent">
               Explore Our Categories
             </h2>
-            
+
             <p className="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
-              Discover targeted solutions for every aspect of your health and wellness journey.
+              Discover targeted solutions for every aspect of your health and
+              wellness journey.
             </p>
           </div>
-          
-          <motion.div 
+
+          <motion.div
             className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8"
             variants={staggerChildren}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
           >
-            {categories.map((category, index) => (
+            {categories.map((category) => (
               <motion.div
                 key={category.categoryId}
                 className="group bg-white rounded-3xl shadow-lg hover:shadow-2xl border border-slate-100 p-8 flex flex-col items-center transition-all duration-500 cursor-pointer relative overflow-hidden"
                 variants={itemVariants}
                 whileHover={{ y: -12, scale: 1.03 }}
                 onClick={() =>
-                  navigate(
-                    `/products/${encodeURIComponent(category.categoryName)}`,
-                    { state: { country } }
-                  )
+                  navigate(`/products/${createSlug(category.categoryName)}`, { state: { country } })
                 }
               >
-                <div className="absolute  transition-opacity duration-500"></div>
-                
+                <div className="absolute transition-opacity duration-500"></div>
+
                 <div className="relative w-32 h-32 mb-6">
                   <img
-                    src={
-                      imageMap[category.categoryName] ||
-                      category.categoryBanner ||
-                      "https://via.placeholder.com/200"
-                    }
+                    src={category.categoryBanner || 'https://via.placeholder.com/200'}
                     alt={category.categoryName}
                     className="w-full h-full object-cover rounded-2xl transition-transform duration-500 group-hover:scale-110 shadow-md"
                     loading="lazy"
                   />
                   <div className="absolute -bottom-3 -right-3 bg-white p-3 rounded-xl shadow-lg border border-slate-100 group-hover:shadow-xl transition-shadow duration-300">
-                    {iconMap[category.categoryName] || (
-                      <Star className="h-6 w-6 text-blue-600" />
-                    )}
+                    <Star className="h-6 w-6 text-blue-600" />
                   </div>
                 </div>
-                
+
                 <h3 className="text-lg font-bold text-slate-900 text-center mb-4 leading-tight">
                   {category.categoryName}
                 </h3>
-                
+
+                <p className="text-sm text-slate-600 text-center mb-4 line-clamp-2">
+                  {category.description}
+                </p>
+
                 <motion.div
-                  className="flex items-center justify-center gap-2 bg-blue-950  text-white px-6 py-3 rounded-full shadow-lg"
-                 
+                  className="flex items-center justify-center gap-2 bg-blue-950 text-white px-6 py-3 rounded-full shadow-lg"
                 >
-                  <span className="text-sm font-semibold">
-                    Explore Products
-                  </span>
+                  <span className="text-sm font-semibold">Explore Products</span>
                   <ArrowRight className="h-4 w-4" />
                 </motion.div>
               </motion.div>
@@ -462,7 +422,7 @@ const ProductsSection = () => {
       >
         <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1451187580459-43490279c0fa')] bg-cover bg-center opacity-5"></div>
         <div className="absolute inset-0 bg-gradient-to-br from-blue-900/50 to-purple-900/50"></div>
-        
+
         <div className="relative z-10 max-w-5xl mx-auto text-center px-6">
           <motion.div
             className="mb-10"
@@ -475,16 +435,17 @@ const ProductsSection = () => {
               <Heart className="h-12 w-12 text-white" />
             </div>
           </motion.div>
-          
+
           <h2 className="text-4xl md:text-5xl font-bold mb-8 bg-gradient-to-r from-white to-blue-200 bg-clip-text text-transparent">
             Ready to Transform Your Health?
           </h2>
-          
+
           <p className="text-xl text-slate-200 mb-12 max-w-4xl mx-auto leading-relaxed">
-            Join thousands who have already discovered the power of premium wellness products. 
-            Start your journey to better health, beauty, and vitality today.
+            Join thousands who have already discovered the power of premium
+            wellness products. Start your journey to better health, beauty, and
+            vitality today.
           </p>
-          
+
           <div className="flex flex-col sm:flex-row justify-center gap-6">
             <Button
               className="bg-white text-slate-900 font-bold px-10 py-5 rounded-2xl shadow-2xl hover:bg-slate-100 text-lg"
@@ -501,7 +462,7 @@ const ProductsSection = () => {
                 <ArrowRight className="h-6 w-6" />
               </motion.a>
             </Button>
-            
+
             <Button
               className="bg-transparent text-white border-2 border-white/30 font-bold px-10 py-5 rounded-2xl hover:bg-white/10 backdrop-blur-lg text-lg"
               asChild

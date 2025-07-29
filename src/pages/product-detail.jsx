@@ -4,6 +4,7 @@ import { useParams, useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Button } from "@/components/ui/button";
 import { ChevronLeft, Eye, AlertTriangle, Shield, CheckCircle } from "lucide-react";
+import { useApi } from '@/hooks/useApi'; 
 
 // Animation variants
 const staggerChildren = {
@@ -22,7 +23,7 @@ const hoverScale = {
 };
 
 const ProductDetail = () => {
-  const { categoryName, productId } = useParams();
+  const { categoryName, productSlug } = useParams();
   const { state } = useLocation();
   const navigate = useNavigate();
   const [country, setCountry] = useState(state?.country || "US");
@@ -30,20 +31,27 @@ const ProductDetail = () => {
   const [product, setProduct] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
+  const { get } = useApi();
 
   // Fetch countries
   useEffect(() => {
     axios
-      .get("http://localhost:3001/api/countries")
+      get("/countries")
       .then((res) => setCountries(res.data.data))
       .catch((err) => console.error("Error fetching countries:", err));
   }, []);
 
   // Fetch product details
   useEffect(() => {
+    if (!state?.productId) {
+      setError("Invalid product ID.");
+      setIsLoading(false);
+      return;
+    }
+
     setIsLoading(true);
     axios
-      .get(`http://localhost:3001/api/product/${productId}`, {
+      get(`/product/${state.productId}`, {
         params: { country },
       })
       .then((res) => {
@@ -51,11 +59,11 @@ const ProductDetail = () => {
         setIsLoading(false);
       })
       .catch((err) => {
-        setError("Failed to load product details.");
+        setError(err.response?.data?.message || "Failed to load product details.");
         setIsLoading(false);
         console.error("Error fetching product:", err);
       });
-  }, [productId, country]);
+  }, [state?.productId, country]);
 
   if (isLoading) {
     return (
@@ -103,7 +111,6 @@ const ProductDetail = () => {
           animate="visible"
           role="banner"
         >
-
           <div className="flex flex-col gap-4 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
             {product.productBanners.split(",").map((banner, index) => (
               <motion.div
@@ -212,7 +219,6 @@ const ProductDetail = () => {
                   )}
                   <p className="text-base text-blue-950 font-medium">
                     Preferred Customer Price: <span className="text-green-600">{currencySymbol} {product.preferredCustomerPrice.toFixed(2)}</span>
-                    
                   </p>
                 </div>
               </div>
@@ -271,7 +277,6 @@ const ProductDetail = () => {
             {product.directionsForUse && (
               <div className="border-b-2 border-slate-200  p-6 ">
                 <h3 className="text-xl font-bold text-blue-950 mb-3 flex items-center">
-                
                   Directions for Use
                 </h3>
                 <ul className="list-disc pl-5 space-y-2 text-base text-slate-600">
@@ -285,7 +290,6 @@ const ProductDetail = () => {
             {product.cautions && (
               <div className="border-b-2 border-slate-200 p-6 ">
                 <h3 className="text-xl font-bold text-blue-950 mb-3 flex items-center">
-                  
                   Cautions
                 </h3>
                 <ul className="list-disc pl-5 space-y-2 text-base text-slate-600">

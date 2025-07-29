@@ -1,31 +1,27 @@
-import React, { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { useParams, useLocation, useNavigate } from "react-router-dom";
-import axios from "axios";
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { useParams, useLocation, useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import { useApi } from '@/hooks/useApi'; 
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
-import { Button } from "@/components/ui/button";
+} from '@/components/ui/select';
+import { Button } from '@/components/ui/button';
 import {
   ChevronLeft,
   Star,
-  Heart,
   Search,
-  Filter,
   Grid3X3,
   List,
   Eye,
   MapPin,
-  Shield,
-  Award,
-  SlidersHorizontal,
-  ArrowUpDown,
   ArrowRight,
-} from "lucide-react";
+} from 'lucide-react';
+import { createSlug, slugToName } from '@/utils/slugify';
 
 // Animation variants
 const staggerChildren = {
@@ -33,28 +29,19 @@ const staggerChildren = {
   visible: { opacity: 1, transition: { staggerChildren: 0.1 } },
 };
 
+
 const itemVariants = {
   hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
-};
-
-const hoverScale = {
-  hover: { scale: 1.02, y: -2 },
-  tap: { scale: 0.98 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } },
 };
 
 const ProductCard = ({ product, onViewDetails, country }) => {
-  const [isWishlisted, setIsWishlisted] = useState(false);
-  const discountPercent = Math.round(
-    ((product.basePrice - product.yourPrice) / product.basePrice) * 100
-  );
-  const currencySymbol = product.currencySymbol || "$";
+  const currencySymbol = product.currencySymbol || '$';
 
   return (
     <motion.div
       className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border border-slate-100 group cursor-pointer relative"
       variants={itemVariants}
-  
       onClick={() => onViewDetails(product)}
     >
       <div className="relative overflow-hidden">
@@ -82,7 +69,7 @@ const ProductCard = ({ product, onViewDetails, country }) => {
               e.stopPropagation();
               onViewDetails(product);
             }}
-            className=" shadow-lg"
+            className="bg-blue-950 hover:bg-blue-900 text-white shadow-lg"
           >
             <Eye className="w-4 h-4 mr-2" />
             Quick View
@@ -106,25 +93,8 @@ const ProductCard = ({ product, onViewDetails, country }) => {
               {currencySymbol}
               {product.yourPrice.toFixed(2)}
             </span>
-            {/* {product.basePrice > product.yourPrice && (
-              <span className="text-lg text-slate-500 line-through ml-2">
-                {currencySymbol}
-                {product.basePrice.toFixed(2)}
-              </span>
-            )} */}
           </div>
-          {/* <div className="text-sm text-green-600 font-medium">
-            Preferred Price: {currencySymbol}
-            {product.preferredCustomerPrice.toFixed(2)}
-          </div> */}
         </div>
-
-        {/* <div className="mb-4 space-y-1">
-          <div className="flex items-center text-sm text-slate-600">
-            <Shield className="w-4 h-4 mr-2 text-blue-600" />
-            Assured Quality
-          </div>
-        </div> */}
 
         <div className="flex gap-2">
           <Button
@@ -132,7 +102,7 @@ const ProductCard = ({ product, onViewDetails, country }) => {
               e.stopPropagation();
               onViewDetails(product);
             }}
-            className="flex-1 bg-blue-950 hover:bg-blue-900 cursor-pointer  text-white "
+            className="flex-1 bg-blue-950 hover:bg-blue-900 text-white"
           >
             View Details
           </Button>
@@ -146,103 +116,56 @@ const ProductDetails = () => {
   const { categoryName } = useParams();
   const { state } = useLocation();
   const navigate = useNavigate();
-  const [country, setCountry] = useState(state?.country || "US");
+  const [country, setCountry] = useState(state?.country || 'US');
   const [countries, setCountries] = useState([]);
   const [products, setProducts] = useState([]);
-  const [viewMode, setViewMode] = useState("grid");
-  const [sortBy, setSortBy] = useState("name");
-  const [searchTerm, setSearchTerm] = useState("");
-  const [showFilters, setShowFilters] = useState(false);
+  const [categories, setCategories] = useState([]);
+  const [viewMode, setViewMode] = useState('grid');
+  const [searchTerm, setSearchTerm] = useState('');
   const [isLoading, setIsLoading] = useState(true);
-
-  // Category-specific banner data
-  const categoryBannerData = {
-    "Weight & Metabolism": {
-      image:
-        "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=1920&h=1080&fit=crop",
-      title: "Optimize Your Weight & Metabolism",
-      description:
-        "Discover scientifically-backed solutions to support healthy weight management and boost your metabolism.",
-    },
-    "Skin & Beauty": {
-      image:
-        "https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=1920&h=1080&fit=crop",
-      title: "Radiate Beauty from Within",
-      description:
-        "Explore premium skincare and beauty products designed for a radiant, youthful glow.",
-    },
-    "Child Care": {
-      image:
-        "https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=1920&h=1080&fit=crop",
-      title: "Gentle Care for Little Ones",
-      description:
-        "Safe, nurturing products crafted to support the health and wellness of children.",
-    },
-    "Elderly Wellness": {
-      image:
-        "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=1920&h=1080&fit=crop",
-      title: "Support Vitality in Golden Years",
-      description:
-        "Tailored wellness solutions to promote health, mobility, and vitality for seniors.",
-    },
-    "Energy & Vitality": {
-      image:
-        "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=1920&h=1080&fit=crop",
-      title: "Ignite Your Energy & Vitality",
-      description:
-        "Boost your energy levels with products designed to enhance stamina and vitality.",
-    },
-    "Men's Health": {
-      image:
-        "https://images.unsplash.com/photo-1594824388641-d7cb250d3d6b?w=1920&h=1080&fit=crop",
-      title: "Empower Men’s Health",
-      description:
-        "Targeted solutions to support men’s wellness, strength, and vitality.",
-    },
-    "Women's Health": {
-      image:
-        "https://images.unsplash.com/photo-1584466977773-ead6f6d773c8?w=1920&h=1080&fit=crop",
-      title: "Nurture Women’s Wellness",
-      description:
-        "Premium products crafted to support women’s health and hormonal balance.",
-    },
-    "Immunity & Cardiac Health": {
-      image:
-        "https://images.unsplash.com/photo-1559757175-0eb30cd8c768?w=1920&h=1080&fit=crop",
-      title: "Strengthen Your Heart & Immunity",
-      description:
-        "Support your immune system and heart health with our advanced formulas.",
-    },
-  };
+  const { get } = useApi();
+  
 
   // Fetch countries
   useEffect(() => {
     axios
-      .get("http://localhost:3001/api/countries")
+      get('/countries')
       .then((res) => setCountries(res.data.data))
-      .catch((err) => console.error("Error fetching countries:", err));
+      .catch((err) => console.error('Error fetching countries:', err));
+  }, []);
+
+  // Fetch categories
+  useEffect(() => {
+    axios
+      get('/categories')
+      .then((res) => setCategories(res.data.data))
+      .catch((err) => console.error('Error fetching categories:', err));
   }, []);
 
   // Fetch products
   useEffect(() => {
     setIsLoading(true);
+    const originalCategoryName = categories.find(
+      (cat) => createSlug(cat.categoryName) === categoryName
+    )?.categoryName || slugToName(categoryName);
     axios
-      .get("http://localhost:3001/api/products", {
-        params: { country, categoryName: decodeURIComponent(categoryName) },
+      get('/products', {
+        params: { country, categoryName: originalCategoryName },
       })
       .then((res) => {
         setProducts(res.data.data);
         setIsLoading(false);
       })
       .catch((err) => {
-        console.error("Error fetching products:", err);
+        console.error('Error fetching products:', err);
         setIsLoading(false);
       });
-  }, [country, categoryName]);
+  }, [country, categoryName, categories]);
 
   const handleViewDetails = (product) => {
-    navigate(`/products/${encodeURIComponent(categoryName)}/${product.id}`, {
-      state: { country },
+    const productSlug = createSlug(product.productName);
+    navigate(`/products/${categoryName}/${productSlug}`, {
+      state: { country, productId: product.id },
     });
   };
 
@@ -252,25 +175,16 @@ const ProductDetails = () => {
       product.description.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  const sortedProducts = [...filteredProducts].sort((a, b) => {
-    switch (sortBy) {
-      case "price-low":
-        return a.yourPrice - b.yourPrice;
-      case "price-high":
-        return b.yourPrice - a.yourPrice;
-      case "name":
-        return a.productName.localeCompare(b.productName);
-      default:
-        return 0;
-    }
-  });
+  const sortedProducts = [...filteredProducts].sort((a, b) =>
+    a.productName.localeCompare(b.productName)
+  );
 
-  const banner = categoryBannerData[decodeURIComponent(categoryName)] || {
-    image:
-      "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1920&h=1080&fit=crop",
-    title: decodeURIComponent(categoryName),
-    description:
-      "Explore our premium products tailored to your wellness needs.",
+  const currentCategory = categories.find(
+    (cat) => createSlug(cat.categoryName) === categoryName
+  ) || {
+    categoryName: slugToName(categoryName),
+    description: 'Explore our premium products tailored to your wellness needs.',
+    categoryBanner: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1920&h=1080&fit=crop',
   };
 
   if (isLoading) {
@@ -297,7 +211,7 @@ const ProductDetails = () => {
         <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-blue-900 to-purple-900"></div>
         <div
           className="absolute inset-0 bg-cover bg-center opacity-10"
-          style={{ backgroundImage: `url(${banner.image})` }}
+          style={{ backgroundImage: `url(${currentCategory.categoryBanner})` }}
         ></div>
 
         <motion.div
@@ -312,7 +226,7 @@ const ProductDetails = () => {
           >
             <Star className="h-4 w-4 text-blue-300" />
             <span className="text-blue-200 font-semibold text-sm">
-              Premium {decodeURIComponent(categoryName)}
+              Premium {currentCategory.categoryName}
             </span>
           </motion.div>
 
@@ -320,14 +234,14 @@ const ProductDetails = () => {
             className="text-5xl sm:text-6xl md:text-7xl font-bold mb-8 bg-gradient-to-r from-white via-blue-100 to-purple-200 bg-clip-text text-transparent leading-tight"
             variants={itemVariants}
           >
-            {banner.title}
+            {currentCategory.categoryName}
           </motion.h1>
 
           <motion.p
             className="text-xl md:text-2xl text-slate-200 mb-10 max-w-4xl mx-auto leading-relaxed font-light"
             variants={itemVariants}
           >
-            {banner.description}
+            {currentCategory.description}
           </motion.p>
 
           <motion.div
@@ -335,7 +249,7 @@ const ProductDetails = () => {
             variants={itemVariants}
           >
             <Button
-              className="bg-white text-blue-950 font-semibold py-6 px-10 rounded-2xl  shadow-xl border-0 text-lg"
+              className="bg-white text-blue-950 font-semibold py-6 px-10 rounded-2xl shadow-xl border-0 text-lg"
               asChild
             >
               <motion.a
@@ -350,7 +264,7 @@ const ProductDetails = () => {
             </Button>
 
             <Button
-              className="bg-white/10 backdrop-blur-lg text-white border-2 border-white/30 font-semibold py-6 px-10  rounded-2xl hover:bg-white/20 shadow-xl text-lg"
+              className="bg-white/10 backdrop-blur-lg text-white border-2 border-white/30 font-semibold py-6 px-10 rounded-2xl hover:bg-white/20 shadow-xl text-lg"
               asChild
             >
               <motion.a
@@ -374,7 +288,7 @@ const ProductDetails = () => {
             <div className="flex items-center gap-4">
               <Button
                 variant="ghost"
-                onClick={() => navigate("/products")}
+                onClick={() => navigate('/products')}
                 className="text-slate-600 hover:text-slate-900"
               >
                 <ChevronLeft className="w-5 h-5 mr-1" />
@@ -382,7 +296,7 @@ const ProductDetails = () => {
               </Button>
               <div>
                 <h2 className="text-2xl lg:text-3xl font-bold text-slate-900">
-                  {decodeURIComponent(categoryName)}
+                  {currentCategory.categoryName}
                 </h2>
               </div>
             </div>
@@ -408,7 +322,7 @@ const ProductDetails = () => {
 
       <div className="max-w-7xl mx-auto px-4 py-6" id="products">
         {/* Search and Filters */}
-        {/* <motion.div
+        <motion.div
           className="bg-white rounded-2xl shadow-lg p-4 mb-6 border border-slate-100"
           variants={itemVariants}
           initial="hidden"
@@ -427,46 +341,30 @@ const ProductDetails = () => {
             </div>
 
             <div className="flex items-center gap-3">
-              <Select value={sortBy} onValueChange={setSortBy}>
-                <SelectTrigger className="w-[180px] bg-white border-slate-200 rounded-full">
-                  <ArrowUpDown className="w-4 h-4 mr-2 text-black" />
-                  <SelectValue placeholder="Sort by" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="name">Name A-Z</SelectItem>
-                  <SelectItem value="price-low">Price: Low to High</SelectItem>
-                  <SelectItem value="price-high">Price: High to Low</SelectItem>
-                </SelectContent>
-              </Select>
-
               <div className="flex border border-slate-200 rounded-full">
                 <Button
-                  variant={viewMode === "grid" ? "default" : "ghost"}
+                  variant={viewMode === 'grid' ? 'default' : 'ghost'}
                   size="sm"
-                  onClick={() => setViewMode("grid")}
-                  className="rounded-r-none bg-black text-white "
+                  onClick={() => setViewMode('grid')}
+                  className="rounded-r-none bg-blue-950 text-white hover:bg-blue-900"
                 >
                   <Grid3X3 className="w-4 h-4" />
                 </Button>
                 <Button
-                  variant={viewMode === "list" ? "default" : "ghost"}
+                  variant={viewMode === 'list' ? 'default' : 'ghost'}
                   size="sm"
-                  onClick={() => setViewMode("list")}
-                  className="rounded-l-none bg-gradient-to-r from-blue-600 to-purple-600 text-white hover:from-blue-700 hover:to-purple-700"
+                  onClick={() => setViewMode('list')}
+                  className="rounded-l-none bg-blue-950 text-white hover:bg-blue-900"
                 >
                   <List className="w-4 h-4" />
                 </Button>
               </div>
             </div>
           </div>
-        </motion.div> */}
+        </motion.div>
 
         {/* Products Grid/List */}
-        <motion.div
-          variants={staggerChildren}
-          initial="hidden"
-          animate="visible"
-        >
+        <motion.div variants={staggerChildren} initial="hidden" animate="visible">
           {sortedProducts.length === 0 ? (
             <motion.div className="text-center py-16" variants={itemVariants}>
               <div className="w-24 h-24 mx-auto mb-4 bg-slate-100 rounded-full flex items-center justify-center">
@@ -476,16 +374,15 @@ const ProductDetails = () => {
                 No products found
               </h3>
               <p className="text-slate-600">
-                Try adjusting your search or filters to find what you're looking
-                for.
+                Try adjusting your search to find what you're looking for.
               </p>
             </motion.div>
           ) : (
             <div
               className={`grid gap-6 ${
-                viewMode === "grid"
-                  ? "grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
-                  : "grid-cols-1"
+                viewMode === 'grid'
+                  ? 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'
+                  : 'grid-cols-1'
               }`}
             >
               <AnimatePresence>
