@@ -4,7 +4,7 @@ import { useParams, useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Button } from "@/components/ui/button";
 import { ChevronLeft, Eye, AlertTriangle, Shield, CheckCircle } from "lucide-react";
-import { useApi } from '@/hooks/useApi'; 
+import { useApi } from "hooks/useApi";
 
 // Animation variants
 const staggerChildren = {

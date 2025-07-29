@@ -12,7 +12,7 @@ import {
 import { Button } from '@/components/ui/button';
 import { Star, Play, ArrowRight, Check, Shield, Award, Heart, Mail, ExternalLink } from 'lucide-react';
 import { createSlug } from '@/utils/slugify';
-import { useApi } from '@/hooks/useApi'; 
+import { useApi } from 'hooks/useApi';
 
 // Animation variants
 const staggerChildren = {
