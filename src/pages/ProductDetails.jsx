@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useParams, useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { useApi } from 'hooks/useApi';
+import { useApi } from '@/hooks/useApi';
 import {
   Select,
   SelectContent,
