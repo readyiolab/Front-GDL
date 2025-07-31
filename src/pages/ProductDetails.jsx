@@ -29,7 +29,6 @@ const staggerChildren = {
   visible: { opacity: 1, transition: { staggerChildren: 0.1 } },
 };
 
-
 const itemVariants = {
   hidden: { opacity: 0, y: 20 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } },
@@ -124,7 +123,6 @@ const ProductDetails = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [isLoading, setIsLoading] = useState(true);
   const { get } = useApi();
-  
 
   // Fetch countries
   useEffect(() => {
@@ -143,7 +141,7 @@ const ProductDetails = () => {
   // Fetch products
   useEffect(() => {
     setIsLoading(true);
-    const originalCategoryName = memoizedCategories.find(
+    const originalCategoryName = categories.find(
       (cat) => createSlug(cat.categoryName) === categoryName
     )?.categoryName || slugToName(categoryName);
     get('/products', {
@@ -157,7 +155,7 @@ const ProductDetails = () => {
         console.error('Error fetching products:', err);
         setIsLoading(false);
       });
-  }, [country, categoryName, memoizedCategories, get]);
+  }, [country, categoryName, categories, get]);
 
   const handleViewDetails = (product) => {
     const productSlug = createSlug(product.productName);

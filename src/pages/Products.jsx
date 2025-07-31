@@ -30,11 +30,12 @@ const ProductsSection = () => {
   const [countries, setCountries] = useState([]);
   const [categories, setCategories] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [isLoadingCountries, setIsLoadingCountries] = useState(false);
+  const [isLoadingCategories, setIsLoadingCategories] = useState(false);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
   const { get } = useApi();
 
-  // Fetch countries
   // Fetch countries
   useEffect(() => {
     setIsLoadingCountries(true);
@@ -65,7 +66,7 @@ const ProductsSection = () => {
       });
   }, [get]);
 
-  // Auto-detect country
+  // Auto-detect country (commented out as in original code)
   // useEffect(() => {
   //   get('/products')
   //     .then((res) => {

@@ -30,6 +30,7 @@ const ProductDetail = () => {
   const [countries, setCountries] = useState([]);
   const [product, setProduct] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [isLoadingCountries, setIsLoadingCountries] = useState(false); // Added state
   const [error, setError] = useState(null);
   const { get } = useApi();
 
