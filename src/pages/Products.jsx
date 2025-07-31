@@ -29,32 +29,51 @@ const ProductsSection = () => {
   const [country, setCountry] = useState('US');
   const [countries, setCountries] = useState([]);
   const [categories, setCategories] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
   const navigate = useNavigate();
   const { get } = useApi();
 
   // Fetch countries
   useEffect(() => {
-    axios
-      get('/countries')
-      .then((res) => setCountries(res.data.data))
-      .catch((err) => console.error('Error fetching countries:', err));
-  }, []);
+    setIsLoading(true);
+    get('/countries')
+      .then((res) => {
+        setCountries(res.data.data || []);
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        console.error('Error fetching countries:', err);
+        setError('Failed to load countries. Please try again later.');
+        setIsLoading(false);
+      });
+  }, [get]);
 
   // Fetch categories
   useEffect(() => {
-    axios
-      get('/categories')
-      .then((res) => setCategories(res.data.data))
-      .catch((err) => console.error('Error fetching categories:', err));
-  }, []);
+    setIsLoading(true);
+    get('/categories')
+      .then((res) => {
+        setCategories(res.data.data || []);
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        console.error('Error fetching categories:', err);
+        setError('Failed to load categories. Please try again later.');
+        setIsLoading(false);
+      });
+  }, [get]);
 
   // Auto-detect country
   useEffect(() => {
-    axios
-      get('/products')
-      .then((res) => setCountry(res.data.country))
-      .catch((err) => console.error('Error detecting country:', err));
-  }, []);
+    get('/products')
+      .then((res) => {
+        setCountry(res.data.country || 'US');
+      })
+      .catch((err) => {
+        console.error('Error detecting country:', err);
+      });
+  }, [get]);
 
   const keyPoints = [
     {
@@ -361,54 +380,62 @@ const ProductsSection = () => {
             </p>
           </div>
 
-          <motion.div
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8"
-            variants={staggerChildren}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-          >
-            {categories.map((category) => (
-              <motion.div
-                key={category.categoryId}
-                className="group bg-white rounded-3xl shadow-lg hover:shadow-2xl border border-slate-100 p-8 flex flex-col items-center transition-all duration-500 cursor-pointer relative overflow-hidden"
-                variants={itemVariants}
-                whileHover={{ y: -12, scale: 1.03 }}
-                onClick={() =>
-                  navigate(`/products/${createSlug(category.categoryName)}`, { state: { country } })
-                }
-              >
-                <div className="absolute transition-opacity duration-500"></div>
-
-                <div className="relative w-32 h-32 mb-6">
-                  <img
-                    src={category.categoryBanner || 'https://via.placeholder.com/200'}
-                    alt={category.categoryName}
-                    className="w-full h-full object-cover rounded-2xl transition-transform duration-500 group-hover:scale-110 shadow-md"
-                    loading="lazy"
-                  />
-                  <div className="absolute -bottom-3 -right-3 bg-white p-3 rounded-xl shadow-lg border border-slate-100 group-hover:shadow-xl transition-shadow duration-300">
-                    <Star className="h-6 w-6 text-blue-600" />
-                  </div>
-                </div>
-
-                <h3 className="text-lg font-bold text-slate-900 text-center mb-4 leading-tight">
-                  {category.categoryName}
-                </h3>
-
-                <p className="text-sm text-slate-600 text-center mb-4 line-clamp-2">
-                  {category.description}
-                </p>
-
+          {isLoading ? (
+            <div className="text-center text-slate-600">Loading categories...</div>
+          ) : error ? (
+            <div className="text-center text-red-600">{error}</div>
+          ) : categories.length === 0 ? (
+            <div className="text-center text-slate-600">No categories available.</div>
+          ) : (
+            <motion.div
+              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8"
+              variants={staggerChildren}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+            >
+              {categories.map((category) => (
                 <motion.div
-                  className="flex items-center justify-center gap-2 bg-blue-950 text-white px-6 py-3 rounded-full shadow-lg"
+                  key={category.categoryId}
+                  className="group bg-white rounded-3xl shadow-lg hover:shadow-2xl border border-slate-100 p-8 flex flex-col items-center transition-all duration-500 cursor-pointer relative overflow-hidden"
+                  variants={itemVariants}
+                  whileHover={{ y: -12, scale: 1.03 }}
+                  onClick={() =>
+                    navigate(`/products/${createSlug(category.categoryName)}`, { state: { country } })
+                  }
                 >
-                  <span className="text-sm font-semibold">Explore Products</span>
-                  <ArrowRight className="h-4 w-4" />
+                  <div className="absolute transition-opacity duration-500"></div>
+
+                  <div className="relative w-32 h-32 mb-6">
+                    <img
+                      src={category.categoryBanner || 'https://via.placeholder.com/200'}
+                      alt={category.categoryName}
+                      className="w-full h-full object-cover rounded-2xl transition-transform duration-500 group-hover:scale-110 shadow-md"
+                      loading="lazy"
+                    />
+                    <div className="absolute -bottom-3 -right-3 bg-white p-3 rounded-xl shadow-lg border border-slate-100 group-hover:shadow-xl transition-shadow duration-300">
+                      <Star className="h-6 w-6 text-blue-600" />
+                    </div>
+                  </div>
+
+                  <h3 className="text-lg font-bold text-slate-900 text-center mb-4 leading-tight">
+                    {category.categoryName}
+                  </h3>
+
+                  <p className="text-sm text-slate-600 text-center mb-4 line-clamp-2">
+                    {category.description}
+                  </p>
+
+                  <motion.div
+                    className="flex items-center justify-center gap-2 bg-blue-950 text-white px-6 py-3 rounded-full shadow-lg"
+                  >
+                    <span className="text-sm font-semibold">Explore Products</span>
+                    <ArrowRight className="h-4 w-4" />
+                  </motion.div>
                 </motion.div>
-              </motion.div>
-            ))}
-          </motion.div>
+              ))}
+            </motion.div>
+          )}
         </div>
       </motion.section>
 
