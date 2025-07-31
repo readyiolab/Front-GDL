@@ -35,35 +35,41 @@ const ProductDetail = () => {
 
   // Fetch countries
   useEffect(() => {
-    axios
-      get("/countries")
-      .then((res) => setCountries(res.data.data))
-      .catch((err) => console.error("Error fetching countries:", err));
-  }, []);
+    setIsLoadingCountries(true);
+    get('/countries')
+      .then((res) => {
+        setCountries(res.data.data || []);
+        setIsLoadingCountries(false);
+      })
+      .catch((err) => {
+        console.error('Error fetching countries:', err);
+        setError('Failed to load countries.');
+        setIsLoadingCountries(false);
+      });
+  }, [get]);
 
   // Fetch product details
   useEffect(() => {
     if (!state?.productId) {
-      setError("Invalid product ID.");
+      setError('Invalid product ID.');
       setIsLoading(false);
       return;
     }
 
     setIsLoading(true);
-    axios
-      get(`/product/${state.productId}`, {
-        params: { country },
-      })
+    get(`/product/${state.productId}`, {
+      params: { country },
+    })
       .then((res) => {
         setProduct(res.data.data);
         setIsLoading(false);
       })
       .catch((err) => {
-        setError(err.response?.data?.message || "Failed to load product details.");
+        setError(err.response?.data?.message || 'Failed to load product details.');
         setIsLoading(false);
-        console.error("Error fetching product:", err);
+        console.error('Error fetching product:', err);
       });
-  }, [state?.productId, country]);
+  }, [state?.productId, country, get]);
 
   if (isLoading) {
     return (

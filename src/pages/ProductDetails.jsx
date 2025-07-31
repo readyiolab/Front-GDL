@@ -128,39 +128,36 @@ const ProductDetails = () => {
 
   // Fetch countries
   useEffect(() => {
-    axios
-      get('/countries')
-      .then((res) => setCountries(res.data.data))
+    get('/countries')
+      .then((res) => setCountries(res.data.data || []))
       .catch((err) => console.error('Error fetching countries:', err));
-  }, []);
+  }, [get]);
 
   // Fetch categories
   useEffect(() => {
-    axios
-      get('/categories')
-      .then((res) => setCategories(res.data.data))
+    get('/categories')
+      .then((res) => setCategories(res.data.data || []))
       .catch((err) => console.error('Error fetching categories:', err));
-  }, []);
+  }, [get]);
 
   // Fetch products
   useEffect(() => {
     setIsLoading(true);
-    const originalCategoryName = categories.find(
+    const originalCategoryName = memoizedCategories.find(
       (cat) => createSlug(cat.categoryName) === categoryName
     )?.categoryName || slugToName(categoryName);
-    axios
-      get('/products', {
-        params: { country, categoryName: originalCategoryName },
-      })
+    get('/products', {
+      params: { country, categoryName: originalCategoryName },
+    })
       .then((res) => {
-        setProducts(res.data.data);
+        setProducts(res.data.data || []);
         setIsLoading(false);
       })
       .catch((err) => {
         console.error('Error fetching products:', err);
         setIsLoading(false);
       });
-  }, [country, categoryName, categories]);
+  }, [country, categoryName, memoizedCategories, get]);
 
   const handleViewDetails = (product) => {
     const productSlug = createSlug(product.productName);

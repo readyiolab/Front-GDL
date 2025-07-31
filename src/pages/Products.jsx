@@ -35,45 +35,46 @@ const ProductsSection = () => {
   const { get } = useApi();
 
   // Fetch countries
+  // Fetch countries
   useEffect(() => {
-    setIsLoading(true);
+    setIsLoadingCountries(true);
     get('/countries')
       .then((res) => {
         setCountries(res.data.data || []);
-        setIsLoading(false);
+        setIsLoadingCountries(false);
       })
       .catch((err) => {
         console.error('Error fetching countries:', err);
         setError('Failed to load countries. Please try again later.');
-        setIsLoading(false);
+        setIsLoadingCountries(false);
       });
   }, [get]);
 
   // Fetch categories
   useEffect(() => {
-    setIsLoading(true);
+    setIsLoadingCategories(true);
     get('/categories')
       .then((res) => {
         setCategories(res.data.data || []);
-        setIsLoading(false);
+        setIsLoadingCategories(false);
       })
       .catch((err) => {
         console.error('Error fetching categories:', err);
         setError('Failed to load categories. Please try again later.');
-        setIsLoading(false);
+        setIsLoadingCategories(false);
       });
   }, [get]);
 
   // Auto-detect country
-  useEffect(() => {
-    get('/products')
-      .then((res) => {
-        setCountry(res.data.country || 'US');
-      })
-      .catch((err) => {
-        console.error('Error detecting country:', err);
-      });
-  }, [get]);
+  // useEffect(() => {
+  //   get('/products')
+  //     .then((res) => {
+  //       setCountry(res.data.country || 'US');
+  //     })
+  //     .catch((err) => {
+  //       console.error('Error detecting country:', err);
+  //     });
+  // }, [get]);
 
   const keyPoints = [
     {
