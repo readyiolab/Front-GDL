@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useParams, useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { useApi } from '@/hooks/useApi';
 import {
   Select,
   SelectContent,
@@ -122,40 +121,70 @@ const ProductDetails = () => {
   const [viewMode, setViewMode] = useState('grid');
   const [searchTerm, setSearchTerm] = useState('');
   const [isLoading, setIsLoading] = useState(true);
-  const { get } = useApi();
+  const [error, setError] = useState(null);
 
-  // Fetch countries
-  useEffect(() => {
-    get('/countries')
-      .then((res) => setCountries(res.data.data || []))
-      .catch((err) => console.error('Error fetching countries:', err));
-  }, [get]);
+  // Axios instance configuration
+  const axiosInstance = axios.create({
+    baseURL: import.meta.env.VITE_API_URL,
+    withCredentials: true,
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
 
-  // Fetch categories
+  // Fetch countries, categories, and products
   useEffect(() => {
-    get('/categories')
-      .then((res) => setCategories(res.data.data || []))
-      .catch((err) => console.error('Error fetching categories:', err));
-  }, [get]);
+    let isMounted = true;
+    const controller = new AbortController();
 
-  // Fetch products
-  useEffect(() => {
-    setIsLoading(true);
-    const originalCategoryName = categories.find(
-      (cat) => createSlug(cat.categoryName) === categoryName
-    )?.categoryName || slugToName(categoryName);
-    get('/products', {
-      params: { country, categoryName: originalCategoryName },
-    })
-      .then((res) => {
-        setProducts(res.data.data || []);
-        setIsLoading(false);
-      })
-      .catch((err) => {
-        console.error('Error fetching products:', err);
-        setIsLoading(false);
-      });
-  }, [country, categoryName, categories, get]);
+    const fetchData = async () => {
+      setIsLoading(true);
+      setError(null);
+      try {
+        // Fetch countries and categories in parallel
+        const [countriesRes, categoriesRes] = await Promise.all([
+          axiosInstance.get('/countries', { signal: controller.signal }),
+          axiosInstance.get('/categories', { signal: controller.signal }),
+        ]);
+
+        if (!isMounted) return;
+
+        const fetchedCountries = countriesRes.data.data || [];
+        const fetchedCategories = categoriesRes.data.data || [];
+        setCountries(fetchedCountries);
+        setCategories(fetchedCategories);
+
+        // Find original category name
+        const originalCategoryName =
+          fetchedCategories.find((cat) => createSlug(cat.categoryName) === categoryName)?.categoryName ||
+          slugToName(categoryName);
+
+        // Fetch products
+        const productsRes = await axiosInstance.get('/products', {
+          params: { country, categoryName: originalCategoryName },
+          signal: controller.signal,
+        });
+
+        if (isMounted) {
+          setProducts(productsRes.data.data || []);
+          setIsLoading(false);
+        }
+      } catch (err) {
+        if (isMounted && !axios.isCancel(err)) {
+          console.error('Error fetching data:', err);
+          setError('Failed to load data. Please try again later.');
+          setIsLoading(false);
+        }
+      }
+    };
+
+    fetchData();
+
+    return () => {
+      isMounted = false;
+      controller.abort(); // Cancel requests on unmount
+    };
+  }, [country, categoryName]); // Dependencies: country and categoryName
 
   const handleViewDetails = (product) => {
     const productSlug = createSlug(product.productName);

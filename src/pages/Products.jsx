@@ -12,7 +12,6 @@ import {
 import { Button } from '@/components/ui/button';
 import { Star, Play, ArrowRight, Check, Shield, Award, Heart, Mail, ExternalLink } from 'lucide-react';
 import { createSlug } from '@/utils/slugify';
-import { useApi } from '@/hooks/useApi';
 
 // Animation variants
 const staggerChildren = {
@@ -30,53 +29,55 @@ const ProductsSection = () => {
   const [countries, setCountries] = useState([]);
   const [categories, setCategories] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [isLoadingCountries, setIsLoadingCountries] = useState(false);
-  const [isLoadingCategories, setIsLoadingCategories] = useState(false);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
-  const { get } = useApi();
 
-  // Fetch countries
+  // Axios instance configuration
+  const axiosInstance = axios.create({
+    baseURL: import.meta.env.VITE_API_URL,
+    withCredentials: true,
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+
+  // Fetch countries and categories
   useEffect(() => {
-    setIsLoadingCountries(true);
-    get('/countries')
-      .then((res) => {
-        setCountries(res.data.data || []);
-        setIsLoadingCountries(false);
-      })
-      .catch((err) => {
-        console.error('Error fetching countries:', err);
-        setError('Failed to load countries. Please try again later.');
-        setIsLoadingCountries(false);
-      });
-  }, [get]);
+    let isMounted = true;
+    const controller = new AbortController();
 
-  // Fetch categories
-  useEffect(() => {
-    setIsLoadingCategories(true);
-    get('/categories')
-      .then((res) => {
-        setCategories(res.data.data || []);
-        setIsLoadingCategories(false);
-      })
-      .catch((err) => {
-        console.error('Error fetching categories:', err);
-        setError('Failed to load categories. Please try again later.');
-        setIsLoadingCategories(false);
-      });
-  }, [get]);
+    const fetchData = async () => {
+      setIsLoading(true);
+      try {
+        // Fetch countries and categories in parallel
+        const [countriesRes, categoriesRes] = await Promise.all([
+          axiosInstance.get('/countries', { signal: controller.signal }),
+          axiosInstance.get('/categories', { signal: controller.signal }),
+        ]);
 
-  // Auto-detect country (commented out as in original code)
-  // useEffect(() => {
-  //   get('/products')
-  //     .then((res) => {
-  //       setCountry(res.data.country || 'US');
-  //     })
-  //     .catch((err) => {
-  //       console.error('Error detecting country:', err);
-  //     });
-  // }, [get]);
+        if (isMounted) {
+          setCountries(countriesRes.data.data || []);
+          setCategories(categoriesRes.data.data || []);
+          setIsLoading(false);
+        }
+      } catch (err) {
+        if (isMounted && !axios.isCancel(err)) {
+          console.error('Error fetching data:', err);
+          setError('Failed to load data. Please try again later.');
+          setIsLoading(false);
+        }
+      }
+    };
 
+    fetchData();
+
+    return () => {
+      isMounted = false;
+      controller.abort(); // Cancel requests on unmount
+    };
+  }, []); // Empty dependencies to run only once on mount
+
+  // Key points data
   const keyPoints = [
     {
       icon: <Award className="h-5 w-5" />,

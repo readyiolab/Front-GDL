@@ -4,7 +4,6 @@ import { useParams, useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Button } from "@/components/ui/button";
 import { ChevronLeft, Eye, AlertTriangle, Shield, CheckCircle } from "lucide-react";
-import { useApi } from '@/hooks/useApi';
 
 // Animation variants
 const staggerChildren = {
@@ -30,47 +29,61 @@ const ProductDetail = () => {
   const [countries, setCountries] = useState([]);
   const [product, setProduct] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
-  const [isLoadingCountries, setIsLoadingCountries] = useState(false); // Added state
   const [error, setError] = useState(null);
-  const { get } = useApi();
 
-  // Fetch countries
+  // Axios instance configuration
+  const axiosInstance = axios.create({
+    baseURL: import.meta.env.VITE_API_URL,
+    withCredentials: true,
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+
+  // Fetch countries and product details
   useEffect(() => {
-    setIsLoadingCountries(true);
-    get('/countries')
-      .then((res) => {
-        setCountries(res.data.data || []);
-        setIsLoadingCountries(false);
-      })
-      .catch((err) => {
-        console.error('Error fetching countries:', err);
-        setError('Failed to load countries.');
-        setIsLoadingCountries(false);
-      });
-  }, [get]);
+    let isMounted = true;
+    const controller = new AbortController();
 
-  // Fetch product details
-  useEffect(() => {
-    if (!state?.productId) {
-      setError('Invalid product ID.');
-      setIsLoading(false);
-      return;
-    }
+    const fetchData = async () => {
+      setIsLoading(true);
+      setError(null);
 
-    setIsLoading(true);
-    get(`/product/${state.productId}`, {
-      params: { country },
-    })
-      .then((res) => {
-        setProduct(res.data.data);
-        setIsLoading(false);
-      })
-      .catch((err) => {
-        setError(err.response?.data?.message || 'Failed to load product details.');
-        setIsLoading(false);
-        console.error('Error fetching product:', err);
-      });
-  }, [state?.productId, country, get]);
+      try {
+        if (!state?.productId) {
+          throw new Error('Invalid product ID.');
+        }
+
+        // Fetch countries and product in parallel
+        const [countriesRes, productRes] = await Promise.all([
+          axiosInstance.get('/countries', { signal: controller.signal }),
+          axiosInstance.get(`/product/${state.productId}`, {
+            params: { country },
+            signal: controller.signal,
+          }),
+        ]);
+
+        if (isMounted) {
+          setCountries(countriesRes.data.data || []);
+          setProduct(productRes.data.data);
+          setIsLoading(false);
+        }
+      } catch (err) {
+        if (isMounted && !axios.isCancel(err)) {
+          console.error('Error fetching data:', err);
+          setError(err.message || 'Failed to load product details.');
+          setIsLoading(false);
+        }
+      }
+    };
+
+    fetchData();
+
+    return () => {
+      isMounted = false;
+      controller.abort(); // Cancel requests on unmount
+    };
+  }, [state?.productId, country]); // Dependencies: productId and country
 
   if (isLoading) {
     return (
@@ -194,7 +207,7 @@ const ProductDetail = () => {
                   <img
                     src={product.productImage}
                     alt={product.productName}
-                    className="w-full h-64 sm:h-80 lg:h-96 object-contain rounded-2xl shadow-xl border border-slate-200 "
+                    className="w-full h-64 sm:h-80 lg:h-96 object-contain rounded-2xl shadow-xl border border-slate-200"
                     loading="lazy"
                   />
                 ) : (
@@ -214,7 +227,7 @@ const ProductDetail = () => {
                 )} */}
               </div>
 
-              <div className=" p-6 ">
+              <div className="p-6">
                 <div className="space-y-3">
                   <p className="text-xl font-bold text-blue-950">
                     Your Price: {currencySymbol}{product.yourPrice.toFixed(2)}
@@ -225,7 +238,7 @@ const ProductDetail = () => {
                     </p>
                   )}
                   <p className="text-base text-blue-950 font-medium">
-                    Preferred Customer Price: <span className="text-green-600">{currencySymbol} {product.preferredCustomerPrice.toFixed(2)}</span>
+                    Preferred Customer Price: <span className="text-green-600">{currencySymbol}{product.preferredCustomerPrice.toFixed(2)}</span>
                   </p>
                 </div>
               </div>
@@ -234,20 +247,20 @@ const ProductDetail = () => {
 
           {/* Right: Scrollable Detailed Information */}
           <motion.div className="lg:w-1/2 space-y-6" variants={itemVariants}>
-            <div className=" rounded-2xl  p-6 ">
+            <div className="rounded-2xl p-6">
               <h3 className="text-xl font-bold text-blue-950 mb-3">Description</h3>
               <p className="text-base text-slate-600">{product.description}</p>
             </div>
 
             {product.fullDescription && (
-              <div className="p-6 border-b-2 border-slate-200 ">
+              <div className="p-6 border-b-2 border-slate-200">
                 <h3 className="text-xl font-bold text-blue-950 mb-3">Full Description</h3>
                 <p className="text-base text-slate-600">{product.fullDescription}</p>
               </div>
             )}
 
             {product.keyIngredients && (
-              <div className="border-b-2 border-slate-200 p-6 0">
+              <div className="border-b-2 border-slate-200 p-6">
                 <h3 className="text-xl font-bold text-blue-950 mb-3">Key Ingredients</h3>
                 <ul className="list-disc pl-5 space-y-2 text-base text-slate-600">
                   {parseField(product.keyIngredients).map((ingredient, index) => (
@@ -258,7 +271,7 @@ const ProductDetail = () => {
             )}
 
             {product.keyBenefits && (
-              <div className=" p-6  border-b-2 border-slate-200">
+              <div className="p-6 border-b-2 border-slate-200">
                 <h3 className="text-xl font-bold text-blue-950 mb-3">Key Benefits</h3>
                 <ul className="list-disc pl-5 space-y-2 text-base text-slate-600">
                   {parseField(product.keyBenefits).map((benefit, index) => (
@@ -269,7 +282,7 @@ const ProductDetail = () => {
             )}
 
             {product.patentsAndCertifications && (
-              <div className="border-b-2 border-slate-200  p-6 ">
+              <div className="border-b-2 border-slate-200 p-6">
                 <h3 className="text-xl font-bold text-blue-950 mb-3">
                   Patents & Certifications
                 </h3>
@@ -282,7 +295,7 @@ const ProductDetail = () => {
             )}
 
             {product.directionsForUse && (
-              <div className="border-b-2 border-slate-200  p-6 ">
+              <div className="border-b-2 border-slate-200 p-6">
                 <h3 className="text-xl font-bold text-blue-950 mb-3 flex items-center">
                   Directions for Use
                 </h3>
@@ -295,7 +308,7 @@ const ProductDetail = () => {
             )}
 
             {product.cautions && (
-              <div className="border-b-2 border-slate-200 p-6 ">
+              <div className="border-b-2 border-slate-200 p-6">
                 <h3 className="text-xl font-bold text-blue-950 mb-3 flex items-center">
                   Cautions
                 </h3>
@@ -308,7 +321,7 @@ const ProductDetail = () => {
             )}
 
             {product.allergyInfo && (
-              <div className="border-b-2 border-slate-200 p-6 ">
+              <div className="border-b-2 border-slate-200 p-6">
                 <h3 className="text-xl font-bold text-blue-950 mb-3 flex items-center">
                   <AlertTriangle className="w-5 h-5 mr-2 text-yellow-500" />
                   Allergy Information
@@ -328,7 +341,7 @@ const ProductDetail = () => {
             )}
 
             {product.fdaDisclaimer && (
-              <div className="border-b-2 border-slate-200 p-6 ">
+              <div className="border-b-2 border-slate-200 p-6">
                 <h3 className="text-xl font-bold text-blue-950 mb-3">FDA Disclaimer</h3>
                 <p className="text-base text-slate-600 italic">{product.fdaDisclaimer}</p>
               </div>
