@@ -47,16 +47,16 @@ const ProductCard = ({ product, onViewDetails, country }) => {
           <img
             src={product.productImage}
             alt={product.productName}
-            className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500"
+            className="w-full h-48 sm:h-56 lg:h-64 object-cover group-hover:scale-105 transition-transform duration-500"
             loading="lazy"
           />
         ) : (
-          <div className="w-full h-64 bg-gradient-to-br from-slate-100 to-blue-50 flex items-center justify-center">
+          <div className="w-full h-48 sm:h-56 lg:h-64 bg-gradient-to-br from-slate-100 to-blue-50 flex items-center justify-center">
             <div className="text-slate-400 text-center">
-              <div className="w-16 h-16 mx-auto mb-2 bg-slate-200 rounded-full flex items-center justify-center">
-                <Eye className="w-8 h-8" />
+              <div className="w-12 sm:w-16 h-12 sm:h-16 mx-auto mb-2 bg-slate-200 rounded-full flex items-center justify-center">
+                <Eye className="w-6 sm:w-8 h-6 sm:h-8" />
               </div>
-              <p className="text-sm">No Image</p>
+              <p className="text-xs sm:text-sm">No Image</p>
             </div>
           </div>
         )}
@@ -67,27 +67,27 @@ const ProductCard = ({ product, onViewDetails, country }) => {
               e.stopPropagation();
               onViewDetails(product);
             }}
-            className="bg-blue-950 hover:bg-blue-900 text-white shadow-lg"
+            className="bg-blue-950 hover:bg-blue-900 text-white shadow-lg text-xs sm:text-sm py-2 sm:py-2.5 px-3 sm:px-4"
           >
-            <Eye className="w-4 h-4 mr-2" />
+            <Eye className="w-3 sm:w-4 h-3 sm:h-4 mr-1 sm:mr-2" />
             Quick View
           </Button>
         </div>
       </div>
 
-      <div className="p-6">
-        <div className="mb-3">
-          <h3 className="text-lg font-bold text-slate-900 line-clamp-2 mb-2">
+      <div className="p-4 sm:p-6">
+        <div className="mb-2 sm:mb-3">
+          <h3 className="text-sm sm:text-md font-semibold text-slate-900 line-clamp-2 mb-1 sm:mb-2">
             {product.productName}
           </h3>
-          <p className="text-sm text-slate-600 line-clamp-2">
+          <p className="text-xs sm:text-sm text-slate-600 line-clamp-2">
             {product.description}
           </p>
         </div>
 
-        <div className="mb-4">
-          <div className="flex items-center mb-2">
-            <span className="text-2xl font-bold text-slate-900">
+        <div className="mb-3 sm:mb-4">
+          <div className="flex items-center mb-1 sm:mb-2">
+            <span className="text-base sm:text-lg font-medium text-slate-900">
               {currencySymbol}
               {product.yourPrice.toFixed(2)}
             </span>
@@ -100,7 +100,7 @@ const ProductCard = ({ product, onViewDetails, country }) => {
               e.stopPropagation();
               onViewDetails(product);
             }}
-            className="flex-1 bg-blue-950 hover:bg-blue-900 text-white"
+            className="flex-1 bg-blue-950 hover:bg-blue-900 text-white text-xs sm:text-sm py-2 sm:py-2.5"
           >
             View Details
           </Button>
@@ -125,7 +125,7 @@ const ProductDetails = () => {
 
   // Axios instance configuration
   const axiosInstance = axios.create({
-    baseURL: import.meta.env.VITE_API_URL,
+    baseURL: "http://localhost:3006/api",
     withCredentials: true,
     headers: {
       'Content-Type': 'application/json',
@@ -141,7 +141,6 @@ const ProductDetails = () => {
       setIsLoading(true);
       setError(null);
       try {
-        // Fetch countries and categories in parallel
         const [countriesRes, categoriesRes] = await Promise.all([
           axiosInstance.get('/countries', { signal: controller.signal }),
           axiosInstance.get('/categories', { signal: controller.signal }),
@@ -154,12 +153,10 @@ const ProductDetails = () => {
         setCountries(fetchedCountries);
         setCategories(fetchedCategories);
 
-        // Find original category name
         const originalCategoryName =
           fetchedCategories.find((cat) => createSlug(cat.categoryName) === categoryName)?.categoryName ||
           slugToName(categoryName);
 
-        // Fetch products
         const productsRes = await axiosInstance.get('/products', {
           params: { country, categoryName: originalCategoryName },
           signal: controller.signal,
@@ -182,9 +179,9 @@ const ProductDetails = () => {
 
     return () => {
       isMounted = false;
-      controller.abort(); // Cancel requests on unmount
+      controller.abort();
     };
-  }, [country, categoryName]); // Dependencies: country and categoryName
+  }, [country, categoryName]);
 
   const handleViewDetails = (product) => {
     const productSlug = createSlug(product.productName);
@@ -215,8 +212,8 @@ const ProductDetails = () => {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-50 via-white to-blue-50">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
-          <p className="text-xl text-slate-600">Loading products...</p>
+          <div className="animate-spin rounded-full h-8 sm:h-12 w-8 sm:w-12 border-b-2 border-blue-600 mx-auto mb-3 sm:mb-4"></div>
+          <p className="text-base sm:text-xl text-slate-600">Loading products...</p>
         </div>
       </div>
     );
@@ -226,79 +223,71 @@ const ProductDetails = () => {
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50">
       {/* Category Banner */}
       <motion.section
-        className="relative flex items-center justify-center overflow-hidden py-12"
+        className="relative flex items-center justify-center overflow-hidden py-8 sm:py-12"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1 }}
         role="banner"
       >
-        <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-blue-900 to-purple-900"></div>
-        <div
-          className="absolute inset-0 bg-cover bg-center opacity-10"
-          style={{ backgroundImage: `url(${currentCategory.categoryBanner})` }}
-        ></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-blue-900 to-blue-950"></div>
 
         <motion.div
-          className="relative z-10 max-w-7xl mx-auto text-center px-6"
+          className="relative z-10 max-w-7xl mx-auto text-center px-4 sm:px-6"
           variants={staggerChildren}
           initial="hidden"
           animate="visible"
         >
           <motion.div
-            className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-lg border border-white/20 px-6 py-3 rounded-full mb-8"
+            className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-lg border border-white/20 px-4 sm:px-6 py-2 sm:py-3 rounded-full mb-6 sm:mb-8"
             variants={itemVariants}
           >
-            <Star className="h-4 w-4 text-blue-300" />
-            <span className="text-blue-200 font-semibold text-sm">
+            <Star className="h-3 sm:h-4 w-3 sm:w-4 text-white" />
+            <span className="text-white font-normal text-xs sm:text-sm">
               Premium {currentCategory.categoryName}
             </span>
           </motion.div>
 
           <motion.h1
-            className="text-5xl sm:text-6xl md:text-7xl font-bold mb-8 bg-gradient-to-r from-white via-blue-100 to-purple-200 bg-clip-text text-transparent leading-tight"
+            className="text-3xl sm:text-4xl md:text-5xl font-semibold mb-6 sm:mb-8 bg-gradient-to-r from-white via-blue-100 to-purple-200 bg-clip-text text-transparent leading-tight"
             variants={itemVariants}
           >
             {currentCategory.categoryName}
           </motion.h1>
 
           <motion.p
-            className="text-xl md:text-2xl text-slate-200 mb-10 max-w-4xl mx-auto leading-relaxed font-light"
+            className="text-base sm:text-lg md:text-xl text-slate-200 mb-6 sm:mb-10 max-w-4xl mx-auto leading-relaxed font-light"
             variants={itemVariants}
           >
             {currentCategory.description}
           </motion.p>
 
           <motion.div
-            className="flex flex-col sm:flex-row justify-center gap-6"
+            className="flex flex-col sm:flex-row justify-center gap-4 sm:gap-6"
             variants={itemVariants}
           >
             <Button
-              className="bg-white text-blue-950 font-semibold py-6 px-10 rounded-2xl shadow-xl border-0 text-lg"
+              className="bg-white text-blue-950 font-semibold py-4 sm:py-5 px-6 sm:px-8 rounded-full shadow-xl border-0 text-sm sm:text-lg"
               asChild
             >
               <motion.a
                 href="#products"
-                whileHover={{ scale: 1.05, y: -3 }}
-                whileTap={{ scale: 0.98 }}
-                className="flex items-center gap-3"
+                className="flex items-center gap-2 sm:gap-3"
               >
                 Shop Now
-                <ArrowRight className="h-5 w-5" />
+                <ArrowRight className="h-4 sm:h-5 w-4 sm:w-5" />
               </motion.a>
             </Button>
 
             <Button
-              className="bg-white/10 backdrop-blur-lg text-white border-2 border-white/30 font-semibold py-6 px-10 rounded-2xl hover:bg-white/20 shadow-xl text-lg"
+              className="bg-white/10 backdrop-blur-lg text-white font-semibold py-4 sm:py-5 px-6 sm:px-8 rounded-full hover:bg-white/20 shadow-xl text-sm sm:text-lg"
               asChild
             >
               <motion.a
                 href="/contact"
-                whileHover={{ scale: 1.05, y: -3 }}
-                whileTap={{ scale: 0.98 }}
-                className="flex items-center gap-3"
+                className="flex items-center gap-2 sm:gap-3"
               >
                 Learn More
-                <ArrowRight className="h-5 w-5" />
+                <ArrowRight className="h-4 sm:h-5 w-4 sm:w-5" />
               </motion.a>
             </Button>
           </motion.div>
@@ -307,33 +296,33 @@ const ProductDetails = () => {
 
       {/* Header */}
       <div className="bg-white shadow-sm sticky top-0 z-40">
-        <div className="max-w-7xl mx-auto px-4 py-4">
-          <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4">
-            <div className="flex items-center gap-4">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 sm:py-4">
+          <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-3 sm:gap-4">
+            <div className="flex items-center gap-3 sm:gap-4">
               <Button
                 variant="ghost"
                 onClick={() => navigate('/products')}
-                className="text-slate-600 hover:text-slate-900"
+                className="text-slate-600 hover:text-slate-900 text-sm sm:text-base"
               >
-                <ChevronLeft className="w-5 h-5 mr-1" />
+                <ChevronLeft className="w-4 sm:w-5 h-4 sm:h-5 mr-1" />
                 Back to Categories
               </Button>
               <div>
-                <h2 className="text-2xl lg:text-3xl font-bold text-slate-900">
+                <h2 className="text-xl sm:text-2xl lg:text-3xl font-semibold text-slate-900">
                   {currentCategory.categoryName}
                 </h2>
               </div>
             </div>
 
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2 sm:gap-3">
               <Select value={country} onValueChange={setCountry}>
-                <SelectTrigger className="w-[150px] bg-white border-slate-200 rounded-full">
-                  <MapPin className="w-4 h-4 mr-2 text-blue-950" />
+                <SelectTrigger className="w-[120px] sm:w-[150px] bg-white border-slate-200 rounded-full">
+                  <MapPin className="w-3 sm:w-4 h-3 sm:h-4 mr-1 sm:mr-2 text-blue-950" />
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
                   {countries.map((c) => (
-                    <SelectItem key={c} value={c} className="text-lg">
+                    <SelectItem key={c} value={c} className="text-sm sm:text-base">
                       {c}
                     </SelectItem>
                   ))}
@@ -344,68 +333,26 @@ const ProductDetails = () => {
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 py-6" id="products">
-        {/* Search and Filters */}
-        <motion.div
-          className="bg-white rounded-2xl shadow-lg p-4 mb-6 border border-slate-100"
-          variants={itemVariants}
-          initial="hidden"
-          animate="visible"
-        >
-          <div className="flex flex-col lg:flex-row gap-4 items-center">
-            <div className="relative flex-1">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 w-5 h-5" />
-              <input
-                type="text"
-                placeholder="Search products..."
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-10 pr-4 py-3 border border-slate-200 rounded-full focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-lg"
-              />
-            </div>
-
-            <div className="flex items-center gap-3">
-              <div className="flex border border-slate-200 rounded-full">
-                <Button
-                  variant={viewMode === 'grid' ? 'default' : 'ghost'}
-                  size="sm"
-                  onClick={() => setViewMode('grid')}
-                  className="rounded-r-none bg-blue-950 text-white hover:bg-blue-900"
-                >
-                  <Grid3X3 className="w-4 h-4" />
-                </Button>
-                <Button
-                  variant={viewMode === 'list' ? 'default' : 'ghost'}
-                  size="sm"
-                  onClick={() => setViewMode('list')}
-                  className="rounded-l-none bg-blue-950 text-white hover:bg-blue-900"
-                >
-                  <List className="w-4 h-4" />
-                </Button>
-              </div>
-            </div>
-          </div>
-        </motion.div>
-
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 sm:py-6" id="products">
         {/* Products Grid/List */}
         <motion.div variants={staggerChildren} initial="hidden" animate="visible">
           {sortedProducts.length === 0 ? (
-            <motion.div className="text-center py-16" variants={itemVariants}>
-              <div className="w-24 h-24 mx-auto mb-4 bg-slate-100 rounded-full flex items-center justify-center">
-                <Search className="w-12 h-12 text-slate-400" />
+            <motion.div className="text-center py-12 sm:py-16" variants={itemVariants}>
+              <div className="w-16 sm:w-24 h-16 sm:h-24 mx-auto mb-3 sm:mb-4 bg-slate-100 rounded-full flex items-center justify-center">
+                <Search className="w-8 sm:w-12 h-8 sm:h-12 text-slate-400" />
               </div>
-              <h3 className="text-xl font-bold text-slate-900 mb-2">
+              <h3 className="text-lg sm:text-xl font-bold text-slate-900 mb-2">
                 No products found
               </h3>
-              <p className="text-slate-600">
+              <p className="text-sm sm:text-base text-slate-600">
                 Try adjusting your search to find what you're looking for.
               </p>
             </motion.div>
           ) : (
             <div
-              className={`grid gap-6 ${
+              className={`grid gap-4 sm:gap-6 ${
                 viewMode === 'grid'
-                  ? 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'
+                  ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'
                   : 'grid-cols-1'
               }`}
             >

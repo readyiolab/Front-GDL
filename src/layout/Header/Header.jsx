@@ -56,7 +56,7 @@ const Header = () => {
         <div className="hidden lg:flex items-center space-x-3">
           <Link
             to="/contact"
-            className="flex items-center space-x-2 px-6 py-3 bg-gradient-to-r from-blue-950 to-blue-800 text-white rounded-full font-medium hover:from-blue-800 hover:to-blue-700 transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-0.5"
+            className="flex items-center space-x-2 px-6 py-3 bg-blue-950 hover:bg-white hover:text-blue-950 text-white rounded-full font-medium  transition-all duration-300 shadow-md hover:shadow-lg transform "
           >
             <Phone className="h-4 w-4" />
             <span>Contact</span>
@@ -111,7 +111,7 @@ const Header = () => {
                     <Link
                       to="/contact"
                       onClick={() => setIsOpen(false)}
-                      className="flex items-center space-x-3 px-4 py-3 bg-gradient-to-r from-blue-950 to-blue-800 text-white rounded-xl font-medium shadow-md transition-all duration-300"
+                      className="flex items-center space-x-3 px-4 py-3 bg-blue-950  text-white rounded-xl font-medium shadow-md transition-all duration-300"
                     >
                       <Mail className="h-5 w-5" />
                       <span>Contact Us</span>
