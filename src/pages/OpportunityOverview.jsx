@@ -18,7 +18,6 @@ import {
   Shield,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
   Accordion,
@@ -33,45 +32,44 @@ export default function CompensationPlan() {
   return (
     <div className="bg-gray-50">
       {/* Hero Banner */}
-      <motion.section className="relative min-h-screen flex items-center justify-center overflow-hidden py-8 sm:py-12 bg-blue-950">
-        {/* Content */}
+      <motion.section className="relative min-h-[60vh] sm:min-h-screen flex items-center justify-center overflow-hidden py-6 sm:py-12 bg-blue-950">
         <motion.div className="relative z-10 max-w-7xl mx-auto text-center px-4 sm:px-6">
-          <motion.div className="inline-flex items-center gap-2 bg-white/20  backdrop-blur-sm  px-4 sm:px-6 py-2 sm:py-3 rounded-full mb-6 sm:mb-8">
+          <motion.div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm px-3 sm:px-6 py-2 sm:py-3 rounded-full mb-4 sm:mb-8">
             <Star className="h-3 w-3 sm:h-4 sm:w-4 text-white" />
             <span className="text-white font-normal text-xs sm:text-sm">
               Proven Business Model
             </span>
           </motion.div>
 
-          <motion.h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold mb-6 sm:mb-8 bg-white bg-clip-text text-transparent leading-tight">
+          <motion.h1 className="text-xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold mb-4 sm:mb-8 bg-white bg-clip-text text-transparent leading-tight">
             NHT Global <br />
             <span className="bg-white bg-clip-text text-transparent">
               Compensation Plan
             </span>
           </motion.h1>
 
-          <motion.p className="text-base sm:text-lg md:text-xl text-white mb-8 sm:mb-10 max-w-3xl mx-auto leading-relaxed font-light">
+          <motion.p className="text-sm sm:text-lg md:text-xl text-white mb-6 sm:mb-10 max-w-3xl mx-auto leading-relaxed font-light">
             Unlock Your Earning Potential with Network Marketing
           </motion.p>
 
-          <motion.div className="flex flex-col sm:flex-row justify-center gap-4 sm:gap-6">
+          <motion.div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-6">
             <Button
-              className="bg-white text-blue-950 font-normal py-4 sm:py-6 px-8 sm:px-10 rounded-full hover:bg-white/10 shadow-xl border-0 text-base sm:text-lg"
+              className="bg-white text-blue-950 font-normal py-3 sm:py-6 px-6 sm:px-10 rounded-full hover:bg-white/10 shadow-xl border-0 text-sm sm:text-lg"
               asChild
             >
-              <motion.a href="#categories" className="flex items-center gap-3">
+              <motion.a href="#categories" className="flex items-center gap-2 sm:gap-3">
                 Get Started Now
-                <ArrowRight className="h-4 w-4 sm:h-5 sm:w-5" />
+                <ArrowRight className="h-3 w-3 sm:h-5 sm:w-5" />
               </motion.a>
             </Button>
 
             <Button
-              className="bg-blue-500 backdrop-blur-lg text-white font-normal py-4 sm:py-6 px-8 sm:px-10 rounded-full hover:bg-blue-700/80 shadow-xl text-base sm:text-lg border border-blue-400/30"
+              className="bg-blue-500 backdrop-blur-lg text-white font-normal py-3 sm:py-6 px-6 sm:px-10 rounded-full hover:bg-blue-700/80 shadow-xl text-sm sm:text-lg border border-blue-400/30"
               asChild
             >
-              <motion.a href="#learn-more" className="flex items-center gap-3">
+              <motion.a href="#learn-more" className="flex items-center gap-2 sm:gap-3">
                 Learn More
-                <Play className="h-4 w-4 sm:h-5 sm:w-5" />
+                <Play className="h-3 w-3 sm:h-5 sm:w-5" />
               </motion.a>
             </Button>
           </motion.div>
@@ -79,39 +77,34 @@ export default function CompensationPlan() {
       </motion.section>
 
       {/* Important Note Section */}
-      <section className="py-10 bg-white/15 border-y border-orange-100">
-        <div className="max-w-5xl mx-auto px-4">
-          <div className="flex items-start gap-4 bg-white/50 p-6   shadow-md">
-            <div>
-              <p className="text-gray-600 font-medium leading-relaxed text-center">
-                Please visit our Opportunity Overview page if you have directly
-                landed on this page. Some important information provided there
-                will help you better understand the NHT Global Compensation Plan
-                explained below.
-              </p>
-            </div>
+      <section className="py-8 sm:py-10 bg-white/15 border-y border-orange-100">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6">
+          <div className="flex items-start gap-4 bg-white/50 p-4 sm:p-6 shadow-md">
+            <p className="text-gray-600 font-medium text-xs sm:text-sm leading-relaxed text-center">
+              Please visit our Opportunity Overview page if you have directly
+              landed on this page. Some important information provided there
+              will help you better understand the NHT Global Compensation Plan
+              explained below.
+            </p>
           </div>
         </div>
       </section>
 
       {/* Updated Introduction Section */}
-      <section className="py-16 px-4 bg-gray-50">
+      <section className="py-12 sm:py-16 px-4 sm:px-6 bg-gray-50">
         <div className="max-w-5xl mx-auto text-center">
-          {/* Tagline Badge */}
-          <div className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-500/10 to-purple-500/10 border border-blue-200 px-4 py-2 rounded-full mb-6">
-            <Shield className="h-4 w-4 text-gray-900" />
+          <div className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-500/10 to-purple-500/10 border border-blue-200 px-3 sm:px-4 py-1 sm:py-2 rounded-full mb-4 sm:mb-6">
+            <Shield className="h-3 w-3 sm:h-4 sm:w-4 text-gray-900" />
             <span className="text-gray-900 font-semibold text-xs uppercase tracking-wide">
               Start Your Journey
             </span>
           </div>
 
-          {/* Heading */}
-          <h2 className="text-4xl sm:text-5xl font-semibold mb-8 text-black">
+          <h2 className="text-2xl sm:text-4xl md:text-5xl font-semibold mb-6 sm:mb-8 text-black">
             Understanding NHT Global's Compensation Plan
           </h2>
 
-          {/* Content */}
-          <div className="space-y-4 text-gray-600  text-left sm:text-center md:text-left text-lg leading-relaxed">
+          <div className="space-y-3 sm:space-y-4 text-gray-600 text-sm sm:text-base md:text-lg leading-relaxed text-left sm:text-center">
             <p>
               Before we start, please review the Earning Disclaimer on
               GetDreamLife and refer to NHT Global's Statement of Average Gross
@@ -137,108 +130,83 @@ export default function CompensationPlan() {
             </p>
           </div>
 
-          {/* Links */}
-          <div className="flex flex-col sm:flex-row gap-4 mt-10 justify-center items-center">
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mt-6 sm:mt-10 justify-center items-center">
             <a
               href="#"
-              className="text-black font-semibold flex items-center gap-1 hover:text-gray-700 transition-colors"
+              className="text-black font-semibold flex items-center gap-1 hover:text-gray-700 transition-colors text-sm sm:text-base"
               aria-label="View Earning Disclaimer"
             >
-              View Earning Disclaimer <ChevronRight className="h-4 w-4" />
+              View Earning Disclaimer <ChevronRight className="h-3 w-3 sm:h-4 sm:w-4" />
             </a>
             <a
               href="#"
-              className="text-black font-semibold flex items-center gap-1 hover:text-gray-700 transition-colors"
+              className="text-black font-semibold flex items-center gap-1 hover:text-gray-700 transition-colors text-sm sm:text-base"
               aria-label="Statement of Average Gross Compensation"
             >
               Statement of Average Gross Compensation
-              <ChevronRight className="h-4 w-4" />
+              <ChevronRight className="h-3 w-3 sm:h-4 sm:w-4" />
             </a>
           </div>
         </div>
       </section>
 
       {/* Key Features Section */}
-      <section className="py-16 px-4 sm:px-6 bg-gradient-to-r from-slate-100 to-slate-200">
+      <section className="py-12 sm:py-16 px-4 sm:px-6 bg-gradient-to-r from-slate-100 to-slate-200">
         <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-12">
-            <div className="inline-flex items-center gap-2 bg-blue-50 border border-blue-200 px-4 py-2 rounded-full mb-6">
-              <DollarSign className="h-4 w-4 text-blue-950" />
+          <div className="text-center mb-8 sm:mb-12">
+            <div className="inline-flex items-center gap-2 bg-blue-50 border border-blue-200 px-3 sm:px-4 py-1 sm:py-2 rounded-full mb-4 sm:mb-6">
+              <DollarSign className="h-3 w-3 sm:h-4 sm:w-4 text-blue-950" />
               <span className="text-blue-950 font-semibold text-xs uppercase tracking-wide">
                 Earning Potential
               </span>
             </div>
-            <h2 className="text-4xl sm:text-5xl font-semibold mb-8 text-blue-950 flex items-center justify-center gap-5">
+            <h2 className="text-2xl sm:text-4xl md:text-5xl font-semibold mb-6 sm:mb-8 text-blue-950">
               Key Features of Industry-Leading Compensation Plan
             </h2>
-            <h3 className="text-2xl font-semibold text-blue-950">
+            <h3 className="text-xl sm:text-2xl font-semibold text-blue-950">
               Understand Your Earnings
             </h3>
           </div>
 
-          <p className="text-lg mb-12 text-center max-w-4xl mx-auto text-black">
+          <p className="text-sm sm:text-lg mb-8 sm:mb-12 text-center max-w-4xl mx-auto text-black">
             Maximize your earnings with NHT Global by understanding these key
             features:
           </p>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch min-h-full">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             {[
               {
-                icon: (
-                  <Calendar
-                    className="h-10 w-10  text-black"
-                    aria-hidden="true"
-                  />
-                ),
+                icon: <Calendar className="h-8 w-8 text-black" aria-hidden="true" />,
                 title: "No Expiry of Bonus Volume (BV)",
                 description:
                   "Your earned BV never expires, allowing you to redeem points whenever you choose.",
               },
               {
-                icon: (
-                  <DollarSign
-                    className="h-10 w-10 text-black"
-                    aria-hidden="true"
-                  />
-                ),
+                icon: <DollarSign className="h-8 w-8 text-black" aria-hidden="true" />,
                 title: "Cycle Bonus Weekly Potential at US$50,000",
                 description:
                   "One of the highest weekly earning potentials in the industry.",
               },
               {
-                icon: (
-                  <TrendingUp
-                    className="h-10 w-10  text-black"
-                    aria-hidden="true"
-                  />
-                ),
+                icon: <TrendingUp className="h-8 w-8 text-black" aria-hidden="true" />,
                 title: "Unlimited Depth Income",
                 description:
                   "Our Infinite Binary Plan allows you to earn from unlimited levels in your organization.",
               },
               {
-                icon: (
-                  <Gift className="h-10 w-10  text-black" aria-hidden="true" />
-                ),
+                icon: <Gift className="h-8 w-8 text-black" aria-hidden="true" />,
                 title: "No Monthly Targets or Minimum Purchase*",
                 description:
                   "Grow your business at your own pace without pressure to meet monthly quotas.",
               },
               {
-                icon: (
-                  <Briefcase
-                    className="h-10 w-10  text-black"
-                    aria-hidden="true"
-                  />
-                ),
+                icon: <Briefcase className="h-8 w-8 text-black" aria-hidden="true" />,
                 title: "Highest Commission from Day 1",
                 description:
                   "No waiting period or level-based commission plan - earn top rates immediately.",
               },
               {
-                icon: (
-                  <Star className="h-10 w-10  text-black" aria-hidden="true" />
-                ),
+                icon: <Star className="h-8 w-8 text-black" aria-hidden="true" />,
                 title: "True Financial Potential",
                 description:
                   "Unmatched compensation plan designed for maximum earning opportunities.",
@@ -246,15 +214,15 @@ export default function CompensationPlan() {
             ].map((feature, index) => (
               <div
                 key={index}
-                className="bg-gradient-to-r from-blue-200 to-blue-100 rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow duration-300 flex flex-col justify-between h-full"
+                className="bg-gradient-to-r from-blue-200 to-blue-100 rounded-xl p-4 sm:p-6 shadow-md hover:shadow-lg transition-shadow duration-300 flex flex-col justify-between"
               >
-                <div className="p-3 bg-blue-50 rounded-full w-16 h-16 flex items-center justify-center mb-4 mx-auto">
+                <div className="p-2 sm:p-3 bg-blue-50 rounded-full w-12 h-12 sm:w-16 sm:h-16 flex items-center justify-center mb-3 sm:mb-4 mx-auto">
                   {feature.icon}
                 </div>
-                <h3 className="text-lg font-semibold text-black mb-6 text-center">
+                <h3 className="text-base sm:text-lg font-semibold text-black mb-4 sm:mb-6 text-center">
                   {feature.title}
                 </h3>
-                <p className="text-base text-gray-700 leading-relaxed flex-grow text-center">
+                <p className="text-sm sm:text-base text-gray-700 leading-relaxed flex-grow text-center">
                   {feature.description}
                 </p>
               </div>
@@ -264,42 +232,38 @@ export default function CompensationPlan() {
       </section>
 
       {/* Highlights Section */}
-      <section className="py-16 px-4 sm:px-6 bg-white">
+      <section className="py-12 sm:py-16 px-4 sm:px-6 bg-white">
         <div className="max-w-6xl mx-auto">
-          {/* Header */}
-          <div className="text-center mb-12">
-            <div className="inline-flex items-center gap-2 bg-blue-50 border border-blue-200 px-4 py-2 rounded-full mb-6">
-              <DollarSign className="h-4 w-4 text-blue-950" />
+          <div className="text-center mb-8 sm:mb-12">
+            <div className="inline-flex items-center gap-2 bg-blue-50 border border-blue-200 px-3 sm:px-4 py-1 sm:py-2 rounded-full mb-4 sm:mb-6">
+              <DollarSign className="h-3 w-3 sm:h-4 sm:w-4 text-blue-950" />
               <span className="text-blue-950 font-semibold text-xs uppercase tracking-wide">
                 Earning Potential
               </span>
             </div>
-            <h2 className="text-4xl sm:text-5xl font-semibold mb-8 text-blue-950">
+            <h2 className="text-2xl sm:text-4xl md:text-5xl font-semibold mb-6 sm:mb-8 text-blue-950">
               Highlights of NHT Global Compensation Plan
             </h2>
-            <h3 className="text-2xl font-semibold text-blue-950">
+            <h3 className="text-xl sm:text-2xl font-semibold text-blue-950">
               Key Advantages
             </h3>
           </div>
 
-          <p className="text-lg mb-12 text-center max-w-4xl mx-auto text-black">
+          <p className="text-sm sm:text-lg mb-8 sm:mb-12 text-center max-w-4xl mx-auto text-black">
             Discover the standout benefits of the NHT Global compensation plan
           </p>
 
-          {/* Two-Column Layout */}
-          <div className="grid grid-cols-1 md:grid-cols-2 ">
-            {/* Left: Image */}
-            <div className="flex justify-center md:justify-start">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+            <div className="flex justify-center">
               <img
                 src="https://images.unsplash.com/photo-1554224155-cfa08c2a758f?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fENvbXBlbnNhdGlvbiUyMFBsYW58ZW58MHx8MHx8fDA%3D"
                 alt="NHT Global Compensation Plan"
-                className="shadow-md object-cover w-full max-w-md h-auto"
+                className="shadow-md object-cover w-full max-w-sm sm:max-w-md h-auto"
               />
             </div>
 
-            {/* Right: Bulleted List */}
             <div className="flex flex-col">
-              <ul className="list-disc list-outside space-y-4 text-base text-black leading-relaxed pl-6">
+              <ul className="list-disc list-outside space-y-3 sm:space-y-4 text-sm sm:text-base text-black leading-relaxed pl-6">
                 {[
                   "NHT Global compensation plan allows you to earn a maximum of US$50,000 per week.",
                   "NHT Global has helped over a dozen individuals become big earners in the last year alone.",
@@ -309,7 +273,7 @@ export default function CompensationPlan() {
                 ].map((highlight, index) => (
                   <li
                     key={index}
-                    className="flex items-start marker:text-gray-700 ]"
+                    className="flex items-start marker:text-gray-700"
                   >
                     <span>{highlight}</span>
                   </li>
@@ -320,7 +284,9 @@ export default function CompensationPlan() {
         </div>
       </section>
 
-      {/* Four Ways to Earn Section with Detailed Earning Types */}
+
+      
+{/* Four Ways to Earn Section with Detailed Earning Types */}
       <section className="py-8 sm:py-16 px-4 sm:px-6 bg-gradient-to-r from-slate-100 to-slate-200">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-8 sm:mb-12">
@@ -1484,11 +1450,19 @@ export default function CompensationPlan() {
         </div>
       </section>
 
+
+
+
+
+
+
+
+
       {/* Disclaimer Section */}
-      <section className="py-8 px-4 bg-gray-200  m-8 ">
+      <section className="py-6 sm:py-8 px-4 sm:px-6 bg-gray-200">
         <div className="max-w-5xl mx-auto">
           <div className="flex items-start gap-3">
-            <div className="space-y-2 text-sm text-gray-500">
+            <div className="space-y-2 text-xs sm:text-sm text-gray-500">
               <p>
                 *There are few countries where monthly purchase qualification
                 applies, but these are very nominal and easy to achieve compared
