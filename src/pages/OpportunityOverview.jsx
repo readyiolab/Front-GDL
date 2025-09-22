@@ -34,9 +34,9 @@ export default function CompensationPlan() {
       {/* Hero Banner */}
       <motion.section className="relative min-h-[60vh] sm:min-h-screen flex items-center justify-center overflow-hidden py-6 sm:py-12 bg-blue-950">
         <motion.div className="relative z-10 max-w-7xl mx-auto text-center px-4 sm:px-6">
-          <motion.div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm px-3 sm:px-6 py-2 sm:py-3 rounded-full mb-4 sm:mb-8">
-            <Star className="h-3 w-3 sm:h-4 sm:w-4 text-white" />
-            <span className="text-white font-normal text-xs sm:text-sm">
+          <motion.div className="inline-flex items-center gap-2 bg-white backdrop-blur-sm px-3 sm:px-6 py-2 sm:py-3 rounded-full mb-4 sm:mb-8">
+            <Star className="h-3 w-3 sm:h-4 sm:w-4 text-blue-950" />
+            <span className="text-blue-950 font-normal text-xs sm:text-sm">
               Proven Business Model
             </span>
           </motion.div>
@@ -57,7 +57,10 @@ export default function CompensationPlan() {
               className="bg-white text-blue-950 font-normal py-3 sm:py-6 px-6 sm:px-10 rounded-full hover:bg-white/10 shadow-xl border-0 text-sm sm:text-lg"
               asChild
             >
-              <motion.a href="#categories" className="flex items-center gap-2 sm:gap-3">
+              <motion.a
+                href="#categories"
+                className="flex items-center gap-2 sm:gap-3"
+              >
                 Get Started Now
                 <ArrowRight className="h-3 w-3 sm:h-5 sm:w-5" />
               </motion.a>
@@ -67,7 +70,10 @@ export default function CompensationPlan() {
               className="bg-blue-500 backdrop-blur-lg text-white font-normal py-3 sm:py-6 px-6 sm:px-10 rounded-full hover:bg-blue-700/80 shadow-xl text-sm sm:text-lg border border-blue-400/30"
               asChild
             >
-              <motion.a href="#learn-more" className="flex items-center gap-2 sm:gap-3">
+              <motion.a
+                href="#learn-more"
+                className="flex items-center gap-2 sm:gap-3"
+              >
                 Learn More
                 <Play className="h-3 w-3 sm:h-5 sm:w-5" />
               </motion.a>
@@ -136,7 +142,8 @@ export default function CompensationPlan() {
               className="text-black font-semibold flex items-center gap-1 hover:text-gray-700 transition-colors text-sm sm:text-base"
               aria-label="View Earning Disclaimer"
             >
-              View Earning Disclaimer <ChevronRight className="h-3 w-3 sm:h-4 sm:w-4" />
+              View Earning Disclaimer{" "}
+              <ChevronRight className="h-3 w-3 sm:h-4 sm:w-4" />
             </a>
             <a
               href="#"
@@ -176,37 +183,58 @@ export default function CompensationPlan() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             {[
               {
-                icon: <Calendar className="h-8 w-8 text-black" aria-hidden="true" />,
+                icon: (
+                  <Calendar className="h-8 w-8 text-black" aria-hidden="true" />
+                ),
                 title: "No Expiry of Bonus Volume (BV)",
                 description:
                   "Your earned BV never expires, allowing you to redeem points whenever you choose.",
               },
               {
-                icon: <DollarSign className="h-8 w-8 text-black" aria-hidden="true" />,
+                icon: (
+                  <DollarSign
+                    className="h-8 w-8 text-black"
+                    aria-hidden="true"
+                  />
+                ),
                 title: "Cycle Bonus Weekly Potential at US$50,000",
                 description:
                   "One of the highest weekly earning potentials in the industry.",
               },
               {
-                icon: <TrendingUp className="h-8 w-8 text-black" aria-hidden="true" />,
+                icon: (
+                  <TrendingUp
+                    className="h-8 w-8 text-black"
+                    aria-hidden="true"
+                  />
+                ),
                 title: "Unlimited Depth Income",
                 description:
                   "Our Infinite Binary Plan allows you to earn from unlimited levels in your organization.",
               },
               {
-                icon: <Gift className="h-8 w-8 text-black" aria-hidden="true" />,
+                icon: (
+                  <Gift className="h-8 w-8 text-black" aria-hidden="true" />
+                ),
                 title: "No Monthly Targets or Minimum Purchase*",
                 description:
                   "Grow your business at your own pace without pressure to meet monthly quotas.",
               },
               {
-                icon: <Briefcase className="h-8 w-8 text-black" aria-hidden="true" />,
+                icon: (
+                  <Briefcase
+                    className="h-8 w-8 text-black"
+                    aria-hidden="true"
+                  />
+                ),
                 title: "Highest Commission from Day 1",
                 description:
                   "No waiting period or level-based commission plan - earn top rates immediately.",
               },
               {
-                icon: <Star className="h-8 w-8 text-black" aria-hidden="true" />,
+                icon: (
+                  <Star className="h-8 w-8 text-black" aria-hidden="true" />
+                ),
                 title: "True Financial Potential",
                 description:
                   "Unmatched compensation plan designed for maximum earning opportunities.",
@@ -214,7 +242,8 @@ export default function CompensationPlan() {
             ].map((feature, index) => (
               <div
                 key={index}
-                className="bg-gradient-to-r from-blue-200 to-blue-100 rounded-xl p-4 sm:p-6 shadow-md hover:shadow-lg transition-shadow duration-300 flex flex-col justify-between"
+                className="bg-gradient-to-r from-gray-50 to-gray-100
+ rounded-xl p-4 sm:p-6 shadow-md hover:shadow-lg transition-shadow duration-300 flex flex-col justify-between"
               >
                 <div className="p-2 sm:p-3 bg-blue-50 rounded-full w-12 h-12 sm:w-16 sm:h-16 flex items-center justify-center mb-3 sm:mb-4 mx-auto">
                   {feature.icon}
@@ -284,9 +313,7 @@ export default function CompensationPlan() {
         </div>
       </section>
 
-
-      
-{/* Four Ways to Earn Section with Detailed Earning Types */}
+      {/* Four Ways to Earn Section with Detailed Earning Types */}
       <section className="py-8 sm:py-16 px-4 sm:px-6 bg-gradient-to-r from-slate-100 to-slate-200">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-8 sm:mb-12">
@@ -1449,14 +1476,6 @@ export default function CompensationPlan() {
           </Tabs>
         </div>
       </section>
-
-
-
-
-
-
-
-
 
       {/* Disclaimer Section */}
       <section className="py-6 sm:py-8 px-4 sm:px-6 bg-gray-200">

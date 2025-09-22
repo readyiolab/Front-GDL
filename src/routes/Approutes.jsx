@@ -15,6 +15,9 @@ const Leaders = lazy(() => import('@/pages/Leaders'));
 const Contact = lazy(() => import('@/pages/Contact'));
 const Blog = lazy(() => import('@/pages/Blog'));
 const BlogDetail = lazy(() => import('@/pages/BlogDetail'));
+const PrivacyPolicy = lazy(() => import('@/pages/PrivacyPolicy'));
+const TermsOfUse = lazy(() => import('@/pages/TermsOfUse'));
+const EarningDisclaimer = lazy(() => import('@/pages/EarningDisclaimer'));
 
 // Simple spinner component
 const Spinner = () => (
@@ -125,6 +128,30 @@ const router = createBrowserRouter([
         element: (
           <Suspense fallback={<Spinner />}>
             <BlogDetail />
+          </Suspense>
+        ),
+      },
+      {
+        path: '/privacy-policy',
+        element: (
+          <Suspense fallback={<Spinner />}>
+            <PrivacyPolicy />
+          </Suspense>
+        ),
+      },
+      {
+        path: '/terms-of-use',
+        element: (
+          <Suspense fallback={<Spinner />}>
+            <TermsOfUse />
+          </Suspense>
+        ),
+      },
+      {
+        path: '/earning-disclaimer',
+        element: (
+          <Suspense fallback={<Spinner />}>
+            <EarningDisclaimer />
           </Suspense>
         ),
       },

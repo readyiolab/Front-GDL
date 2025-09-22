@@ -30,54 +30,37 @@ const itemVariants = {
 
 const HeroSection = () => {
   return (
-    <section className="flex flex-col items-center justify-center text-center bg-gradient-to-br from-orange-50 via-white to-orange-50 px-4 sm:px-6 overflow-x-hidden">
-      {/* Added overflow-x-hidden to prevent horizontal scroll */}
+    <section className="flex flex-col items-center justify-center text-center bg-gradient-to-br from-slate-900 via-blue-900 to-blue-950 px-4 sm:px-6 overflow-x-hidden">
       <motion.section
-        className="relative flex items-center justify-center py-6 sm:py-12 min-h-[50vh] sm:min-h-[60vh]" // Reduced padding and height for mobile
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.8 }} // Slightly faster animation for mobile
-        role="banner"
+        className="relative flex items-center justify-center py-6 sm:py-12 min-h-[50vh] sm:min-h-[60vh]"
+        initial="hidden"
+        animate="visible"
+        variants={staggerChildren}
       >
-        {/* Background gradient */}
-        <div className="absolute inset-0 bg-gradient-to-br from-orange-50 via-white to-orange-50"></div>
-
-        {/* Background blur effect - scaled down for mobile */}
-        <motion.div
-          className="absolute bottom-10 right-5 w-24 h-24 sm:w-32 sm:h-32 bg-orange-500 rounded-full blur-xl z-0"
-          animate={{ scale: [1.1, 1, 1.1], opacity: [0.2, 0.4, 0.2] }}
-          transition={{ duration: 4, repeat: Infinity, repeatType: "reverse" }}
-        />
-
-        {/* Content */}
         <motion.div
           className="relative z-10 max-w-7xl mx-auto text-center px-2 sm:px-6"
           variants={staggerChildren}
-          initial="hidden"
-          animate="visible"
         >
           <motion.div
-            className="inline-flex items-center gap-2 bg-orange-500/20 backdrop-blur-sm border border-orange-400/30 px-3 py-1.5 sm:px-6 sm:py-3 rounded-full mb-4 sm:mb-8"
+            className="inline-flex items-center gap-2 bg-white backdrop-blur-sm border border-orange-400/30 px-3 py-1.5 sm:px-6 sm:py-3 rounded-full mb-4 sm:mb-8"
             variants={itemVariants}
           >
-            <Star className="h-3 w-3 sm:h-4 sm:w-4 text-orange-400" />
-            <span className="text-black font-normal text-xs sm:text-sm">
+            <Star className="h-3 w-3 sm:h-4 sm:w-4 text-white0" />
+            <span className="text-blue-950 font-normal text-xs sm:text-sm">
               Proven Business Model
             </span>
           </motion.div>
 
           <motion.h1
-            className="text-xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold mb-4 sm:mb-8 bg-gradient-to-r from-black via-gray-800 to-orange-600 bg-clip-text text-transparent leading-tight"
+            className="text-xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold mb-4 sm:mb-8 text-white leading-tight"
             variants={itemVariants}
           >
             Unleash Your <br />
-            <span className="bg-black bg-clip-text text-transparent">
-              Potential with NHT Global
-            </span>
+            <span className="text-white">Potential with NHT Global</span>
           </motion.h1>
 
           <motion.p
-            className="text-sm sm:text-lg md:text-xl text-gray-600 mb-6 sm:mb-10 max-w-3xl mx-auto leading-relaxed font-light"
+            className="text-sm sm:text-lg md:text-xl text-gray-300 mb-6 sm:mb-10 max-w-3xl mx-auto leading-relaxed font-light"
             variants={itemVariants}
           >
             NHT Global offers better health, unlimited income, and freedom to live
@@ -89,20 +72,26 @@ const HeroSection = () => {
             variants={itemVariants}
           >
             <Button
-              className="bg-orange-500 text-white font-normal py-3 sm:py-6 px-6 sm:px-10 rounded-full hover:bg-orange-600 shadow-xl border-0 text-sm sm:text-lg min-h-[44px]" // Touch-friendly size
+              className="bg-white text-blue-950 font-normal py-3 sm:py-6 px-6 sm:px-10 rounded-full hover:bg-white/20 shadow-xl border-0 text-sm sm:text-lg min-h-[44px]"
               asChild
             >
-              <motion.a href="#categories" className="flex items-center gap-2 sm:gap-3">
+              <motion.a
+                href="#categories"
+                className="flex items-center gap-2 sm:gap-3"
+              >
                 Join Our Community
                 <ArrowRight className="h-4 w-4 sm:h-5 sm:w-5" />
               </motion.a>
             </Button>
 
             <Button
-              className="bg-white/10 backdrop-blur-lg text-black font-normal py-3 sm:py-6 px-6 sm:px-10 rounded-full hover:bg-white/20 shadow-xl text-sm sm:text-lg border border-orange-400/30 min-h-[44px]" // Touch-friendly size
+              className="bg-white/10 backdrop-blur-lg text-white font-normal py-3 sm:py-6 px-6 sm:px-10 rounded-full hover:bg-white/20 shadow-xl text-sm sm:text-lg  min-h-[44px]"
               asChild
             >
-              <motion.a href="#learn-more" className="flex items-center gap-2 sm:gap-3">
+              <motion.a
+                href="#learn-more"
+                className="flex items-center gap-2 sm:gap-3"
+              >
                 Learn More
                 <Play className="h-4 w-4 sm:h-5 sm:w-5" />
               </motion.a>
@@ -570,7 +559,8 @@ const OpportunityPage = () => {
               {compensationFeatures.map((item, index) => (
                 <motion.div
                   key={index}
-                  className="bg-gradient-to-r from-blue-100 to-blue-100 rounded-xl p-4 sm:p-6 shadow-md hover:shadow-lg transition-shadow duration-300 flex flex-col justify-between h-full"
+                  className="bg-gradient-to-r from-gray-50 to-gray-100
+ rounded-xl p-4 sm:p-6 shadow-md hover:shadow-lg transition-shadow duration-300 flex flex-col justify-between h-full"
                 >
                   <h3 className="text-base sm:text-xl font-semibold text-black mb-4 sm:mb-6 text-center">
                     {item.title}
@@ -628,7 +618,8 @@ const OpportunityPage = () => {
               {investmentFeatures.map((item, index) => (
                 <motion.div
                   key={index}
-                  className="bg-gradient-to-r from-blue-100 to-blue-100 rounded-xl p-4 sm:p-6 shadow-md hover:shadow-lg transition-shadow duration-300"
+                  className="bg-gradient-to-r from-gray-50 to-gray-100
+ rounded-xl p-4 sm:p-6 shadow-md hover:shadow-lg transition-shadow duration-300"
                 >
                   <h3 className="text-base sm:text-lg font-bold text-black mb-2 text-center">
                     {item.title}

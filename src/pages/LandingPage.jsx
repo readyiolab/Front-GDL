@@ -11,6 +11,7 @@ import {
   DollarSign,
   Clock,
 } from "lucide-react";
+import AboutNHT from "./AboutNHT";
 
 const LandingPage = () => {
   const dreamLifeFeatures = [
@@ -98,26 +99,25 @@ const LandingPage = () => {
 
   return (
     <main className="pt-2 sm:pt-4 bg-white">
-  
-     <div className="flex flex-row flex-wrap items-center justify-center gap-4 sm:gap-6 lg:gap-10 bg-white/20 py-6 sm:py-8 px-4 sm:px-6">
-  <img src="./gdl.png" alt="GDL Logo" className="h-12 sm:h-16 w-auto" />
+      <AboutNHT />
+      <div className="flex flex-row flex-wrap items-center justify-center gap-4 sm:gap-6 lg:gap-10 bg-white/20  px-4 sm:px-6 bgeige-100 py-6 sm:py-8">
+        <img src="./gdl.png" alt="GDL Logo" className="h-12 sm:h-16 w-auto" />
 
-  <ChevronRight className="h-6 w-6 sm:h-8 sm:w-8 text-blue-950" />
+        <ChevronRight className="h-6 w-6 sm:h-8 sm:w-8 text-blue-950" />
 
-  <p className="text-base sm:text-lg lg:text-xl text-black font-medium text-center sm:text-left max-w-md">
-    Proud to be an Independent Distributor of <br /> a world-class company
-    with global presence
-  </p>
+        <p className="text-base sm:text-lg lg:text-xl text-black font-medium text-center sm:text-left max-w-md">
+          Proud to be an Independent Distributor of <br /> a world-class company
+          with global presence
+        </p>
 
-  <ChevronRight className="h-6 w-6 sm:h-8 sm:w-8 text-blue-950" />
+        <ChevronRight className="h-6 w-6 sm:h-8 sm:w-8 text-blue-950" />
 
-  <img
-    src="./nht-logo.png"
-    alt="NHT Global Logo"
-    className="h-12 sm:h-16 w-auto"
-  />
-</div>
-
+        <img
+          src="./nht-logo.png"
+          alt="NHT Global Logo"
+          className="h-12 sm:h-16 w-auto"
+        />
+      </div>
 
       {/* Section 1: Welcome to Get Dream Life */}
       <section className="py-12 sm:py-16 px-4 sm:px-6 bg-gradient-to-br from-slate-50 via-white to-blue-50">
@@ -151,7 +151,7 @@ const LandingPage = () => {
                     >
                       <Icon className="h-4 w-4 sm:h-5 sm:w-5 text-white" />
                     </div>
-                    <h3 className="text-sm sm:text-base font-semibold text-blue-950 text-center">
+                    <h3 className="text-sm sm:text-base  text-blue-950 text-center">
                       {feature.title}
                     </h3>
                   </div>
