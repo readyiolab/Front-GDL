@@ -198,7 +198,7 @@ const LandingPage = () => {
                   }`}
                 >
                   <div className="w-2 h-2 rounded-full bg-blue-950 mt-1.5 sm:mt-2 flex-shrink-0" />
-                  <p className="text-sm sm:text-base font-medium text-black leading-relaxed">
+                  <p className="text-sm sm:text-base font-normal text-black leading-relaxed">
                     {item.text}
                   </p>
                 </div>
@@ -268,7 +268,7 @@ const LandingPage = () => {
                   }`}
                 >
                   <div className="w-2 h-2 rounded-full bg-blue-950 mt-1.5 sm:mt-2 flex-shrink-0" />
-                  <p className="text-sm sm:text-base font-medium text-black leading-relaxed">
+                  <p className="text-sm sm:text-base font-normal text-black leading-relaxed">
                     {item.text}
                   </p>
                 </div>
@@ -297,11 +297,11 @@ const LandingPage = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
-            <div className="flex flex-col gap-3 sm:gap-4">
+            <div className="flex flex-col justify-center  gap-3 sm:gap-4">
               {helpFeatures.map((item, index) => (
                 <div key={index} className="flex items-start gap-2 sm:gap-3">
                   <div className="w-2 h-2 rounded-full bg-black mt-1.5 sm:mt-2 flex-shrink-0" />
-                  <p className="text-sm sm:text-base font-medium text-black leading-relaxed">
+                  <p className="text-sm sm:text-base font-normal text-black leading-relaxed">
                     {item.text}
                   </p>
                 </div>

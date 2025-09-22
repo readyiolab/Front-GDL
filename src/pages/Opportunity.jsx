@@ -63,8 +63,8 @@ const HeroSection = () => {
             className="text-sm sm:text-lg md:text-xl text-gray-300 mb-6 sm:mb-10 max-w-3xl mx-auto leading-relaxed font-light"
             variants={itemVariants}
           >
-            NHT Global offers better health, unlimited income, and freedom to live
-            life on your terms.
+            NHT Global offers better health, unlimited income, and freedom to
+            live life on your terms.
           </motion.p>
 
           <motion.div
@@ -332,7 +332,7 @@ const OpportunityPage = () => {
                   ].map((item, index) => (
                     <motion.li
                       key={index}
-                      className="relative pl-5 text-sm sm:text-base text-gray-700 font-medium leading-relaxed before:content-['•'] before:absolute before:left-0 before:top-1/2 before:-translate-y-1/2 before:text-gray-600"
+                      className="relative pl-5 text-sm sm:text-base text-gray-700 font-normal leading-relaxed before:content-['•'] before:absolute before:left-0 before:top-1/2 before:-translate-y-1/2 before:text-gray-600"
                     >
                       {item}
                     </motion.li>
@@ -395,7 +395,7 @@ const OpportunityPage = () => {
                   {benefits.map((item, index) => (
                     <li
                       key={index}
-                      className="text-sm sm:text-base font-medium text-gray-700 leading-relaxed"
+                      className="text-sm sm:text-base font-normal text-gray-700 leading-relaxed"
                     >
                       {item}
                     </li>
@@ -501,7 +501,7 @@ const OpportunityPage = () => {
                     transition={{ delay: index * 0.1, duration: 0.5 }}
                   >
                     <div className="w-1.5 h-1.5 rounded-full bg-blue-950 mt-2 flex-shrink-0" />
-                    <p className="text-sm sm:text-base font-medium text-gray-700 leading-relaxed">
+                    <p className="text-sm sm:text-base font-normal text-gray-700 leading-relaxed">
                       {item.text}
                     </p>
                   </motion.div>
@@ -553,7 +553,8 @@ const OpportunityPage = () => {
               </motion.h3>
             </div>
             <motion.p className="text-sm sm:text-lg mb-8 sm:mb-12 text-center max-w-4xl mx-auto text-black">
-              Maximize your earnings with NHT Global by understanding these key terms:
+              Maximize your earnings with NHT Global by understanding these key
+              terms:
             </motion.p>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-12 items-stretch min-h-full">
               {compensationFeatures.map((item, index) => (
@@ -667,8 +668,8 @@ const OpportunityPage = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              Join NHT Global today and take control of your financial future with
-              a proven business model.
+              Join NHT Global today and take control of your financial future
+              with a proven business model.
             </motion.p>
             <motion.div
               className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-6"
@@ -681,7 +682,10 @@ const OpportunityPage = () => {
                 className="bg-orange-500 text-white font-normal py-3 sm:py-6 px-6 sm:px-10 rounded-full hover:bg-orange-600 shadow-xl border-0 text-sm sm:text-lg min-h-[44px]"
                 asChild
               >
-                <a href="#categories" className="flex items-center gap-2 sm:gap-3">
+                <a
+                  href="#categories"
+                  className="flex items-center gap-2 sm:gap-3"
+                >
                   Get Started Now
                   <ArrowRight className="h-4 w-4 sm:h-5 sm:w-5" />
                 </a>
@@ -690,7 +694,10 @@ const OpportunityPage = () => {
                 className="bg-white/10 backdrop-blur-lg text-black font-normal py-3 sm:py-6 px-6 sm:px-10 rounded-full hover:bg-white/20 shadow-xl text-sm sm:text-lg border border-orange-400/30 min-h-[44px]"
                 asChild
               >
-                <a href="#learn-more" className="flex items-center gap-2 sm:gap-3">
+                <a
+                  href="#learn-more"
+                  className="flex items-center gap-2 sm:gap-3"
+                >
                   Contact Us
                   <Play className="h-4 w-4 sm:h-5 sm:w-5" />
                 </a>
