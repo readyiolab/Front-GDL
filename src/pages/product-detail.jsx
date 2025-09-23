@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { useParams, useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Button } from "@/components/ui/button";
-import { ChevronLeft, Eye, AlertTriangle, Shield, CheckCircle } from "lucide-react";
+import { ChevronLeft, Eye, AlertTriangle, Shield, CheckCircle, ArrowRight } from "lucide-react";
 
 // Animation variants
 const staggerChildren = {
@@ -33,7 +33,7 @@ const ProductDetail = () => {
 
   // Axios instance configuration
   const axiosInstance = axios.create({
-    baseURL:  "http://localhost:3006/api",
+    baseURL:  import.meta.env.VITE_API_URL,
     withCredentials: true,
     headers: {
       "Content-Type": "application/json",
@@ -120,7 +120,7 @@ const ProductDetail = () => {
   };
 
   return (
-    <div className="min-h-screen ">
+    <div className="min-h-screen">
       {/* Product Banners */}
       {product.productBanners && (
         <motion.section
@@ -136,7 +136,6 @@ const ProductDetail = () => {
                 key={index}
                 className="relative rounded-2xl overflow-hidden shadow-xl border border-slate-200"
                 variants={itemVariants}
-              
               >
                 <img
                   src={banner.trim()}
@@ -219,11 +218,11 @@ const ProductDetail = () => {
                     </div>
                   </div>
                 )}
-                {/* {discountPercent > 0 && (
+                {discountPercent > 0 && (
                   <div className="absolute top-3 sm:top-4 left-3 sm:left-4 bg-gradient-to-r from-red-500 to-pink-500 text-white px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-semibold shadow-md">
                     {discountPercent}% OFF
                   </div>
-                )} */}
+                )}
               </div>
 
               <div className="p-4 sm:p-6">
@@ -348,6 +347,78 @@ const ProductDetail = () => {
           </motion.div>
         </div>
       </motion.div>
+
+      {/* Call to Action Section */}
+      <motion.section
+        className="py-12 sm:py-16 px-4 sm:px-6 bg-gradient-to-br from-blue-950 to-blue-700 text-white"
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8 }}
+      >
+        <div className="max-w-7xl mx-auto text-center">
+          <motion.div
+            className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-lg border border-white/20 px-4 sm:px-6 py-2 sm:py-3 rounded-full mb-6 sm:mb-8"
+            variants={itemVariants}
+          >
+            <ArrowRight className="h-3 sm:h-4 w-3 sm:w-4 text-white" />
+            <span className="text-white font-semibold text-xs uppercase tracking-wide">
+              Take Action Now
+            </span>
+          </motion.div>
+
+          <motion.h2
+            className="text-3xl sm:text-4xl md:text-5xl font-semibold mb-3 sm:mb-4"
+            variants={itemVariants}
+          >
+            Experience {product.productName}
+          </motion.h2>
+
+          <motion.p
+            className="text-base sm:text-lg max-w-2xl mx-auto leading-relaxed mb-6 sm:mb-8"
+            variants={itemVariants}
+          >
+            Add {product.productName} to your wellness routine, join our community, or connect with us for personalized guidance to enhance your lifestyle.
+          </motion.p>
+
+          <motion.div
+            className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center"
+            variants={itemVariants}
+          >
+            <Button
+              className="bg-white text-blue-950 font-semibold py-4 sm:py-5 px-6 sm:px-8 rounded-full shadow-xl border-0 text-sm sm:text-lg"
+              asChild
+            >
+              <motion.a
+                href="/cart"
+                className="flex items-center gap-2 sm:gap-3"
+                whileHover="hover"
+                whileTap="tap"
+                variants={hoverScale}
+              >
+                Add to Cart
+                <ArrowRight className="h-4 sm:h-5 w-4 sm:w-5" />
+              </motion.a>
+            </Button>
+
+            <Button
+              className="bg-transparent border-2 border-white text-white font-semibold py-4 sm:py-5 px-6 sm:px-8 rounded-full hover:bg-white/20 shadow-xl text-sm sm:text-lg"
+              asChild
+            >
+              <motion.a
+                href="/contact"
+                className="flex items-center gap-2 sm:gap-3"
+                whileHover="hover"
+                whileTap="tap"
+                variants={hoverScale}
+              >
+                Contact Us
+                <ArrowRight className="h-4 sm:h-5 w-4 sm:w-5" />
+              </motion.a>
+            </Button>
+          </motion.div>
+        </div>
+      </motion.section>
     </div>
   );
 };

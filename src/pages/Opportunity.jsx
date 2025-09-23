@@ -45,7 +45,7 @@ const HeroSection = () => {
             className="inline-flex items-center gap-2 bg-white backdrop-blur-sm border border-orange-400/30 px-3 py-1.5 sm:px-6 sm:py-3 rounded-full mb-4 sm:mb-8"
             variants={itemVariants}
           >
-            <Star className="h-3 w-3 sm:h-4 sm:w-4 text-white0" />
+            <Star className="h-3 w-3 sm:h-4 sm:w-4 text-blue-950" />
             <span className="text-blue-950 font-normal text-xs sm:text-sm">
               Proven Business Model
             </span>
@@ -85,7 +85,7 @@ const HeroSection = () => {
             </Button>
 
             <Button
-              className="bg-white/10 backdrop-blur-lg text-white font-normal py-3 sm:py-6 px-6 sm:px-10 rounded-full hover:bg-white/20 shadow-xl text-sm sm:text-lg  min-h-[44px]"
+              className="bg-white/10 backdrop-blur-lg text-white font-normal py-3 sm:py-6 px-6 sm:px-10 rounded-full hover:bg-white/20 shadow-xl text-sm sm:text-lg min-h-[44px]"
               asChild
             >
               <motion.a
@@ -222,7 +222,6 @@ const OpportunityPage = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100 overflow-x-hidden">
-      {/* Added overflow-x-hidden to prevent horizontal scroll */}
       <Helmet>
         <title>NHT Global Opportunity - Unleash Your Potential</title>
         <meta
@@ -289,7 +288,7 @@ const OpportunityPage = () => {
           className="py-12 sm:py-20 px-4 sm:px-6 lg:px-8"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-50px" }} // Adjusted for mobile
+          viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.8 }}
         >
           <div className="max-w-7xl mx-auto space-y-6 sm:space-y-8">
@@ -560,8 +559,7 @@ const OpportunityPage = () => {
               {compensationFeatures.map((item, index) => (
                 <motion.div
                   key={index}
-                  className="bg-gradient-to-r from-gray-50 to-gray-100
- rounded-xl p-4 sm:p-6 shadow-md hover:shadow-lg transition-shadow duration-300 flex flex-col justify-between h-full"
+                  className="bg-gradient-to-r from-gray-50 to-gray-100 rounded-xl p-4 sm:p-6 shadow-md hover:shadow-lg transition-shadow duration-300 flex flex-col justify-between h-full"
                 >
                   <h3 className="text-base sm:text-xl font-semibold text-black mb-4 sm:mb-6 text-center">
                     {item.title}
@@ -619,8 +617,7 @@ const OpportunityPage = () => {
               {investmentFeatures.map((item, index) => (
                 <motion.div
                   key={index}
-                  className="bg-gradient-to-r from-gray-50 to-gray-100
- rounded-xl p-4 sm:p-6 shadow-md hover:shadow-lg transition-shadow duration-300"
+                  className="bg-gradient-to-r from-gray-50 to-gray-100 rounded-xl p-4 sm:p-6 shadow-md hover:shadow-lg transition-shadow duration-300"
                 >
                   <h3 className="text-base sm:text-lg font-bold text-black mb-2 text-center">
                     {item.title}
@@ -649,62 +646,71 @@ const OpportunityPage = () => {
           </div>
         </motion.section>
 
-        {/* Section 7: Call to Action */}
-        <section className="py-12 sm:py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-orange-50 via-white to-orange-50">
-          <div className="max-w-6xl mx-auto text-center space-y-6 sm:space-y-8">
-            <motion.h2
-              className="text-2xl sm:text-4xl lg:text-5xl font-bold text-blue-950"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-            >
-              Ready to Start Your Journey?
-            </motion.h2>
-            <motion.p
-              className="text-sm sm:text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-            >
-              Join NHT Global today and take control of your financial future
-              with a proven business model.
-            </motion.p>
+        {/* Call to Action Section */}
+        <motion.section
+          className="py-12 sm:py-16 px-4 sm:px-6 bg-gradient-to-br from-blue-950 to-blue-700 text-white"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+        >
+          <div className="max-w-7xl mx-auto text-center">
             <motion.div
-              className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-6"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.4 }}
+              className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-lg border border-white/20 px-4 sm:px-6 py-2 sm:py-3 rounded-full mb-6 sm:mb-8"
+              variants={itemVariants}
+            >
+              <ArrowRight className="h-3 sm:h-4 w-3 sm:w-4 text-white" />
+              <span className="text-white font-semibold text-xs uppercase tracking-wide">
+                Start Your Journey
+              </span>
+            </motion.div>
+
+            <motion.h2
+              className="text-2xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4"
+              variants={itemVariants}
+            >
+              Join NHT Global Today
+            </motion.h2>
+
+            <motion.p
+              className="text-sm sm:text-lg max-w-2xl mx-auto leading-relaxed mb-6 sm:mb-8"
+              variants={itemVariants}
+            >
+              Take the first step towards financial freedom and a healthier lifestyle. Join our global community or connect with us to learn how NHT Global can transform your future.
+            </motion.p>
+
+            <motion.div
+              className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center"
+              variants={itemVariants}
             >
               <Button
-                className="bg-orange-500 text-white font-normal py-3 sm:py-6 px-6 sm:px-10 rounded-full hover:bg-orange-600 shadow-xl border-0 text-sm sm:text-lg min-h-[44px]"
+                className="bg-white text-blue-950 font-semibold py-4 sm:py-5 px-6 sm:px-8 rounded-full shadow-xl border-0 text-sm sm:text-lg"
                 asChild
               >
-                <a
-                  href="#categories"
+                <motion.a
+                  href="/join"
                   className="flex items-center gap-2 sm:gap-3"
                 >
-                  Get Started Now
-                  <ArrowRight className="h-4 w-4 sm:h-5 sm:w-5" />
-                </a>
+                  Get Started
+                  <ArrowRight className="h-4 sm:h-5 w-4 sm:w-5" />
+                </motion.a>
               </Button>
+
               <Button
-                className="bg-white/10 backdrop-blur-lg text-black font-normal py-3 sm:py-6 px-6 sm:px-10 rounded-full hover:bg-white/20 shadow-xl text-sm sm:text-lg border border-orange-400/30 min-h-[44px]"
+                className="bg-transparent border-2 border-white text-white font-semibold py-4 sm:py-5 px-6 sm:px-8 rounded-full hover:bg-white/20 shadow-xl text-sm sm:text-lg"
                 asChild
               >
-                <a
-                  href="#learn-more"
+                <motion.a
+                  href="/contact"
                   className="flex items-center gap-2 sm:gap-3"
                 >
                   Contact Us
-                  <Play className="h-4 w-4 sm:h-5 sm:w-5" />
-                </a>
+                  <Play className="h-4 sm:h-5 w-4 sm:w-5" />
+                </motion.a>
               </Button>
             </motion.div>
           </div>
-        </section>
+        </motion.section>
       </main>
 
       {/* Custom CSS for shadow-text and minor tweaks */}

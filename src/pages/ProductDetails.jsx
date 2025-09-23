@@ -125,7 +125,7 @@ const ProductDetails = () => {
 
   // Axios instance configuration
   const axiosInstance = axios.create({
-    baseURL: "http://localhost:3006/api",
+    baseURL:  import.meta.env.VITE_API_URL,
     withCredentials: true,
     headers: {
       'Content-Type': 'application/json',
@@ -370,6 +370,72 @@ const ProductDetails = () => {
           )}
         </motion.div>
       </div>
+
+      {/* Call to Action Section */}
+      <motion.section
+        className="py-12 sm:py-16 px-4 sm:px-6 bg-gradient-to-br from-blue-950 to-blue-700 text-white"
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8 }}
+      >
+        <div className="max-w-7xl mx-auto text-center">
+          <motion.div
+            className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-lg border border-white/20 px-4 sm:px-6 py-2 sm:py-3 rounded-full mb-6 sm:mb-8"
+            variants={itemVariants}
+          >
+            <ArrowRight className="h-3 sm:h-4 w-3 sm:w-4 text-white" />
+            <span className="text-white font-semibold text-xs uppercase tracking-wide">
+              Take the Next Step
+            </span>
+          </motion.div>
+
+          <motion.h2
+            className="text-3xl sm:text-4xl md:text-5xl font-semibold mb-3 sm:mb-4"
+            variants={itemVariants}
+          >
+            Transform Your Wellness Journey
+          </motion.h2>
+
+          <motion.p
+            className="text-base sm:text-lg max-w-2xl mx-auto leading-relaxed mb-6 sm:mb-8"
+            variants={itemVariants}
+          >
+            Discover the power of {currentCategory.categoryName} products. Join our global community, connect with us for personalized recommendations, or explore more to elevate your lifestyle.
+          </motion.p>
+
+          <motion.div
+            className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center"
+            variants={itemVariants}
+          >
+            <Button
+              className="bg-white text-blue-950 font-semibold py-4 sm:py-5 px-6 sm:px-8 rounded-full shadow-xl border-0 text-sm sm:text-lg"
+              asChild
+            >
+              <motion.a
+                href="/join"
+                className="flex items-center gap-2 sm:gap-3"
+              >
+                Join Now
+                <ArrowRight className="h-4 sm:h-5 w-4 sm:w-5" />
+              </motion.a>
+            </Button>
+
+            <Button
+              className="bg-transparent border-2 border-white text-white font-semibold py-4 sm:py-5 px-6 sm:px-8 rounded-full hover:bg-white/20 shadow-xl text-sm sm:text-lg"
+              asChild
+            >
+              <motion.a
+                href="/contact"
+                className="flex items-center gap-2 sm:gap-3"
+              >
+                Contact Us
+                <ArrowRight className="h-4 sm:h-5 w-4 sm:w-5" />
+              </motion.a>
+            </Button>
+          </motion.div>
+        </div>
+      </motion.section>
     </div>
   );
 };

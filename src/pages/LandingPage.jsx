@@ -10,6 +10,7 @@ import {
   Heart,
   DollarSign,
   Clock,
+  ArrowRight,
 } from "lucide-react";
 import AboutNHT from "./AboutNHT";
 
@@ -100,18 +101,14 @@ const LandingPage = () => {
   return (
     <main className="pt-2 sm:pt-4 bg-white">
       <AboutNHT />
-      <div className="flex flex-row flex-wrap items-center justify-center gap-4 sm:gap-6 lg:gap-10 bg-white/20  px-4 sm:px-6 bgeige-100 py-6 sm:py-8">
+      <div className="flex flex-row flex-wrap items-center justify-center gap-4 sm:gap-6 lg:gap-10 bg-white/20 px-4 sm:px-6 bgeige-100 py-6 sm:py-8">
         <img src="./gdl.png" alt="GDL Logo" className="h-12 sm:h-16 w-auto" />
-
         <ChevronRight className="h-6 w-6 sm:h-8 sm:w-8 text-blue-950" />
-
         <p className="text-base sm:text-lg lg:text-xl text-black font-medium text-center sm:text-left max-w-md">
           Proud to be an Independent Distributor of <br /> a world-class company
           with global presence
         </p>
-
         <ChevronRight className="h-6 w-6 sm:h-8 sm:w-8 text-blue-950" />
-
         <img
           src="./nht-logo.png"
           alt="NHT Global Logo"
@@ -136,7 +133,6 @@ const LandingPage = () => {
               Unlock opportunities with NHT Global and Get Dream Life.
             </p>
           </div>
-
           <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-6">
             {dreamLifeFeatures.slice(0, 5).map((feature, index) => {
               const Icon = feature.icon;
@@ -151,7 +147,7 @@ const LandingPage = () => {
                     >
                       <Icon className="h-4 w-4 sm:h-5 sm:w-5 text-white" />
                     </div>
-                    <h3 className="text-sm sm:text-base  text-blue-950 text-center">
+                    <h3 className="text-sm sm:text-base text-blue-950 text-center">
                       {feature.title}
                     </h3>
                   </div>
@@ -187,7 +183,6 @@ const LandingPage = () => {
               global impact.
             </p>
           </div>
-
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
             <div className="flex flex-col gap-3 sm:gap-4">
               {nhtGlobalFeatures.map((item, index) => (
@@ -204,7 +199,6 @@ const LandingPage = () => {
                 </div>
               ))}
             </div>
-
             <div className="flex flex-col items-center justify-center">
               <img
                 src="https://images.unsplash.com/photo-1577563908411-5077b6dc7624?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8YWJvdXR8ZW58MHx8MHx8fDA%3D"
@@ -249,7 +243,6 @@ const LandingPage = () => {
               A Legacy of Success
             </h3>
           </div>
-
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-20 items-center">
             <div className="relative h-64 sm:h-80 shadow-xl flex items-center justify-center">
               <img
@@ -258,7 +251,6 @@ const LandingPage = () => {
                 className="h-auto max-w-full object-contain rounded-xl"
               />
             </div>
-
             <div className="flex flex-col gap-3 sm:gap-4">
               {historyFeatures.map((item, index) => (
                 <div
@@ -295,9 +287,8 @@ const LandingPage = () => {
               Support for your success.
             </p>
           </div>
-
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
-            <div className="flex flex-col justify-center  gap-3 sm:gap-4">
+            <div className="flex flex-col justify-center gap-3 sm:gap-4">
               {helpFeatures.map((item, index) => (
                 <div key={index} className="flex items-start gap-2 sm:gap-3">
                   <div className="w-2 h-2 rounded-full bg-black mt-1.5 sm:mt-2 flex-shrink-0" />
@@ -307,7 +298,6 @@ const LandingPage = () => {
                 </div>
               ))}
             </div>
-
             <div className="flex items-center justify-center">
               <img
                 src="https://images.unsplash.com/photo-1698557133685-bd846d3ac15c?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8R2V0JTIwRHJlYW0lMjBMaWZlfGVufDB8fDB8fHww"
@@ -336,7 +326,6 @@ const LandingPage = () => {
               Pillars of success.
             </p>
           </div>
-
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 items-stretch">
             {[
               {
@@ -376,6 +365,39 @@ const LandingPage = () => {
                 </p>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Section 6: Call to Action */}
+      <section className="py-12 sm:py-16 px-4 sm:px-6 bg-gradient-to-br from-blue-950 to-blue-700 text-white">
+        <div className="max-w-6xl mx-auto text-center">
+          <div className="inline-flex items-center gap-2 bg-blue-100 border border-blue-200 px-3 sm:px-4 py-2 rounded-full mb-4 sm:mb-6">
+            <ArrowRight className="h-3 w-3 sm:h-4 sm:w-4 text-blue-950" />
+            <span className="text-blue-950 font-semibold text-xs uppercase tracking-wide">
+              Take the Next Step
+            </span>
+          </div>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold mb-3 sm:mb-4">
+            Start Your Journey with Get Dream Life
+          </h2>
+          <p className="text-base sm:text-lg max-w-2xl mx-auto leading-relaxed mb-6 sm:mb-8">
+            Join NHT Global today and take control of your future with our innovative products, global community, and unparalleled support.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center">
+            <a
+              href="#join-now"
+              className="inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 bg-white text-blue-950 font-semibold rounded-full hover:bg-blue-100 transition-all duration-300"
+            >
+              Join Now
+              <ArrowRight className="ml-2 h-5 w-5" />
+            </a>
+            <a
+              href="#learn-more"
+              className="inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 bg-transparent border-2 border-white text-white font-semibold rounded-full hover:bg-white hover:text-blue-950 transition-all duration-300"
+            >
+              Learn More
+            </a>
           </div>
         </div>
       </section>

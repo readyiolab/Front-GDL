@@ -351,26 +351,7 @@ export default function Blog() {
           </Button>
         </div>
 
-        {/* Newsletter Subscription */}
-        <div className="bg-gradient-to-r from-teal-500 to-purple-600 text-white rounded-lg p-8 animate-slide-in">
-          <h3 className="text-2xl font-bold mb-3">Join Our Health Newsletter</h3>
-          <p className="text-teal-100 mb-5 text-base">
-            Stay updated with the latest articles, health tips, and exclusive content.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-3">
-            <Input
-              type="email"
-              placeholder="Enter your email"
-              className="bg-white text-gray-900 h-10 text-base"
-            />
-            <Button className="bg-white text-teal-600 hover:bg-teal-50 h-10 text-base">
-              Subscribe
-            </Button>
-          </div>
-          <p className="text-teal-200 text-sm mt-4">
-            Your privacy is safe with us. Unsubscribe anytime.
-          </p>
-        </div>
+       
       </div>
 
       {/* CSS for animations */}

@@ -75,8 +75,6 @@ const JoinNow = () => {
       >
         <div className="absolute inset-0 bg-gradient-to-r from-blue-900/20 to-purple-900/20"></div>
 
-       
-
         <motion.div
           className="relative z-10 max-w-6xl mx-auto text-center"
           initial={{ opacity: 0, y: 30 }}
@@ -84,7 +82,7 @@ const JoinNow = () => {
           transition={{ delay: 0.3, duration: 0.8 }}
         >
           <motion.div
-            className="inline-flex items-center gap-2 bg-white backdrop-blur-sm  px-3 sm:px-4 py-2 rounded-full mb-4 sm:mb-6"
+            className="inline-flex items-center gap-2 bg-white backdrop-blur-sm px-3 sm:px-4 py-2 rounded-full mb-4 sm:mb-6"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.5, duration: 0.6 }}
@@ -109,8 +107,9 @@ const JoinNow = () => {
 
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center">
             <motion.button
-              className="group bg-white  text-blue-950 px-6 sm:px-8 py-3 sm:py-4 rounded-full font-bold text-base sm:text-lg shadow-2xl  transition-all duration-300 flex items-center gap-2 sm:gap-3"
-              
+              className="group bg-white text-blue-950 px-6 sm:px-8 py-3 sm:py-4 rounded-full font-bold text-base sm:text-lg shadow-2xl transition-all duration-300 flex items-center gap-2 sm:gap-3"
+              whileHover={{ scale: 1.05, y: -2 }}
+              whileTap={{ scale: 0.98 }}
             >
               Start Registration Now
               <ChevronRight className="h-4 w-4 sm:h-5 sm:w-5 group-hover:translate-x-1 transition-transform" />
@@ -366,6 +365,72 @@ const JoinNow = () => {
           </div>
         </div>
       </section>
+
+      {/* Call to Action Section */}
+      <motion.section
+        className="py-12 sm:py-16 px-4 sm:px-6 bg-gradient-to-br from-blue-950 to-blue-700 text-white"
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8 }}
+      >
+        <div className="max-w-6xl mx-auto text-center">
+          <motion.div
+            className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-lg border border-white/20 px-4 sm:px-6 py-2 sm:py-3 rounded-full mb-6 sm:mb-8"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6 }}
+          >
+            <Rocket className="h-3 sm:h-4 w-3 sm:w-4 text-white" />
+            <span className="text-white font-semibold text-xs uppercase tracking-wide">
+              Launch Your Future
+            </span>
+          </motion.div>
+
+          <motion.h2
+            className="text-2xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            Start Your NHT Global Journey Today
+          </motion.h2>
+
+          <motion.p
+            className="text-sm sm:text-lg max-w-2xl mx-auto leading-relaxed mb-6 sm:mb-8"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
+            Take the first step towards financial freedom and a global business opportunity. Become an NHT Global Independent Distributor or connect with our team for personalized guidance.
+          </motion.p>
+
+          <motion.div
+            className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+          >
+            <motion.button
+              className="group bg-white text-blue-950 font-semibold py-4 sm:py-5 px-6 sm:px-8 rounded-full shadow-xl border-0 text-sm sm:text-lg flex items-center justify-center gap-2 sm:gap-3"
+              whileHover={{ scale: 1.05, y: -2 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              Get Started Now
+              <ArrowRight className="h-4 sm:h-5 w-4 sm:w-5 group-hover:translate-x-1 transition-transform" />
+            </motion.button>
+
+            <motion.button
+              className="group bg-transparent border-2 border-white text-white font-semibold py-4 sm:py-5 px-6 sm:px-8 rounded-full hover:bg-white/20 shadow-xl text-sm sm:text-lg flex items-center justify-center gap-2 sm:gap-3"
+              whileHover={{ scale: 1.05, y: -2 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              Contact Us
+              <Phone className="h-4 sm:h-5 w-4 sm:w-5" />
+            </motion.button>
+          </motion.div>
+        </div>
+      </motion.section>
     </div>
   );
 };
